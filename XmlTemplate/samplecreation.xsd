@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smp:samplecreation xmlns:smp="http://genologics.com/ri/sample" xmlns:udf="http://genologics.com/ri/userdefined" xmlns:ri="http://genologics.com/ri" xmlns:file="http://genologics.com/ri/file" limsid="..." uri="...">
+  <!-- REQUIRED -->
+  <location>
+    <container limsid="" uri=""></container>
+    <value></value>
+  </location>
+  <name></name>
+  <project uri="" limsid=""/>
+  <submitter uri="">
+    <first-name></first-name>
+    <last-name></last-name>
+  </submitter>
+  <!-- /REQUIRED -->
+  <udf:field type="String" name="Ampliseq Primer Design ID (IAD number)"></udf:field>
+  <udf:field type="String" name="ASF Comments"></udf:field>
+  <udf:field type="Text" name="ASF Comments old"></udf:field>
+  <udf:field type="String" name="C1 Application"></udf:field>
+  <udf:field type="String" name="C1 IFC Used"></udf:field>
+  <udf:field type="String" name="Coverage (x)"></udf:field>
+  <udf:field type="String" name="Custom Index Primer"></udf:field>
+  <udf:field type="Numeric" name="Custom Index Primer Concentration (uM)"></udf:field>
+  <udf:field type="String" name="Custom Seq Primer"></udf:field>
+  <udf:field type="Numeric" name="Custom Seq Primer Concentration (uM)"></udf:field>
+  <!-- REQUIRED -->
+  <udf:field type="String" name="End Type"></udf:field>
+  <!-- /REQUIRED -->
+  <udf:field type="String" name="Hybridisation baits"></udf:field>
+  <udf:field type="String" name="i5 Index"></udf:field>
+  <udf:field type="String" name="i7 Index"></udf:field>
+  <udf:field type="String" name="Library band size (bp)"></udf:field>
+  <udf:field type="String" name="Library Preparation Protocol"></udf:field>
+  <udf:field type="String" name="Number of primer pairs in pool"></udf:field>
+  <udf:field type="String" name="Pool ID"></udf:field>
+  <udf:field type="String" name="Primer pairs"></udf:field>
+  <udf:field type="String" name="Progress"></udf:field>
+  <!-- REQUIRED -->
+  <udf:field type="String" name="Read Length"></udf:field>
+  <!-- /REQUIRED -->
+  <udf:field type="String" name="Reference Genome"></udf:field>
+  <udf:field type="Numeric" name="RIN"></udf:field>
+  <udf:field type="String" name="RNA Type"></udf:field>
+  <udf:field type="Numeric" name="Sample Concentration (ng/uL)"></udf:field>
+  <!-- REQUIRED -->
+  <udf:field type="String" name="Sample Type"></udf:field>
+  <!-- /REQUIRED -->
+  <udf:field type="String" name="Sequencer"></udf:field>
+  <udf:field type="Numeric" name="Sequencing required (million reads)"></udf:field>
+  <udf:field type="String" name="Size Selection (bp)"></udf:field>
+  <udf:field type="Numeric" name="Total Amount (ng)"></udf:field>
+  <udf:field type="String" name="TRACERx Sample ID"></udf:field>
+  <udf:field type="String" name="User Comments"></udf:field>
+  <udf:field type="Text" name="User Comments old"></udf:field>
+  <!-- REQUIRED -->
+  <udf:field type="Numeric" name="Volume (uL)"></udf:field>
+  <!-- /REQUIRED -->
+</smp:samplecreation>
