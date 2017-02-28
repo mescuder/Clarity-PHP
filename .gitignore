@@ -3,3 +3,4 @@ Config/clarity_parameters.yml
 Tests/run.php
 Tests/samples.php
 Tests/*.xml
+
