@@ -10,8 +10,10 @@ spl_autoload_register(
                 'Clarity\Entity\Container'                            => '/Entity/Container.php',
                 'Clarity\Entity\Tube'                                 => '/Entity/Tube.php',
                 'Clarity\Entity\Sample'                               => '/Entity/Sample.php',
+                'Clarity\Entity\Project'                              => '/Entity/Project.php',
                 'Clarity\EntityRepository\ContainerClarityRepository' => '/EntityRepository/ContainerClarityRepository.php',
                 'Clarity\EntityRepository\SampleClarityRepository'    => '/EntityRepository/SampleClarityRepository.php',
+                'Clarity\EntityRepository\ProjectClarityRepository'   => '/EntityRepository/ProjectClarityRepository.php',
             );
         }
         if (isset($classes[$class])) {
