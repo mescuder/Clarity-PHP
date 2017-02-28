@@ -1,3 +1,5 @@
 Config/clarity_api_credentials.yml
 Config/clarity_parameters.yml
-Tests
+Tests/run.php
+Tests/samples.php
+Tests/*.xml
