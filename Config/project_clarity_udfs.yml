@@ -1,0 +1,75 @@
+bioinformatician:
+    name: 'Bioinformatician'
+    value:
+    type: String
+    required: FALSE
+cell-number:
+    name: 'Number of experiments (total number of cells)'
+    value:
+    type: String
+    required: FALSE
+coverage:
+    name: 'Coverage'
+    value:
+    type: Numeric
+    required: FALSE
+depth:
+    name: 'Depth'
+    value:
+    type: String
+    required: FALSE
+description:
+    name: 'Description'
+    value:
+    type: Text
+    required: FALSE
+fragment-size:
+    name: 'Fragment Size'
+    value:
+    type: String
+    required: FALSE
+funding-source:
+    name: 'Funding source'
+    value:
+    type: String
+    required: TRUE
+genome:
+    name: 'Genome build'
+    value:
+    type: String
+    required: FALSE
+library-prep-method:
+    name: 'Library Prep Method'
+    value: 
+    type: String
+    required: FALSE
+prep-kit:
+    name: 'Prep Kit'
+    value:
+    type: String
+    required: FALSE
+project-type:
+    name: 'Project type'
+    value: 
+    type: String
+    required: TRUE
+read-length:
+    name: 'Read Length'
+    value:
+    type: Numeric
+    required: FALSE
+run-type:
+    name: 'Run Type'
+    value:
+    type: String
+    required: FALSE
+sample-quota:
+    name: 'Sample quota'
+    value:
+    type: Numeric
+    required: TRUE
+sequencer-type:
+    name: 'Sequencer type'
+    value:
+    type: String
+    required: TRUE
