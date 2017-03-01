@@ -3,14 +3,14 @@
 namespace Clarity\EntityRepository;
 
 use Clarity\Connector\ClarityApiConnector;
-use Clarity\Entity\Project;
+use Clarity\Entity\Researcher;
 
 /**
- * Description of ProjectClarityRepository
+ * Description of ResearcherClarityRepository
  *
  * @author Mickael Escudero
  */
-class ProjectClarityRepository
+class ResearcherClarityRepository
 {
     
     /**
@@ -27,35 +27,30 @@ class ProjectClarityRepository
     
     /**
      *
-     * @var Project $project
+     * @var Researcher $researcher
      */
-    protected $project;
+    protected $researcher;
     
     /**
      * 
      * @param ClarityApiConnector $connector
-     * @param Project $project
+     * @param Researcher $researcher
      */
-    public function __construct(ClarityApiConnector $connector = null, Project $project = null)
+    public function __construct(ClarityApiConnector $connector = null, Researcher $researcher = null)
     {
-        $this->endpoint = 'projects';
+        $this->endpoint = 'researchers';
         $this->connector = $connector;
-        $this->project = $project;
+        $this->researcher = $researcher;
     }
     
-    /**
-     * 
-     * @param string $id
-     * @return Project
-     */
     public function find($id)
     {
         $path = $this->endpoint . '/' . $id;
         $data = $this->connector->getResource($path);
-        $this->project = new Project();
-        $this->project->setXml($data);
-        $this->project->xmlToProject();
-        return $this->project;
+        $this->researcher = new Researcher();
+        $this->researcher->setXml($data);
+        $this->researcher->xmlToResearcher();
+        return $this->researcher;
     }
     
     /**
@@ -78,20 +73,20 @@ class ProjectClarityRepository
     
     /**
      * 
-     * @param Project $project
+     * @param Researcher $researcher
      */
-    public function setProject(Project $project)
+    public function setResearcher(Researcher $researcher)
     {
-        $this->project = $project;
+        $this->researcher = $researcher;
     }
     
     /**
      * 
-     * @return Project
+     * @return Researcher
      */
-    public function getProject()
+    public function getResearcher()
     {
-        return $this->project;
+        return $this->researcher;
     }
     
 }
