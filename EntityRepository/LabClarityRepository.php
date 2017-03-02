@@ -55,6 +55,7 @@ class LabClarityRepository
         $this->lab = new Lab();
         $this->lab->setXml($data);
         $this->lab->xmlToLab();
+        $this->lab->setClarityIdFromUri();
         return $this->lab;
     }
     

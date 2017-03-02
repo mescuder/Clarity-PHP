@@ -2,12 +2,14 @@
 
 namespace Clarity\Entity;
 
+use Clarity\Entity\ApiResource;
+
 /**
  * Description of Sample
  *
  * @author Mickael Escudero
  */
-class Sample
+class Sample extends ApiResource
 {
 
     /**
@@ -24,28 +26,10 @@ class Sample
     
     /**
      *
-     * @var string $clarityId
-     */
-    protected $clarityId;
-    
-    /**
-     *
      * @var string $clarityName
      */
     protected $clarityName;
     
-    /**
-     *
-     * @var array $clarityUDFs
-     */
-    protected $clarityUDFs;
-    
-    /**
-     *
-     * @var string $clarityUri
-     */
-    protected $clarityUri;
-
     /**
      *
      * @var Container $container
@@ -126,6 +110,7 @@ class Sample
 
     public function __construct()
     {
+        parent::__construct();
         $this->clarityUDFs = array();
         $udfs = yaml_parse_file('Config/sample_clarity_udfs.yml');
         foreach ($udfs as $udf) {
@@ -171,24 +156,6 @@ class Sample
     
     /**
      * 
-     * @param string $clarityId
-     */
-    public function setClarityId($clarityId)
-    {
-        $this->clarityId = $clarityId;
-    }
-
-    /**
-     * 
-     * @return string
-     */
-    public function getClarityId()
-    {
-        return $this->clarityId;
-    }
-
-    /**
-     * 
      * @param string $clarityName
      */
     public function setClarityName($clarityName)
@@ -205,76 +172,6 @@ class Sample
         return $this->clarityName;
     }
     
-    /**
-     * 
-     * @param array $udf
-     */
-    public function setClarityUDF(array $udf)
-    {
-        if (array_key_exists('name', $udf)) {
-            $name = $udf['name'];
-            $this->clarityUDFs[$name]['name'] = $name;
-            
-            if (array_key_exists('value', $udf)) {
-                $this->clarityUDFs[$name]['value'] = $udf['value'];
-            }
-            if (array_key_exists('required', $udf)) {
-                $this->clarityUDFs[$name]['required'] = $udf['required'];
-            }
-            if (array_key_exists('type', $udf)) {
-                $this->clarityUDFs[$name]['type'] = $udf['type'];
-            }
-        }
-    }
-    
-    /**
-     * 
-     * @param string $name
-     * @return array
-     */
-    public function getClarityUDF($name)
-    {
-        return $this->clarityUDFs[$name];
-    }
-    
-    /**
-     * 
-     * @param array $udfs
-     */
-    public function setClarityUDFs(array $udfs)
-    {
-        foreach ($udfs as $udf) {
-            $this->setClarityUDF($udf);
-        }
-    }
-    
-    /**
-     * 
-     * @return array
-     */
-    public function getClarityUDFs()
-    {
-        return $this->clarityUDFs;
-    }
-    
-    /**
-     * 
-     * @param string $clarityUri
-     */
-    public function setClarityUri($clarityUri)
-    {
-        $this->clarityUri = $clarityUri;
-    }
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getClarityUri()
-    {
-        return $this->clarityUri;
-    }
-
     /**
      * 
      * @param Container $container
