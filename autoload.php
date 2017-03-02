@@ -5,7 +5,7 @@ spl_autoload_register(
             static $classes = null;
             if ($classes === null) {
                 $classes = ['Clarity\Connector\ClarityApiConnector'    => '/Connector/ClarityApiConnector.php',
-                'Clarity\Entity\Run'                                   => '/Entity/Run.php',
+                'Clarity\Entity\ApiResource'                           => '/Entity/ApiResource.php',
                 'Clarity\Entity\Container'                             => '/Entity/Container.php',
                 'Clarity\Entity\Tube'                                  => '/Entity/Tube.php',
                 'Clarity\Entity\Sample'                                => '/Entity/Sample.php',

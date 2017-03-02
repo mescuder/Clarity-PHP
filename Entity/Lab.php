@@ -2,19 +2,15 @@
 
 namespace Clarity\Entity;
 
+use Clarity\Entity\ApiResource;
+
 /**
  * Description of Lab
  *
  * @author Mickael Escudero
  */
-class Lab
+class Lab extends ApiResource
 {
-    
-    /**
-     *
-     * @var string $clarityId
-     */
-    protected $clarityId;
     
     /**
      *
@@ -22,21 +18,9 @@ class Lab
      */
     protected $clarityName;
     
-    /**
-     *
-     * @var string $clarityUri
-     */
-    protected $clarityUri;
-    
-    /**
-     *
-     * @var string $xml
-     */
-    protected $xml;
-    
     public function __construct()
     {
-        
+        parent::__construct();
     }
     
     public function xmlToLab()
@@ -44,24 +28,6 @@ class Lab
         $labElement = new \SimpleXMLElement($this->xml);
         $this->clarityUri = $labElement['uri']->__toString();
         $this->clarityName = $labElement->name->__toString();
-    }
-    
-    /**
-     * 
-     * @param string $clarityId
-     */
-    public function setClarityId($clarityId)
-    {
-        $this->clarityId = $clarityId;
-    }
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getClarityId()
-    {
-        return $this->clarityId;
     }
     
     /**
@@ -80,34 +46,6 @@ class Lab
     public function getClarityName()
     {
         return $this->clarityName;
-    }
-    
-    /**
-     * 
-     * @param string $clarityUri
-     */
-    public function setClarityUri($clarityUri)
-    {
-        $this->clarityUri = $clarityUri;
-    }
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getClarityUri()
-    {
-        return $this->clarityUri;
-    }
-    
-    public function setXml($xml)
-    {
-        $this->xml = $xml;
-    }
-    
-    public function getXml()
-    {
-        return $this->xml;
     }
     
 }

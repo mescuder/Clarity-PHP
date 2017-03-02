@@ -2,25 +2,15 @@
 
 namespace Clarity\Entity;
 
+use Clarity\Entity\ApiResource;
+
 /**
  * Description of Researcher
  *
  * @author Mickael Escudero
  */
-class Researcher
+class Researcher extends ApiResource
 {
-    
-    /**
-     *
-     * @var string $clarityId
-     */
-    protected $clarityId;
-    
-    /**
-     *
-     * @var string $clarityUri
-     */
-    protected $clarityUri;
     
     /**
      *
@@ -70,14 +60,9 @@ class Researcher
      */
     protected $username;
     
-    /**
-     *
-     * @var string $xml
-     */
-    protected $xml;
-    
     public function __construct()
     {
+        parent::__construct();
         $this->roles = array();
     }
     
@@ -96,42 +81,6 @@ class Researcher
         foreach ($researcherElement->xpath('//role') as $role) {
             $this->roles[] = $role['name']->__toString();
         }
-    }
-    
-    /**
-     * 
-     * @param string $clarityId
-     */
-    public function setClarityId($clarityId)
-    {
-        $this->clarityId = $clarityId;
-    }
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getClarityId()
-    {
-        return $this->getClarityId();
-    }
-    
-    /**
-     * 
-     * @param string $clarityUri
-     */
-    public function setClarityUri($clarityUri)
-    {
-        $this->clarityUri = $clarityUri;
-    }
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getClarityUri()
-    {
-        return $this->clarityUri;
     }
     
     /**
@@ -287,24 +236,6 @@ class Researcher
     public function getUsername()
     {
         return $this->username;
-    }
-    
-    /**
-     * 
-     * @param string $xml
-     */
-    public function setXml($xml)
-    {
-        $this->xml = $xml;
-    }
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getXml()
-    {
-        return $this->xml;
     }
     
 }

@@ -2,19 +2,15 @@
 
 namespace Clarity\Entity;
 
+use Clarity\Entity\ApiResource;
+
 /**
  * Description of Container
  *
  * @author Mickael Escudero
  */
-abstract class Container
+abstract class Container extends ApiResource
 {
-
-    /**
-     *
-     * @var string $clarityId
-     */
-    protected $clarityId;
 
     /**
      *
@@ -40,37 +36,12 @@ abstract class Container
      */
     protected $clarityTypeUri;
 
-    /**
-     *
-     * @var string $clarityUri
-     */
-    protected $clarityUri;
-
     public function __construct()
     {
+        parent::__construct();
         $this->clarityName = '';
     }
 
-    /**
-     * Set ClarityId
-     * 
-     * @param string $clarityId
-     */
-    public function setClarityId($clarityId)
-    {
-        $this->clarityId = $clarityId;
-    }
-    
-    /**
-     * Get ClarityId
-     * 
-     * @return string
-     */
-    public function getClarityId()
-    {
-        return $this->clarityId;
-    }
-    
     /**
      * Set ClarityName
      * 
@@ -147,26 +118,6 @@ abstract class Container
     public function getClarityTypeUri()
     {
         return $this->clarityTypeUri;
-    }
-    
-    /**
-     * Set ClarityUri
-     * 
-     * @param string $clarityUri
-     */
-    public function setClarityUri($clarityUri)
-    {
-        $this->clarityUri = $clarityUri;
-    }
-    
-    /**
-     * Get ClarityUri
-     * 
-     * @return string
-     */
-    public function getClarityUri()
-    {
-        return $this->clarityUri;
     }
 
 }
