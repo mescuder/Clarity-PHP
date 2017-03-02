@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab:lab xmlns:udf="http://genologics.com/ri/userdefined" xmlns:ri="http://genologics.com/ri" xmlns:lab="http://genologics.com/ri/lab" uri="...">
+    <name></name>
+    <billing-address>
+        <street></street>
+        <city></city>
+        <state></state>
+        <country></country>
+        <postalCode></postalCode>
+        <institution></institution>
+        <department></department>
+    </billing-address>
+    <shipping-address>
+        <street></street>
+        <city></city>
+        <state></state>
+        <country></country>
+        <postalCode></postalCode>
+        <institution></institution>
+        <department></department>
+    </shipping-address>
+    <website></website>
+</lab:lab>

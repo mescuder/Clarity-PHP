@@ -2,6 +2,7 @@
 
 namespace Clarity\EntityRepository;
 
+use Clarity\EntityRepository\ClarityRepository;
 use Clarity\Connector\ClarityApiConnector;
 use Clarity\Entity\Lab;
 
@@ -10,14 +11,8 @@ use Clarity\Entity\Lab;
  *
  * @author Mickael Escudero
  */
-class LabClarityRepository
+class LabClarityRepository extends ClarityRepository
 {
-    
-    /**
-     *
-     * @var resource $connector
-     */
-    protected $connector;
     
     /**
      *
@@ -38,8 +33,8 @@ class LabClarityRepository
      */
     public function __construct(ClarityApiConnector $connector = null, Lab $lab = null)
     {
+        parent::__construct($connector);
         $this->endpoint = 'labs';
-        $this->connector = $connector;
         $this->lab = $lab;
     }
     
@@ -59,22 +54,9 @@ class LabClarityRepository
         return $this->lab;
     }
     
-    /**
-     * 
-     * @param resource $connector
-     */
-    public function setConnector(resource $connector)
+    public function save(Lab $lab = null)
     {
-        $this->connector = $connector;
-    }
-    
-    /**
-     * 
-     * @return resource
-     */
-    public function getConnector()
-    {
-        return $this->connector;
+        
     }
     
     /**
