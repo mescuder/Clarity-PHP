@@ -12,6 +12,7 @@ spl_autoload_register(
                 'Clarity\Entity\Project'                               => '/Entity/Project.php',
                 'Clarity\Entity\Researcher'                            => '/Entity/Researcher.php',
                 'Clarity\Entity\Lab'                                   => '/Entity/Lab.php',
+                'Clarity\EntityRepository\ClarityRepository'           => '/EntityRepository/ClarityRepository.php',
                 'Clarity\EntityRepository\ContainerClarityRepository'  => '/EntityRepository/ContainerClarityRepository.php',
                 'Clarity\EntityRepository\SampleClarityRepository'     => '/EntityRepository/SampleClarityRepository.php',
                 'Clarity\EntityRepository\ProjectClarityRepository'    => '/EntityRepository/ProjectClarityRepository.php',

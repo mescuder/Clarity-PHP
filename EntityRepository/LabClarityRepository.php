@@ -2,6 +2,7 @@
 
 namespace Clarity\EntityRepository;
 
+use Clarity\EntityRepository\ClarityRepository;
 use Clarity\Connector\ClarityApiConnector;
 use Clarity\Entity\Lab;
 
@@ -10,14 +11,8 @@ use Clarity\Entity\Lab;
  *
  * @author Mickael Escudero
  */
-class LabClarityRepository
+class LabClarityRepository extends ClarityRepository
 {
-    
-    /**
-     *
-     * @var resource $connector
-     */
-    protected $connector;
     
     /**
      *
@@ -26,21 +21,22 @@ class LabClarityRepository
     protected $endpoint;
     
     /**
-     *
-     * @var Project $project
-     */
-    protected $lab;
-    
-    /**
      * 
      * @param ClarityApiConnector $connector
-     * @param Lab $lab
      */
-    public function __construct(ClarityApiConnector $connector = null, Lab $lab = null)
+    public function __construct(ClarityApiConnector $connector)
     {
+        parent::__construct($connector);
         $this->endpoint = 'labs';
-        $this->connector = $connector;
-        $this->lab = $lab;
+    }
+    
+    public function apiAnswerToLab($xmlData)
+    {
+        $lab = new Lab();
+        $lab->setXml($xmlData);
+        $lab->xmlToLab();
+        $lab->setClarityIdFromUri();
+        return $lab;
     }
     
     /**
@@ -51,48 +47,20 @@ class LabClarityRepository
     public function find($id)
     {
         $path = $this->endpoint . '/' . $id;
-        $data = $this->connector->getResource($path);
-        $this->lab = new Lab();
-        $this->lab->setXml($data);
-        $this->lab->xmlToLab();
-        $this->lab->setClarityIdFromUri();
-        return $this->lab;
+        $xmlData = $this->connector->getResource($path);
+        return $this->apiAnswerToLab($xmlData);
     }
     
-    /**
-     * 
-     * @param resource $connector
-     */
-    public function setConnector(resource $connector)
+    public function save(Lab $lab)
     {
-        $this->connector = $connector;
-    }
-    
-    /**
-     * 
-     * @return resource
-     */
-    public function getConnector()
-    {
-        return $this->connector;
-    }
-    
-    /**
-     * 
-     * @param Lab $lab
-     */
-    public function setLab(Lab $lab)
-    {
-        $this->lab = $lab;
-    }
-    
-    /**
-     * 
-     * @return Lab
-     */
-    public function getLab()
-    {
-        return $this->lab;
+        if ($lab->getClarityId() === null) {
+            $xmlData = $this->connector->postResource($this->endpoint, $lab->getXml());
+            return $this->apiAnswerToLab($xmlData);
+        }
+        else {
+            echo "The labs resource in Clarity does not support PUT to update a lab" . PHP_EOL;
+            exit();
+        }
     }
     
 }
