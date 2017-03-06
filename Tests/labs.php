@@ -12,12 +12,16 @@ $connector = new ClarityApiConnector('test');
 $repo = new LabClarityRepository($connector);
 
 
-//$babs = $repo->find('2');
-//var_dump($babs);
+$mylab = $repo->find('202');
+var_dump($mylab);
 
+echo PHP_EOL;
 
+/*
 $lab = new Lab();
-$lab->setClarityName('this is a test');
+$lab->setClarityName('Test lab Micka API');
 $lab->labToXml();
 //var_dump($lab);
-
+$newLab = $repo->save($lab);
+var_dump($newLab);
+*/

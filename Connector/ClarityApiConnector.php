@@ -77,9 +77,16 @@ class ClarityApiConnector
      * 
      * @return string
      */
-    public function putResource()
+    public function putResource($endpoint, $data)
     {
-        return 'Not implemented yet';
+        $putData = tmpfile();
+        fwrite($putData, $data);
+        fseek($putData, 0);
+        $url = $this->baseUrl . '/' . $endpoint;
+        curl_setopt($this->curlHandle, CURLOPT_URL, $url);
+        curl_setopt($this->curlHandle, CURLOPT_HTTPHEADER, array('X-HTTP-Method-Override: PUT'));
+        curl_setopt($this->curlHandle, CURLOPT_POSTFIELDS, $data);
+        return curl_exec($this->curlHandle);
     }
 
     /**

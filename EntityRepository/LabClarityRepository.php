@@ -21,21 +21,22 @@ class LabClarityRepository extends ClarityRepository
     protected $endpoint;
     
     /**
-     *
-     * @var Project $project
-     */
-    protected $lab;
-    
-    /**
      * 
      * @param ClarityApiConnector $connector
-     * @param Lab $lab
      */
-    public function __construct(ClarityApiConnector $connector = null, Lab $lab = null)
+    public function __construct(ClarityApiConnector $connector)
     {
         parent::__construct($connector);
         $this->endpoint = 'labs';
-        $this->lab = $lab;
+    }
+    
+    public function apiAnswerToLab($xmlData)
+    {
+        $lab = new Lab();
+        $lab->setXml($xmlData);
+        $lab->xmlToLab();
+        $lab->setClarityIdFromUri();
+        return $lab;
     }
     
     /**
@@ -46,35 +47,20 @@ class LabClarityRepository extends ClarityRepository
     public function find($id)
     {
         $path = $this->endpoint . '/' . $id;
-        $data = $this->connector->getResource($path);
-        $this->lab = new Lab();
-        $this->lab->setXml($data);
-        $this->lab->xmlToLab();
-        $this->lab->setClarityIdFromUri();
-        return $this->lab;
+        $xmlData = $this->connector->getResource($path);
+        return $this->apiAnswerToLab($xmlData);
     }
     
-    public function save(Lab $lab = null)
+    public function save(Lab $lab)
     {
-        
-    }
-    
-    /**
-     * 
-     * @param Lab $lab
-     */
-    public function setLab(Lab $lab)
-    {
-        $this->lab = $lab;
-    }
-    
-    /**
-     * 
-     * @return Lab
-     */
-    public function getLab()
-    {
-        return $this->lab;
+        if ($lab->getClarityId() === null) {
+            $xmlData = $this->connector->postResource($this->endpoint, $lab->getXml());
+            return $this->apiAnswerToLab($xmlData);
+        }
+        else {
+            echo "The labs resource in Clarity does not support PUT to update a lab" . PHP_EOL;
+            exit();
+        }
     }
     
 }
