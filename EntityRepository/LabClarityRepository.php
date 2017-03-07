@@ -62,8 +62,8 @@ class LabClarityRepository extends ClarityRepository
             return $this->apiAnswerToLab($xmlData);
         }
         else {
-            echo "The labs resource in Clarity does not support PUT to update a lab" . PHP_EOL;
-            exit();
+            $xmlData = $this->connector->putResource($this->endpoint, $lab->getXml(), $lab->getClarityId());
+            return $this->apiAnswerToLab($xmlData);
         }
     }
     
