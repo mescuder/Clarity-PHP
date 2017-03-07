@@ -54,6 +54,7 @@ class ClarityApiConnector
     {
         $url = $this->baseUrl . '/' . $path;
         curl_setopt($this->curlHandle, CURLOPT_URL, $url);
+        curl_setopt($this->curlHandle, CURLOPT_HTTPGET, TRUE);
         return curl_exec($this->curlHandle);
     }
 
@@ -77,14 +78,15 @@ class ClarityApiConnector
      * 
      * @return string
      */
-    public function putResource($endpoint, $data)
+    public function putResource($endpoint, $data, $id)
     {
         $putData = tmpfile();
         fwrite($putData, $data);
         fseek($putData, 0);
-        $url = $this->baseUrl . '/' . $endpoint;
+        $url = $this->baseUrl . '/' . $endpoint . '/' . $id;
         curl_setopt($this->curlHandle, CURLOPT_URL, $url);
-        curl_setopt($this->curlHandle, CURLOPT_HTTPHEADER, array('X-HTTP-Method-Override: PUT'));
+        curl_setopt($this->curlHandle, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($this->curlHandle, CURLOPT_HTTPHEADER, array('Content-Type: application/xml'));
         curl_setopt($this->curlHandle, CURLOPT_POSTFIELDS, $data);
         return curl_exec($this->curlHandle);
     }

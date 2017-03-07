@@ -21,12 +21,6 @@ class SampleClarityRepository
 
     /**
      *
-     * @var string $endpoint
-     */
-    protected $endpoint;
-
-    /**
-     *
      * @var Sample $sample
      */
     protected $sample;

@@ -21,12 +21,6 @@ class ResearcherClarityRepository
     
     /**
      *
-     * @var string $endpoint
-     */
-    protected $endpoint;
-    
-    /**
-     *
      * @var Researcher $researcher
      */
     protected $researcher;
@@ -43,6 +37,15 @@ class ResearcherClarityRepository
         $this->researcher = $researcher;
     }
     
+    public function apiAnswerToResearcher($xmlData)
+    {
+        $researcher = new Researcher();
+        $researcher->setXml($xmlData);
+        $researcher->xmlToResearcher();
+        $researcher->setClarityIdFromUri();
+        return $researcher;
+    }
+    
     public function find($id)
     {
         $path = $this->endpoint . '/' . $id;
@@ -51,6 +54,18 @@ class ResearcherClarityRepository
         $this->researcher->setXml($data);
         $this->researcher->xmlToResearcher();
         return $this->researcher;
+    }
+    
+    public function save(Researcher $researcher)
+    {
+        if ($researcher->getClarityId() === null) {
+            $xmlData = $this->connector->postResource($this->endpoint, $researcher->getXml());
+            return $this->apiAnswerToResearcher($xmlData);
+        }
+        else {
+            $xmlData = $this->connector->putResource($this->endpoint, $researcher->getXml(), $researcher->getClarityId());
+            return $this->apiAnswerToResearcher($xmlData);
+        }
     }
     
     /**

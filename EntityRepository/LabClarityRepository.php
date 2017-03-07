@@ -15,12 +15,6 @@ class LabClarityRepository extends ClarityRepository
 {
     
     /**
-     *
-     * @var string $endpoint
-     */
-    protected $endpoint;
-    
-    /**
      * 
      * @param ClarityApiConnector $connector
      */
@@ -51,6 +45,16 @@ class LabClarityRepository extends ClarityRepository
         return $this->apiAnswerToLab($xmlData);
     }
     
+    public function findByName($name)
+    {
+        $search = $this->replaceSpaceInSearchString($name);
+        $path = $this->endpoint . '?name=' . $search;
+        $searchResult = $this->connector->getResource($path);
+        $xmlResults = $this->getResourcesFromSearchResult($searchResult);
+        $xmlData = $xmlResults[0];
+        return $this->apiAnswerToLab($xmlData);
+    }
+    
     public function save(Lab $lab)
     {
         if ($lab->getClarityId() === null) {
@@ -58,8 +62,8 @@ class LabClarityRepository extends ClarityRepository
             return $this->apiAnswerToLab($xmlData);
         }
         else {
-            echo "The labs resource in Clarity does not support PUT to update a lab" . PHP_EOL;
-            exit();
+            $xmlData = $this->connector->putResource($this->endpoint, $lab->getXml(), $lab->getClarityId());
+            return $this->apiAnswerToLab($xmlData);
         }
     }
     

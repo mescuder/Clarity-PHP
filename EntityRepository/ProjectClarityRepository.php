@@ -21,12 +21,6 @@ class ProjectClarityRepository
     
     /**
      *
-     * @var string $endpoint
-     */
-    protected $endpoint;
-    
-    /**
-     *
      * @var Project $project
      */
     protected $project;
