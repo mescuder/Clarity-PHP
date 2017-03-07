@@ -63,7 +63,8 @@ class ResearcherClarityRepository
             return $this->apiAnswerToResearcher($xmlData);
         }
         else {
-            
+            $xmlData = $this->connector->putResource($this->endpoint, $researcher->getXml(), $researcher->getClarityId());
+            return $this->apiAnswerToResearcher($xmlData);
         }
     }
     
