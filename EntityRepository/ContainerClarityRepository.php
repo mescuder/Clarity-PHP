@@ -28,12 +28,6 @@ class ContainerClarityRepository
     
     /**
      *
-     * @var string $endpoint
-     */
-    protected $endpoint;
-    
-    /**
-     *
      * @var SimpleXMLElement $xml 
      */
     protected $xml;

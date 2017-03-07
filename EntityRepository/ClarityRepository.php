@@ -19,12 +19,40 @@ abstract class ClarityRepository
     protected $connector;
     
     /**
+     *
+     * @var string $endpoint
+     */
+    protected $endpoint;
+    
+    /**
      * 
      * @param ClarityApiConnector $connector
      */
     public function __construct(ClarityApiConnector $connector = null)
     {
         $this->connector = $connector;
+    }
+    
+    public function getResourcesFromSearchResult($xmlResult)
+    {
+        $xmlResults = array();
+        $xmlElement = new \SimpleXMLElement($xmlResult);
+        if ($xmlElement->count() == 0) {
+            return $xmlResults;
+        }
+        else {
+            foreach ($xmlElement->children() as $childElement) {
+                $fullpath = $childElement['uri']->__toString();
+                $path = $this->endpoint . '/' . end(explode('/', $fullpath));
+                $xmlResults[] = $this->connector->getResource($path);
+            }
+            return $xmlResults;
+        }   
+    }
+    
+    public function replaceSpaceInSearchString($search)
+    {
+        return str_replace(' ', '%20', $search);
     }
     
     /**

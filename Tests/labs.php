@@ -17,6 +17,9 @@ var_dump($mylab);
 
 echo PHP_EOL;
 
+$mylab2 = $repo->findByName('Test lab Micka API');
+var_dump($mylab2);
+
 /*
 $lab = new Lab();
 $lab->setClarityName('Test lab Micka API');

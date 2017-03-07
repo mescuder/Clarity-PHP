@@ -15,12 +15,6 @@ class LabClarityRepository extends ClarityRepository
 {
     
     /**
-     *
-     * @var string $endpoint
-     */
-    protected $endpoint;
-    
-    /**
      * 
      * @param ClarityApiConnector $connector
      */
@@ -48,6 +42,16 @@ class LabClarityRepository extends ClarityRepository
     {
         $path = $this->endpoint . '/' . $id;
         $xmlData = $this->connector->getResource($path);
+        return $this->apiAnswerToLab($xmlData);
+    }
+    
+    public function findByName($name)
+    {
+        $search = $this->replaceSpaceInSearchString($name);
+        $path = $this->endpoint . '?name=' . $search;
+        $searchResult = $this->connector->getResource($path);
+        $xmlResults = $this->getResourcesFromSearchResult($searchResult);
+        $xmlData = $xmlResults[0];
         return $this->apiAnswerToLab($xmlData);
     }
     

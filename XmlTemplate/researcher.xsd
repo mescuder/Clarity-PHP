@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<res:researcher xmlns:udf="http://genologics.com/ri/userdefined" xmlns:ri="http://genologics.com/ri" xmlns:res="http://genologics.com/ri/researcher" uri="">
+  <first-name></first-name>
+  <last-name></last-name>
+  <email></email>
+  <lab uri=""/>
+  <credentials>
+    <username></username>
+    <password></password>
+    <account-locked></account-locked>
+  </credentials>
+  <initials></initials>
+</res:researcher>

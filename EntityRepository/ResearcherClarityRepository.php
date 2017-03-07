@@ -21,12 +21,6 @@ class ResearcherClarityRepository
     
     /**
      *
-     * @var string $endpoint
-     */
-    protected $endpoint;
-    
-    /**
-     *
      * @var Researcher $researcher
      */
     protected $researcher;
