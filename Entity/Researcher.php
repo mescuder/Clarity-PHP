@@ -26,6 +26,12 @@ class Researcher extends ApiResource
     
     /**
      *
+     * @var string $initials
+     */
+    protected $initials;
+    
+    /**
+     *
      * @var string $labUri
      */
     protected $labUri;
@@ -38,9 +44,15 @@ class Researcher extends ApiResource
     
     /**
      *
-     * @var bool $locked
+     * @var string $locked
      */
     protected $locked;
+    
+    /**
+     *
+     * @var string $password
+     */
+    protected $password;
     
     /**
      *
@@ -63,7 +75,29 @@ class Researcher extends ApiResource
     public function __construct()
     {
         parent::__construct();
+        $this->locked = 'false';
         $this->roles = array();
+    }
+    
+    public function researcherToXml()
+    {
+        $researcherElement = simplexml_load_file('XmlTemplate/researcher.xsd');
+        
+        $researcherElement['uri'] = $this->clarityUri;
+        $researcherElement->{'first-name'} = $this->firstName;
+        $researcherElement->{'last-name'} = $this->lastName;
+        $researcherElement->email = $this->email;
+        $researcherElement->lab['uri'] = $this->labUri;
+        $researcherElement->credentials->username = $this->username;
+        $researcherElement->credentials->password = $this->password;
+        $researcherElement->credentials->{'account-locked'} = $this->locked;
+        $researcherElement->initials = $this->initials;
+        foreach ($this->roles as $role) {
+            $roleElement = $researcherElement->{'credentials'}->addChild('role');
+            $roleElement->addAttribute('name', $role);
+        }
+        
+        $this->xml = $researcherElement->asXML();
     }
     
     public function xmlToResearcher()
@@ -121,6 +155,24 @@ class Researcher extends ApiResource
     
     /**
      * 
+     * @param string $initials
+     */
+    public function setInitials($initials)
+    {
+        $this->initials = $initials;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getInitials()
+    {
+        return $this->initials;
+    }
+    
+    /**
+     * 
      * @param string $labUri
      */
     public function setLabUri($labUri)
@@ -157,20 +209,38 @@ class Researcher extends ApiResource
     
     /**
      * 
-     * @param bool $locked
+     * @param string $locked
      */
-    public function setLocked(bool $locked)
+    public function setLocked($locked)
     {
         $this->locked = $locked;
     }
     
     /**
      * 
-     * @return bool
+     * @return string
      */
     public function getLocked()
     {
         return $this->locked;
+    }
+    
+    /**
+     * 
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
     
     /**

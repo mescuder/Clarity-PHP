@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <res:researcher xmlns:udf="http://genologics.com/ri/userdefined" xmlns:ri="http://genologics.com/ri" xmlns:res="http://genologics.com/ri/researcher" uri="">
   <first-name></first-name>
   <last-name></last-name>
@@ -11,3 +11,4 @@
   </credentials>
   <initials></initials>
 </res:researcher>
+
