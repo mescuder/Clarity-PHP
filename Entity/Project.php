@@ -42,12 +42,6 @@ class Project extends ApiResource
      */
     protected $researcherUri;
     
-    /**
-     *
-     * @var string $xml
-     */
-    protected $xml;
-    
     public function __construct()
     {
         parent::__construct();

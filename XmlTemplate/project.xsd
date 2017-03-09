@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prj:project xmlns:udf="http://genologics.com/ri/userdefined" xmlns:ri="http://genologics.com/ri" xmlns:file="http://genologics.com/ri/file" xmlns:prj="http://genologics.com/ri/project" uri="">
+  <name></name>
+  <open-date></open-date>
+  <researcher uri=""/>
+  <udf:field type="String" name="Project Standalone UDF Demo">Project Standalone Demo UDF value</udf:field>
+</prj:project>
