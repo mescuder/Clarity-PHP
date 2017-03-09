@@ -14,6 +14,10 @@ websites, built with the Symfony framework for instance.
 
 ## Table of Contents
 
+* [Code structure](#code-structure)
+
+## Code structure
+
 ## Installation
 
 ## Usage
