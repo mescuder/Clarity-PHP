@@ -10,7 +10,7 @@ use Clarity\Entity\Project;
  *
  * @author Mickael Escudero
  */
-class ProjectClarityRepository
+class ProjectClarityRepository extends ClarityRepository
 {
     
     /**
@@ -30,11 +30,19 @@ class ProjectClarityRepository
      * @param ClarityApiConnector $connector
      * @param Project $project
      */
-    public function __construct(ClarityApiConnector $connector = null, Project $project = null)
+    public function __construct(ClarityApiConnector $connector)
     {
+        parent::__construct($connector);
         $this->endpoint = 'projects';
-        $this->connector = $connector;
-        $this->project = $project;
+    }
+    
+    public function apiAnswerToProject($xmlData)
+    {
+        $project = new Project();
+        $project->setXml($xmlData);
+        $project->xmlToProject();
+        $project->setClarityIdFromUri();
+        return $project;
     }
     
     /**
@@ -45,11 +53,20 @@ class ProjectClarityRepository
     public function find($id)
     {
         $path = $this->endpoint . '/' . $id;
-        $data = $this->connector->getResource($path);
-        $this->project = new Project();
-        $this->project->setXml($data);
-        $this->project->xmlToProject();
-        return $this->project;
+        $xmlData = $this->connector->getResource($path);
+        return $this->apiAnswerToProject($xmlData);
+    }
+    
+    public function save(Project $project)
+    {
+        if ($project->getClarityId() === null) {
+            $xmlData = $this->connector->postResource($this->endpoint, $project->getXml());
+            return $this->apiAnswerToProject($xmlData);
+        }
+        else {
+            $xmlData = $this->connector->putResource($this->endpoint, $project->getXml(), $project->getClarityId());
+            return $this->apiAnswerToProject($xmlData);
+        }
     }
     
     /**

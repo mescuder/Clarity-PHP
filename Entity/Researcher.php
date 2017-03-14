@@ -97,7 +97,11 @@ class Researcher extends ApiResource
             $roleElement->addAttribute('name', $role);
         }
         
-        $this->xml = $researcherElement->asXML();
+        $doc = new \DOMDocument();
+        $doc->preserveWhiteSpace = false;
+        $doc->formatOutput = true;
+        $doc->loadXML($researcherElement->asXML());
+        $this->xml = $doc->saveXML();
     }
     
     public function xmlToResearcher()

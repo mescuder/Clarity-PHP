@@ -20,6 +20,12 @@ class Project extends ApiResource
     
     /**
      *
+     * @var array $files
+     */
+    protected $files;
+    
+    /**
+     *
      * @var string $openDate
      */
     protected $openDate;
@@ -45,14 +51,43 @@ class Project extends ApiResource
     public function __construct()
     {
         parent::__construct();
-        //$this->clarityUDFs = array();
+        $this->files = array();
         $udfs = yaml_parse_file('Config/project_clarity_udfs.yml');
         $this->setClarityUDFs($udfs);
+    }
+    
+    public function projectToXml()
+    {
+        $projectElement = simplexml_load_file('XmlTemplate/project.xsd');
+        
+        $projectElement['uri'] = $this->clarityUri;
+        $projectElement->name = $this->clarityName;
+        $projectElement->{'open-date'} = $this->openDate;
+        $projectElement->researcher['uri'] = $this->researcherUri;
+        
+        foreach ($projectElement->children('udf', true) as $udfElement) {
+            $name = $udfElement->attributes()['name']->__toString();
+            $udfElement[0] = $this->clarityUDFs[$name]['value'];
+        }
+        
+        foreach ($this->files as $file) {
+            $fileElement = $projectElement->addChild('file', null, 'http://genologics.com/ri/file');
+            foreach ($file as $attribute => $value) {
+                $fileElement->addAttribute($attribute, $value);
+            }
+        }
+        
+        $doc = new \DOMDocument();
+        $doc->preserveWhiteSpace = false;
+        $doc->formatOutput = true;
+        $doc->loadXML($projectElement->asXML());
+        $this->xml = $doc->saveXML();
     }
     
     public function xmlToProject()
     {
         $projectElement = new \SimpleXMLElement($this->xml);
+        $this->clarityUri = $projectElement['uri']->__toString();
         $this->clarityId = $projectElement['limsid']->__toString();
         $this->clarityName = $projectElement->name->__toString();
         $this->openDate = $projectElement->{'open-date'}->__toString();
@@ -66,6 +101,16 @@ class Project extends ApiResource
                 'value' => $value,
             );
             $this->setClarityUDF($udf);
+        }
+        
+        foreach ($projectElement->xpath('//file:file') as $fileElement) {
+            $limsId = $fileElement['limsid']->__toString();
+            $uri = $fileElement['uri']->__toString();
+            $file = array(
+                'limsid'  => $limsId,
+                'uri' => $uri,
+                );
+            $this->setFile($file);
         }
     }
     
@@ -85,6 +130,18 @@ class Project extends ApiResource
     public function getClarityName()
     {
         return $this->clarityName;
+    }
+    
+    public function setFile(array $file)
+    {
+        if (array_key_exists('limsid', $file)) {
+            $limsId = $file['limsid'];
+            $this->files[$limsId]['limsid'] = $limsId;
+            
+            if (array_key_exists('uri', $file)) {
+                $this->files[$limsId]['uri'] = $file['uri'];
+            }
+        }
     }
     
     /**
@@ -147,7 +204,7 @@ class Project extends ApiResource
      */
     public function setResearcherUri($researcherUri)
     {
-        $this->clarityUri = $clarityUri;
+        $this->researcherUri = $researcherUri;
     }
     
     /**

@@ -10,7 +10,7 @@ use Clarity\Entity\Researcher;
  *
  * @author Mickael Escudero
  */
-class ResearcherClarityRepository
+class ResearcherClarityRepository extends ClarityRepository
 {
     
     /**
@@ -30,11 +30,10 @@ class ResearcherClarityRepository
      * @param ClarityApiConnector $connector
      * @param Researcher $researcher
      */
-    public function __construct(ClarityApiConnector $connector = null, Researcher $researcher = null)
+    public function __construct(ClarityApiConnector $connector)
     {
+        parent::__construct($connector);
         $this->endpoint = 'researchers';
-        $this->connector = $connector;
-        $this->researcher = $researcher;
     }
     
     public function apiAnswerToResearcher($xmlData)
@@ -49,11 +48,8 @@ class ResearcherClarityRepository
     public function find($id)
     {
         $path = $this->endpoint . '/' . $id;
-        $data = $this->connector->getResource($path);
-        $this->researcher = new Researcher();
-        $this->researcher->setXml($data);
-        $this->researcher->xmlToResearcher();
-        return $this->researcher;
+        $xmlData = $this->connector->getResource($path);
+        return $this->apiAnswerToResearcher($xmlData);
     }
     
     public function save(Researcher $researcher)
