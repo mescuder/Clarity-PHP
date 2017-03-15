@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prj:project xmlns:udf="http://genologics.com/ri/userdefined" xmlns:ri="http://genologics.com/ri" xmlns:file="http://genologics.com/ri/file" xmlns:prj="http://genologics.com/ri/project" uri="">
+  <name></name>
+  <open-date></open-date>
+  <researcher uri=""/>
+  <udf:field type="String" name="Bioinformatician"></udf:field>
+  <udf:field type="String" name="Number of experiments (total number of cells)"></udf:field>
+  <udf:field type="Numeric" name="Coverage"></udf:field>
+  <udf:field type="String" name="Depth"></udf:field>
+  <udf:field type="Text" name="Description"></udf:field>
+  <udf:field type="String" name="Fragment Size"></udf:field>
+  <!-- REQUIRED -->
+  <udf:field type="String" name="Funding source"></udf:field>
+  <!-- /REQUIRED -->
+  <udf:field type="String" name="Genome build"></udf:field>
+  <udf:field type="String" name="Library Prep Method"></udf:field>
+  <udf:field type="String" name="Prep Kit"></udf:field>
+  <!-- REQUIRED -->
+  <udf:field type="String" name="Project type"></udf:field>
+  <!-- /REQUIRED -->
+  <udf:field type="Numeric" name="Read Length"></udf:field>
+  <udf:field type="String" name="Run Type"></udf:field>
+  <!-- REQUIRED -->
+  <udf:field type="Numeric" name="Sample quota"></udf:field>
+  <udf:field type="String" name="Sequencer type"></udf:field>
+  <!-- /REQUIRED -->
+</prj:project>
