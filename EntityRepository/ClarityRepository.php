@@ -28,7 +28,7 @@ abstract class ClarityRepository
      * 
      * @param ClarityApiConnector $connector
      */
-    public function __construct(ClarityApiConnector $connector = null)
+    public function __construct(ClarityApiConnector $connector)
     {
         $this->connector = $connector;
     }

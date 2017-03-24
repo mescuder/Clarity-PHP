@@ -81,7 +81,7 @@ class Researcher extends ApiResource
     
     public function researcherToXml()
     {
-        $researcherElement = simplexml_load_file('XmlTemplate/researcher.xsd');
+        $researcherElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/researcher.xsd');
         
         $researcherElement['uri'] = $this->clarityUri;
         $researcherElement->{'first-name'} = $this->firstName;
@@ -97,11 +97,8 @@ class Researcher extends ApiResource
             $roleElement->addAttribute('name', $role);
         }
         
-        $doc = new \DOMDocument();
-        $doc->preserveWhiteSpace = false;
-        $doc->formatOutput = true;
-        $doc->loadXML($researcherElement->asXML());
-        $this->xml = $doc->saveXML();
+        $this->xml = $researcherElement->asXML();
+        $this->formatXml();
     }
     
     public function xmlToResearcher()

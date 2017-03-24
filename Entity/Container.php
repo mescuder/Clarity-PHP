@@ -17,29 +17,52 @@ abstract class Container extends ApiResource
      * @var string $clarityName
      */
     protected $clarityName;
+    
+    /**
+     *
+     * @var int $occupiedWells
+     */
+    protected $occupiedWells;
+    
+    /**
+     *
+     * @var string $placementId
+     */
+    protected $placementId;
+    
+    /**
+     *
+     * @var string $placementUri
+     */
+    protected $placementUri;
+    
+    /**
+     *
+     * @var string $placementValue
+     */
+    protected $placementValue;
+    
+    /**
+     *
+     * @var string $state
+     */
+    protected $state;
 
     /**
      *
      * @var string $clarityTypeEndpoint
      */
-    protected $clarityTypeEndpoint;
+    protected $typeUri;
     
     /**
      *
      * @var string $clarityTypeName
      */
-    protected $clarityTypeName;
-    
-    /**
-     *
-     * @var string $clarityTypeUri
-     */
-    protected $clarityTypeUri;
+    protected $typeName;
 
     public function __construct()
     {
         parent::__construct();
-        $this->clarityName = '';
     }
 
     /**
@@ -62,62 +85,94 @@ abstract class Container extends ApiResource
         return $this->clarityName;
     }
     
-    /**
-     * 
-     * @param string $clarityTypeEndpoint
-     */
-    public function setClarityTypeEndpoint($clarityTypeEndpoint)
+    public function setPlacementId($placementId)
     {
-        $this->clarityTypeEndpoint = $clarityTypeEndpoint;
+        $this->placementId = $placementId;
+    }
+    
+    public function setOccupiedWells($occupiedWells)
+    {
+        $this->occupiedWells = $occupiedWells;
+    }
+    
+    public function getOccupiedWells()
+    {
+        return $this->occupiedWells;
+    }
+    
+    public function getPlacementId()
+    {
+        return $this->placementId;
+    }
+    
+    public function setPlacementUri($placementUri)
+    {
+        $this->placementUri = $placementUri;
+    }
+    
+    public function getPlacementUri()
+    {
+        return $this->placementUri;
+    }
+    
+    public function setPlacementValue($placementValue)
+    {
+        $this->placementValue = $placementValue;
+    }
+    
+    public function getPlacementValue()
+    {
+        return $this->placementValue;
+    }
+    
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+    
+    public function getState()
+    {
+        return $this->state;
     }
     
     /**
+     * Set typeName
+     * 
+     * @param string $typeName
+     */
+    public function setTypeName($typeName)
+    {
+        $this->typeName = $typeName;
+    }
+    
+    /**
+     * Get typeName
      * 
      * @return string
      */
-    public function getClarityTypeEndpoint()
+    public function getTypeName()
     {
-        return $this->clarityTypeEndpoint;
+        return $this->typeName;
     }
     
     /**
-     * Set ClarityTypeName
+     * Set typeUri
      * 
-     * @param string $clarityTypeName
+     * @param string $typeUri
      */
-    public function setClarityTypeName($clarityTypeName)
+    public function setTypeUri($typeUri)
     {
-        $this->clarityTypeName = $clarityTypeName;
+        $this->typeUri = $typeUri;
     }
     
     /**
-     * Get ClarityTypeName
-     * 
-     * @return string
-     */
-    public function getClarityTypeName()
-    {
-        return $this->clarityTypeName;
-    }
-    
-    /**
-     * Set ClarityTypeUri
-     * 
-     * @param string $clarityTypeUri
-     */
-    public function setClarityTypeUri($clarityTypeUri)
-    {
-        $this->clarityTypeUri = $clarityTypeUri;
-    }
-    
-    /**
-     * Get ClarityTypeUri
+     * Get typeUri
      * 
      * @return string
      */
-    public function getClarityTypeUri()
+    public function getTypeUri()
     {
-        return $this->clarityTypeUri;
+        return $this->typeUri;
     }
 
 }
