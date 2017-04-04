@@ -24,4 +24,5 @@
   <udf:field type="Numeric" name="Sample quota"></udf:field>
   <udf:field type="String" name="Sequencer type"></udf:field>
   <!-- /REQUIRED -->
+  <udf:field type="String" name="Test ID"></udf:field>
 </prj:project>

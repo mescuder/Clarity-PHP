@@ -14,21 +14,8 @@ class ResearcherClarityRepository extends ClarityRepository
 {
     
     /**
-     *
-     * @var resource $connector
-     */
-    protected $connector;
-    
-    /**
-     *
-     * @var Researcher $researcher
-     */
-    protected $researcher;
-    
-    /**
      * 
      * @param ClarityApiConnector $connector
-     * @param Researcher $researcher
      */
     public function __construct(ClarityApiConnector $connector)
     {
@@ -54,7 +41,7 @@ class ResearcherClarityRepository extends ClarityRepository
     
     public function save(Researcher $researcher)
     {
-        if ($researcher->getClarityId() === null) {
+        if (empty($researcher->getClarityId())) {
             $xmlData = $this->connector->postResource($this->endpoint, $researcher->getXml());
             return $this->apiAnswerToResearcher($xmlData);
         }
@@ -62,42 +49,6 @@ class ResearcherClarityRepository extends ClarityRepository
             $xmlData = $this->connector->putResource($this->endpoint, $researcher->getXml(), $researcher->getClarityId());
             return $this->apiAnswerToResearcher($xmlData);
         }
-    }
-    
-    /**
-     * 
-     * @param resource $connector
-     */
-    public function setConnector(resource $connector)
-    {
-        $this->connector = $connector;
-    }
-    
-    /**
-     * 
-     * @return resource
-     */
-    public function getConnector()
-    {
-        return $this->connector;
-    }
-    
-    /**
-     * 
-     * @param Researcher $researcher
-     */
-    public function setResearcher(Researcher $researcher)
-    {
-        $this->researcher = $researcher;
-    }
-    
-    /**
-     * 
-     * @return Researcher
-     */
-    public function getResearcher()
-    {
-        return $this->researcher;
     }
     
 }

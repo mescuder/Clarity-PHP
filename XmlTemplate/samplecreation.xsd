@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<smp:samplecreation xmlns:smp="http://genologics.com/ri/sample" xmlns:udf="http://genologics.com/ri/userdefined" xmlns:ri="http://genologics.com/ri" xmlns:file="http://genologics.com/ri/file" limsid="..." uri="...">
+<smp:samplecreation xmlns:smp="http://genologics.com/ri/sample" xmlns:udf="http://genologics.com/ri/userdefined" xmlns:ri="http://genologics.com/ri" xmlns:file="http://genologics.com/ri/file" limsid="" uri="">
   <!-- REQUIRED -->
   <location>
     <container limsid="" uri=""></container>
@@ -47,6 +47,7 @@
   <udf:field type="String" name="Sequencer"></udf:field>
   <udf:field type="Numeric" name="Sequencing required (million reads)"></udf:field>
   <udf:field type="String" name="Size Selection (bp)"></udf:field>
+  <udf:field type="String" name="Test ID"></udf:field>
   <udf:field type="Numeric" name="Total Amount (ng)"></udf:field>
   <udf:field type="String" name="TRACERx Sample ID"></udf:field>
   <udf:field type="String" name="User Comments"></udf:field>

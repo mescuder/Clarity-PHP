@@ -52,13 +52,13 @@ class Project extends ApiResource
     {
         parent::__construct();
         $this->files = array();
-        $udfs = yaml_parse_file('Config/project_clarity_udfs.yml');
+        $udfs = yaml_parse_file(__DIR__ . '/../Config/project_clarity_udfs.yml');
         $this->setClarityUDFs($udfs);
     }
     
     public function projectToXml()
     {
-        $projectElement = simplexml_load_file('XmlTemplate/project.xsd');
+        $projectElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/project.xsd');
         
         $projectElement['uri'] = $this->clarityUri;
         $projectElement->name = $this->clarityName;
@@ -77,11 +77,8 @@ class Project extends ApiResource
             }
         }
         
-        $doc = new \DOMDocument();
-        $doc->preserveWhiteSpace = false;
-        $doc->formatOutput = true;
-        $doc->loadXML($projectElement->asXML());
-        $this->xml = $doc->saveXML();
+        $this->xml = $projectElement->asXML();
+        $this->formatXml();
     }
     
     public function xmlToProject()

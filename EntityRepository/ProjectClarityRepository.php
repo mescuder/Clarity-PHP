@@ -14,21 +14,8 @@ class ProjectClarityRepository extends ClarityRepository
 {
     
     /**
-     *
-     * @var resource $connector
-     */
-    protected $connector;
-    
-    /**
-     *
-     * @var Project $project
-     */
-    protected $project;
-    
-    /**
      * 
      * @param ClarityApiConnector $connector
-     * @param Project $project
      */
     public function __construct(ClarityApiConnector $connector)
     {
@@ -59,7 +46,7 @@ class ProjectClarityRepository extends ClarityRepository
     
     public function save(Project $project)
     {
-        if ($project->getClarityId() === null) {
+        if (empty($project->getClarityId())) {
             $xmlData = $this->connector->postResource($this->endpoint, $project->getXml());
             return $this->apiAnswerToProject($xmlData);
         }
@@ -67,42 +54,6 @@ class ProjectClarityRepository extends ClarityRepository
             $xmlData = $this->connector->putResource($this->endpoint, $project->getXml(), $project->getClarityId());
             return $this->apiAnswerToProject($xmlData);
         }
-    }
-    
-    /**
-     * 
-     * @param resource $connector
-     */
-    public function setConnector(resource $connector)
-    {
-        $this->connector = $connector;
-    }
-    
-    /**
-     * 
-     * @return resource
-     */
-    public function getConnector()
-    {
-        return $this->connector;
-    }
-    
-    /**
-     * 
-     * @param Project $project
-     */
-    public function setProject(Project $project)
-    {
-        $this->project = $project;
-    }
-    
-    /**
-     * 
-     * @return Project
-     */
-    public function getProject()
-    {
-        return $this->project;
     }
     
 }

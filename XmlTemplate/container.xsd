@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:container xmlns:con="http://genologics.com/ri/container">
-  <name></name>
-  <type name="" uri=""/>
+<con:container xmlns:udf="http://genologics.com/ri/userdefined" xmlns:con="http://genologics.com/ri/container" uri="" limsid="">
+    <name></name>
+    <type uri="" name=""/>
+    <occupied-wells></occupied-wells>
+    <placement uri="" limsid="">
+        <value></value>
+    </placement>
+    <state></state>
 </con:container>

@@ -25,12 +25,13 @@ class Lab extends ApiResource
     
     public function labToXml()
     {
-        $labElement = simplexml_load_file('XmlTemplate/lab.xsd');
+        $labElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/lab.xsd');
         
         $labElement['uri'] = $this->clarityUri;
         $labElement->name = $this->clarityName;
         
         $this->xml = $labElement->asXML();
+        $this->formatXml();
     }
     
     public function xmlToLab()

@@ -28,11 +28,11 @@ class ClarityApiConnector
      */
     public function __construct($instance)
     {
-        $credentials = yaml_parse_file('Config/clarity_api_credentials.yml');
+        $credentials = yaml_parse_file(__DIR__ . '/../Config/clarity_api_credentials.yml');
         $username = $credentials['username'];
         $password = $credentials['password'];
 
-        $config = yaml_parse_file('Config/clarity_parameters.yml');
+        $config = yaml_parse_file(__DIR__ . '/../Config/clarity_parameters.yml');
         $this->baseUrl = $config['URL'][$instance];
 
         $this->curlHandle = curl_init();

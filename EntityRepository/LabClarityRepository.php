@@ -57,7 +57,7 @@ class LabClarityRepository extends ClarityRepository
     
     public function save(Lab $lab)
     {
-        if ($lab->getClarityId() === null) {
+        if (empty($lab->getClarityId())) {
             $xmlData = $this->connector->postResource($this->endpoint, $lab->getXml());
             return $this->apiAnswerToLab($xmlData);
         }

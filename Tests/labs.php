@@ -2,7 +2,7 @@
 
 namespace Clarity\Tests;
 
-require_once('autoload.php');
+require_once(__DIR__ . '/../autoload.php');
 
 //use Clarity\Entity\Lab;
 use Clarity\Connector\ClarityApiConnector;

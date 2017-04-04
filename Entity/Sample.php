@@ -80,12 +80,6 @@ class Sample extends ApiResource
 
     /**
      *
-     * @var string $solexaId
-     */
-    protected $solexaId;
-
-    /**
-     *
      * @var string $submitterFirst
      */
     protected $submitterFirst;
@@ -111,9 +105,62 @@ class Sample extends ApiResource
     public function __construct()
     {
         parent::__construct();
-        $this->clarityUDFs = array();
-        $udfs = yaml_parse_file('Config/sample_clarity_udfs.yml');
-        foreach ($udfs as $udf) {
+        $udfs = yaml_parse_file(__DIR__ . '/../Config/sample_clarity_udfs.yml');
+        $this->setClarityUDFs($udfs);
+    }
+    
+    public function sampleToXml()
+    {
+        if (empty($this->clarityId)) {
+            $sampleElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/samplecreation.xsd');
+            $sampleElement->location->container['limsid'] = $this->containerId;
+            $sampleElement->location->container['uri'] = $this->containerUri;
+            $sampleElement->location->value = $this->containerLocation;
+        }
+        else {
+            $sampleElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/sample.xsd');
+            $sampleElement->{'date-received'} = $this->dateReceived;
+            $sampleElement->artifact['limsid'] = $this->artifactId;
+            $sampleElement->artifact['uri'] = $this->artifactUri;
+        }
+        $sampleElement->name = $this->clarityName;
+        $sampleElement->project['uri'] = $this->projectUri;
+        $sampleElement->project['limsid'] = $this->projectId;
+        $sampleElement->submitter['uri'] = $this->submitterUri;
+        $sampleElement->submitter->{'first-name'} = $this->submitterFirst;
+        $sampleElement->submitter->{'last-name'} = $this->submitterLast;
+        
+        foreach ($sampleElement->children('udf', true) as $udf) {
+            $name = $udf->attributes()['name']->__toString();
+            $udf[0] = $this->clarityUDFs[$name]['value'];
+        }
+        
+        $this->xml = $sampleElement->asXML();        
+        $this->formatXml();
+    }
+    
+    public function xmlToSample()
+    {
+        $sampleElement = new \SimpleXMLElement($this->xml);
+        $this->clarityUri = $sampleElement['uri']->__toString();
+        $this->clarityId = $sampleElement['limsid']->__toString();
+        $this->clarityName = $sampleElement->name->__toString();
+        $this->dateReceived = $sampleElement->{'date-received'}->__toString();
+        $this->projectId = $sampleElement->project['limsid']->__toString();
+        $this->projectUri = $sampleElement->project['uri']->__toString();
+        $this->submitterUri = $sampleElement->submitter['uri']->__toString();
+        $this->submitterFirst = $sampleElement->submitter->{'first-name'}->__toString();
+        $this->submitterLast = $sampleElement->submitter->{'last-name'}->__toString();
+        $this->artifactId = $sampleElement->artifact['limsid']->__toString();
+        $this->artifactUri = $sampleElement->artifact['uri']->__toString();
+        
+        foreach ($sampleElement->xpath('//udf:field') as $udfElement) {
+            $field = $udfElement['name']->__toString();
+            $value = $udfElement->__toString();
+            $udf = array(
+                'name'  => $field,
+                'value' => $value,
+            );
             $this->setClarityUDF($udf);
         }
     }
@@ -318,29 +365,11 @@ class Sample extends ApiResource
 
     /**
      * 
-     * @param string $solexaId
-     */
-    public function setSolexaId($solexaId)
-    {
-        $this->solexaId = $solexaId;
-    }
-
-    /**
-     * 
-     * @return string
-     */
-    public function getSolexaId()
-    {
-        return $this->solexaId;
-    }
-
-    /**
-     * 
      * @param string $submitterFirst
      */
     public function setSubmitterFirst($submitterFirst)
     {
-        $this->submitter = $submitterFirst;
+        $this->submitterFirst = $submitterFirst;
     }
 
     /**
