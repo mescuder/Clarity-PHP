@@ -23,6 +23,11 @@ class SampleClarityRepository extends ClarityRepository
         $this->endpoint = 'samples';
     }
     
+    /**
+     * 
+     * @param string $xmlData
+     * @return Sample
+     */
     public function apiAnswerToSample($xmlData)
     {
         $sample = new Sample();
@@ -56,6 +61,7 @@ class SampleClarityRepository extends ClarityRepository
         }
         else {
             $xmlData = $this->connector->putResource($this->endpoint, $sample->getXml(), $sample->getClarityId());
+            return $this->apiAnswerToSample($xmlData);
         }
     }
 

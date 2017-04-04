@@ -118,21 +118,24 @@ class Sample extends ApiResource
             $sampleElement->location->value = $this->containerLocation;
         }
         else {
-            $sampleElement = simplexml_load_file('XmlTemplate/sample.xsd');
+            $sampleElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/sample.xsd');
+            $sampleElement->{'date-received'} = $this->dateReceived;
             $sampleElement->artifact['limsid'] = $this->artifactId;
             $sampleElement->artifact['uri'] = $this->artifactUri;
         }
         $sampleElement->name = $this->clarityName;
         $sampleElement->project['uri'] = $this->projectUri;
         $sampleElement->project['limsid'] = $this->projectId;
+        $sampleElement->submitter['uri'] = $this->submitterUri;
+        $sampleElement->submitter->{'first-name'} = $this->submitterFirst;
+        $sampleElement->submitter->{'last-name'} = $this->submitterLast;
         
-        $this->xml = $sampleElement->asXML();
-        
-        foreach ($this->xml->children('udf', true) as $udf) {
+        foreach ($sampleElement->children('udf', true) as $udf) {
             $name = $udf->attributes()['name']->__toString();
             $udf[0] = $this->clarityUDFs[$name]['value'];
         }
         
+        $this->xml = $sampleElement->asXML();        
         $this->formatXml();
     }
     
@@ -366,7 +369,7 @@ class Sample extends ApiResource
      */
     public function setSubmitterFirst($submitterFirst)
     {
-        $this->submitter = $submitterFirst;
+        $this->submitterFirst = $submitterFirst;
     }
 
     /**

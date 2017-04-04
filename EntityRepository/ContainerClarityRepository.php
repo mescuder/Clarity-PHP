@@ -70,26 +70,4 @@ class ContainerClarityRepository extends ClarityRepository
         }
     }
     
-    /**
-     * 
-     * @return Container
-     */
-    public function xmlToContainer()
-    {
-        $type = $this->xml->{'type'}['name'];
-        switch ($type) {
-            case 'Tube':
-                $container = new Tube();
-                break;
-            default:
-                return null;
-        }
-        $container->setClarityId($this->xml['limsid']->__toString());
-        $container->setClarityName($this->xml->name->__toString());
-        $container->setClarityTypeUri($this->xml->type['uri']->__toString());
-        $container->setClarityUri($this->xml['uri']->__toString());
-        
-        return $container;
-    }
-    
 }

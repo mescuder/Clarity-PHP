@@ -16,6 +16,7 @@ class Tube extends Container
     {
         parent::__construct();
         $this->typeName = 'Tube';
+        $this->typeId = '2';
     }
     
     public function containerToXml()
@@ -50,9 +51,11 @@ class Tube extends Container
         $this->typeName = $containerElement->type['name']->__toString();
         $this->typeUri = $containerElement->type['uri']->__toString();
         $this->occupiedWells = $containerElement->{'occupied-wells'}->__toString();
-        $this->placementUri = $containerElement->placement['uri']->__toString();
-        $this->placementId = $containerElement->placement['limsid']->__toString();
-        $this->placementValue = $containerElement->placement->value->__toString();
+        if (!empty($containerElement->placement)) {
+            $this->placementUri = $containerElement->placement['uri']->__toString();
+            $this->placementId = $containerElement->placement['limsid']->__toString();
+            $this->placementValue = $containerElement->placement->value->__toString();
+        }
         $this->state = $containerElement->state->__toString();
     }
 

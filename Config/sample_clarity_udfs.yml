@@ -143,6 +143,11 @@ size-selection:
     value: 
     type: String
     required: FALSE
+test-id:
+    name: 'Test ID'
+    value:
+    type: String
+    required: FALSE
 total-amount:
     name: 'Total Amount (ng)'
     value: 

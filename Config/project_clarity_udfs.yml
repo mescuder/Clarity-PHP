@@ -73,3 +73,8 @@ sequencer-type:
     value:
     type: String
     required: TRUE
+test-id:
+    name: 'Test ID'
+    value:
+    type: String
+    required: FALSE

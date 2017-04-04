@@ -47,18 +47,24 @@ abstract class Container extends ApiResource
      * @var string $state
      */
     protected $state;
-
+    
     /**
      *
-     * @var string $clarityTypeEndpoint
+     * @var string $typeId
      */
-    protected $typeUri;
-    
+    protected $typeId;
+
     /**
      *
      * @var string $clarityTypeName
      */
     protected $typeName;
+    
+    /**
+     *
+     * @var string $typeUri
+     */
+    protected $typeUri;
 
     public function __construct()
     {
@@ -133,6 +139,16 @@ abstract class Container extends ApiResource
     public function getState()
     {
         return $this->state;
+    }
+    
+    public function setTypeId($typeId)
+    {
+        $this->typeId = $typeId;
+    }
+    
+    public function getTypeId()
+    {
+        return $this->typeId;
     }
     
     /**

@@ -43,6 +43,7 @@
     <udf:field type="String" name="Sequencer"></udf:field>
     <udf:field type="Numeric" name="Sequencing required (million reads)"></udf:field>
     <udf:field type="String" name="Size Selection (bp)"></udf:field>
+    <udf:field type="String" name="Test ID"></udf:field>
     <udf:field type="Numeric" name="Total Amount (ng)"></udf:field>
     <udf:field type="String" name="TRACERx Sample ID"></udf:field>
     <udf:field type="String" name="User Comments"></udf:field>
