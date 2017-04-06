@@ -14,30 +14,24 @@ $sampleRepo = new SampleClarityRepository($connector);
 $samples = $sampleRepo->findAll();
 foreach ($samples as $sample) {
     $modified = FALSE;
-    if (!empty($sample->getClarityUDF('User Comments old')['value'])) {
+    if (!empty($sample->getClarityUDF('User Comments old'))) {
         $modified = TRUE;
-        $oldUserComments = $sample->getClarityUDF('User Comments old')['value'];
+        $oldUserComments = $sample->getClarityUDF('User Comments old');
         echo $sample->getClarityId() . ' -> User Comments old: ' . $oldUserComments . PHP_EOL;
-        $sample->setClarityUDFs(array(
-            'User Comments old' => array('name' => 'User Comments old', 'value' => ''),
-            'User Comments' => array('name' => 'User Comments', 'value' => $oldUserComments)
-        ));
+        $sample->setClarityUDFs(array('User Comments old' => '', 'User Comments' => $oldUserComments));
     }
-    if (!empty($sample->getClarityUDF('ASF Comments old')['value'])) {
+    if (!empty($sample->getClarityUDF('ASF Comments old'))) {
         $modified = TRUE;
-        $oldAsfComments = $sample->getClarityUDF('ASF Comments old')['value'];
+        $oldAsfComments = $sample->getClarityUDF('ASF Comments old');
         echo $sample->getClarityId() . ' -> ASF Comments old: ' . $oldAsfComments . PHP_EOL;
-        $sample->setClarityUDFs(array(
-            'ASF Comments old' => array('name' => 'ASF Comments old', 'value' => ''),
-            'ASF Comments' => array('name' => 'ASF Comments', 'value' => $oldAsfComments)
-        ));
+        $sample->setClarityUDFs(array('ASF Comments old' => '', 'ASF Comments' => $oldAsfComments));
     }
     if ($modified) {
         $sample->sampleToXml();
         echo 'Saving ' . $sample->getClarityId() . PHP_EOL;
         $sample = $sampleRepo->save($sample);
-        echo 'User Comments: ' . $sample->getClarityUDF('User Comments')['value'] . PHP_EOL;
-        echo 'ASF Comments: ' . $sample->getClarityUDF('ASF Comments')['value'] . PHP_EOL;
+        echo 'User Comments: ' . $sample->getClarityUDF('User Comments') . PHP_EOL;
+        echo 'ASF Comments: ' . $sample->getClarityUDF('ASF Comments') . PHP_EOL;
         echo PHP_EOL;
     }
 }

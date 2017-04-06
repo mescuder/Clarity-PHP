@@ -30,17 +30,19 @@ $researcherRepo = new ResearcherClarityRepository($connector);
 /*
 $sample = $sampleRepo->find('BAR716A1');
 echo $sample->getXml() . PHP_EOL;
-$oldcomment = $sample->getClarityUDF('User Comments old')['value'];
+$oldcomment = $sample->getClarityUDF('User Comments old');
 $sample->setClarityUDFs(array(
-    'User Comments old' => array('name' => 'User Comments old', 'value' => ''),
-    'User Comments' => array('name' => 'User Comments', 'value' => $oldcomment),
+    'User Comments old' => '',
+    'User Comments' => $oldcomment,
 ));
 $sample->sampleToXml();
 $sample = $sampleRepo->save($sample);
 echo $sample->getXml() . PHP_EOL;
  * 
  */
-
+$sample = $sampleRepo->find('BAR716A1');
+$sample->sampleToXml();
+var_dump($sample);
 
 // Whole submission
 /*
@@ -63,22 +65,10 @@ $newSample->setSubmitterFirst($researcher->getFirstName());
 $newSample->setSubmitterLast($researcher->getLastName());
 $newSample->setSubmitterUri($researcher->getClarityUri());
 $udfs = array();
-$udfs['End Type'] = array(
-    'name'  => 'End Type',
-    'value' => 'Paired End'
-);
-$udfs['Read Length'] = array(
-    'name'  => 'Read Length',
-    'value' => '100'
-);
-$udfs['Sample Type'] = array(
-    'name'  => 'Sample Type',
-    'value' => 'gDNA'
-);
-$udfs['Volume (uL)'] = array(
-    'name'  => 'Volume (uL)',
-    'value' => 20
-);
+$udfs['End Type'] = 'Paired End';
+$udfs['Read Length'] = '100';
+$udfs['Sample Type'] = 'gDNA';
+$udfs['Volume (uL)'] = 20;
 $newSample->setClarityUDFs($udfs);
 $newSample->sampleToXml();
 echo $newSample->getXml() . PHP_EOL;

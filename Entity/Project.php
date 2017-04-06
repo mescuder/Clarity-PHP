@@ -67,7 +67,7 @@ class Project extends ApiResource
         
         foreach ($projectElement->children('udf', true) as $udfElement) {
             $name = $udfElement->attributes()['name']->__toString();
-            $udfElement[0] = $this->clarityUDFs[$name]['value'];
+            $udfElement[0] = $this->clarityUDFs[$name];
         }
         
         foreach ($this->files as $file) {
@@ -93,11 +93,7 @@ class Project extends ApiResource
         foreach ($projectElement->xpath('//udf:field') as $udfElement) {
             $field = $udfElement['name']->__toString();
             $value = $udfElement->__toString();
-            $udf = array(
-                'name'  => $field,
-                'value' => $value,
-            );
-            $this->setClarityUDF($udf);
+            $this->setClarityUDF($field, $value);
         }
         
         foreach ($projectElement->xpath('//file:file') as $fileElement) {
