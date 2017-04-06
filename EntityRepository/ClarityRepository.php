@@ -33,6 +33,19 @@ abstract class ClarityRepository
         $this->connector = $connector;
     }
     
+    /**
+     * 
+     * @param string $xmlData
+     */
+    public function checkApiException($xmlData)
+    {
+        $element = new \SimpleXMLElement($xmlData);
+        if ($element->getName() == 'exception') {
+            echo $element->asXML() . PHP_EOL;
+            exit;
+        }
+    }
+    
     public function getResourcesFromSearchResult($xmlResult)
     {
         $xmlResults = array();

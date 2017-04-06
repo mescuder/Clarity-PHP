@@ -25,6 +25,7 @@ class ResearcherClarityRepository extends ClarityRepository
     
     public function apiAnswerToResearcher($xmlData)
     {
+        $this->checkApiException($xmlData);
         $researcher = new Researcher();
         $researcher->setXml($xmlData);
         $researcher->xmlToResearcher();

@@ -26,6 +26,7 @@ class LabClarityRepository extends ClarityRepository
     
     public function apiAnswerToLab($xmlData)
     {
+        $this->checkApiException($xmlData);
         $lab = new Lab();
         $lab->setXml($xmlData);
         $lab->xmlToLab();
