@@ -30,10 +30,10 @@ $newproject->setResearcherUri($myresearcher->getClarityUri());
 
 $myproject = $projectRepo->find('BIO901');
 $udfs = array(
-    'Funding source' => array('name' => 'Funding source', 'value' => 'Internal'),
-    'Project type' => array('name' => 'Project type', 'value' => 'Whole Exome'),
-    'Sample quota' => array('name' => 'Sample quota', 'value' => '50'),
-    'Sequencer type' => array('name' => 'Sequencer type', 'value' => 'HiSeq'),
+    'Funding source' => 'Internal',
+    'Project type' => 'Whole Exome',
+    'Sample quota' => '50',
+    'Sequencer type' => 'HiSeq',
 );
 $myproject->setClarityUDFs($udfs);
 $myproject->projectToXml();

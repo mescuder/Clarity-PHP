@@ -1,175 +1,33 @@
-ampliseq-primer-design-id:
-    name: 'Ampliseq Primer Design ID (IAD number)'
-    value: 
-    type: String
-    required: FALSE
-asf-comments:
-    name: 'ASF Comments'
-    value: 
-    type: String
-    required: FALSE
-asf-comments-old:
-    name: 'ASF Comments old'
-    value: 
-    type: Text
-    required: FALSE
-c1-application:
-    name: 'C1 Application'
-    value: 
-    type: String
-    required: FALSE
-c1-ifc-used:
-    name: 'C1 IFC Used'
-    value: 
-    type: String
-    required: FALSE
-coverage:
-    name: 'Coverage (x)'
-    value: 
-    type: String
-    required: FALSE
-custom-index-primer:
-    name: 'Custom Index Primer'
-    value: 
-    type: String
-    required: FALSE
-custom-index-primer-concentration:
-    name: 'Custom Index Primer Concentration (uM)'
-    value: 
-    type: Numeric
-    required: FALSE
-custom-seq-primer:
-    name: 'Custom Seq Primer'
-    value: 
-    type: String
-    required: FALSE
-custom-seq-primer-concentration:
-    name: 'Custom Seq Primer Concentration (uM)'
-    value: 
-    type: Numeric
-    required: FALSE
-end-type:
-    name: 'End Type'
-    value: 
-    type: String
-    required: TRUE
-hybridisation-baits:
-    name: 'Hybridisation baits'
-    value: 
-    type: String
-    required: FALSE
-i5-index:
-    name: 'i5 Index'
-    value: 
-    type: String
-    required: FALSE
-i7-index:
-    name: 'i7 Index'
-    value: 
-    type: String
-    required: FALSE
-library-band-size:
-    name: 'Library band size (bp)'
-    value: 
-    type: String
-    required: FALSE
-library-prep-protocol:
-    name: 'Library Preparation Protocol'
-    value: 
-    type: String
-    required: FALSE
-number-of-primer-pairs-in-pool:
-    name: 'Number of primer pairs in pool'
-    value: 
-    type: String
-    required: FALSE
-pool-id:
-    name: 'Pool ID'
-    value: 
-    type: String
-    required: FALSE
-primer-pairs:
-    name: 'Primer pairs'
-    value: 
-    type: String
-    required: FALSE
-progress:
-    name: 'Progress'
-    value: 
-    type: String
-    required: FALSE
-read-length:
-    name: 'Read Length'
-    value: 
-    type: String
-    required: TRUE
-reference-genome:
-    name: 'Reference Genome'
-    value: 
-    type: String
-    required: FALSE
-rin:
-    name: 'RIN'
-    value: 
-    type: Numeric
-    required: FALSE
-rna-type:
-    name: 'RNA Type'
-    value: 
-    type: String
-    required: FALSE
-sample-concentration:
-    name: 'Sample Concentration (ng/uL)'
-    value: 
-    type: Numeric
-    required: FALSE
-sample-type:
-    name: 'Sample Type'
-    value: 
-    type: String
-    required: TRUE
-sequencer:
-    name: 'Sequencer'
-    value: 
-    type: String
-    required: FALSE
-sequencing-required:
-    name: 'Sequencing required (million reads)'
-    value: 
-    type: Numeric
-    required: FALSE
-size-selection:
-    name: 'Size Selection (bp)'
-    value: 
-    type: String
-    required: FALSE
-test-id:
-    name: 'Test ID'
-    value:
-    type: String
-    required: FALSE
-total-amount:
-    name: 'Total Amount (ng)'
-    value: 
-    type: Numeric
-    required: FALSE
-tracerx-sample-id:
-    name: 'TRACERx Sample ID'
-    value: 
-    type: String
-    required: FALSE
-user-comments:
-    name: 'User Comments'
-    value: 
-    type: String
-    required: FALSE
-user-comments-old:
-    name: 'User Comments old'
-    value: 
-    type: Text
-    required: FALSE
-volume:
-    name: 'Volume (uL)'
-    value: 
-    type: Numeric
-    required: TRUE
+'Ampliseq Primer Design ID (IAD number)': 
+'ASF Comments': 
+'C1 Application': 
+'C1 IFC Used': 
+'Coverage (x)': 
+'Custom Index Primer': 
+'Custom Index Primer Concentration (uM)': 
+'Custom Seq Primer': 
+'Custom Seq Primer Concentration (uM)': 
+'End Type': 
+'Hybridisation baits': 
+'i5 Index': 
+'i7 Index': 
+'Library band size (bp)': 
+'Library Preparation Protocol': 
+'Number of primer pairs in pool': 
+'Pool ID': 
+'Primer pairs': 
+'Progress': 
+'Read Length': 
+'Reference Genome': 
+'RIN': 
+'RNA Type': 
+'Sample Concentration (ng/uL)': 
+'Sample Type': 
+'Sequencer': 
+'Sequencing required (million reads)': 
+'Size Selection (bp)': 
+'Test ID': 
+'Total Amount (ng)': 
+'TRACERx Sample ID': 
+'User Comments': 
+'Volume (uL)': 

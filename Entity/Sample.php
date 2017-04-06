@@ -151,7 +151,7 @@ class Sample extends ApiResource
         
         foreach ($sampleElement->children('udf', true) as $udf) {
             $name = $udf->attributes()['name']->__toString();
-            $udf[0] = $this->clarityUDFs[$name]['value'];
+            $udf[0] = $this->clarityUDFs[$name];
         }
         
         $this->xml = $sampleElement->asXML();
@@ -184,11 +184,7 @@ class Sample extends ApiResource
         foreach ($sampleElement->xpath('//udf:field') as $udfElement) {
             $field = $udfElement['name']->__toString();
             $value = $udfElement->__toString();
-            $udf = array(
-                'name'  => $field,
-                'value' => $value,
-            );
-            $this->setClarityUDF($udf);
+            $this->setClarityUDF($field, $value);
         }
     }
 

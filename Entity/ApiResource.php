@@ -78,24 +78,12 @@ abstract class ApiResource
     
     /**
      * 
-     * @param array $udf
+     * @param string $field
+     * @param string $value
      */
-    public function setClarityUDF(array $udf)
+    public function setClarityUDF($field, $value)
     {
-        if (array_key_exists('name', $udf)) {
-            $name = $udf['name'];
-            $this->clarityUDFs[$name]['name'] = $name;
-            
-            if (array_key_exists('value', $udf)) {
-                $this->clarityUDFs[$name]['value'] = $udf['value'];
-            }
-            if (array_key_exists('required', $udf)) {
-                $this->clarityUDFs[$name]['required'] = $udf['required'];
-            }
-            if (array_key_exists('type', $udf)) {
-                $this->clarityUDFs[$name]['type'] = $udf['type'];
-            }
-        }
+        $this->clarityUDFs[$field] = $value;
     }
     
     /**
@@ -114,8 +102,8 @@ abstract class ApiResource
      */
     public function setClarityUDFs(array $udfs)
     {
-        foreach ($udfs as $udf) {
-            $this->setClarityUDF($udf);
+        foreach ($udfs as $field => $value) {
+            $this->setClarityUDF($field, $value);
         }
     }
     

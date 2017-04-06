@@ -11,7 +11,6 @@
     <artifact limsid="" uri=""/>
     <udf:field type="String" name="Ampliseq Primer Design ID (IAD number)"></udf:field>
     <udf:field type="String" name="ASF Comments"></udf:field>
-    <udf:field type="Text" name="ASF Comments old"></udf:field>
     <udf:field type="String" name="C1 Application"></udf:field>
     <udf:field type="String" name="C1 IFC Used"></udf:field>
     <udf:field type="String" name="Coverage (x)"></udf:field>
@@ -48,7 +47,6 @@
     <udf:field type="Numeric" name="Total Amount (ng)"></udf:field>
     <udf:field type="String" name="TRACERx Sample ID"></udf:field>
     <udf:field type="String" name="User Comments"></udf:field>
-    <udf:field type="Text" name="User Comments old"></udf:field>
     <!-- REQUIRED -->
     <udf:field type="Numeric" name="Volume (uL)"></udf:field>
     <!-- /REQUIRED -->
