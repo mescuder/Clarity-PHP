@@ -26,6 +26,7 @@ class ContainerClarityRepository extends ClarityRepository
     
     public function apiAnswerToContainer($xmlData)
     {
+        $this->checkApiException($xmlData);
         $answerElement = simplexml_load_string($xmlData);
         $type = $answerElement->type['name'];
         switch ($type) {

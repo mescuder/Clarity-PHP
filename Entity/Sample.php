@@ -53,6 +53,12 @@ class Sample extends ApiResource
      * @var string $containerUri
      */
     protected $containerUri;
+    
+    /**
+     *
+     * @var string $dateCompleted
+     */
+    protected $dateCompleted;
 
     /**
      *
@@ -119,7 +125,20 @@ class Sample extends ApiResource
         }
         else {
             $sampleElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/sample.xsd');
-            $sampleElement->{'date-received'} = $this->dateReceived;
+            $sampleElement['uri'] = $this->clarityUri;
+            $sampleElement['limsid'] = $this->clarityId;
+            if (empty($this->dateReceived)) {
+                unset($sampleElement->{'date-received'});
+            }
+            else {
+                $sampleElement->{'date-received'} = $this->dateReceived;
+            }
+            if (empty($this->dateCompleted)) {
+                unset($sampleElement->{'date-completed'});
+            }
+            else {
+                $sampleElement->{'date-completed'} = $this->dateCompleted;
+            }
             $sampleElement->artifact['limsid'] = $this->artifactId;
             $sampleElement->artifact['uri'] = $this->artifactUri;
         }
@@ -135,7 +154,7 @@ class Sample extends ApiResource
             $udf[0] = $this->clarityUDFs[$name]['value'];
         }
         
-        $this->xml = $sampleElement->asXML();        
+        $this->xml = $sampleElement->asXML();
         $this->formatXml();
     }
     
@@ -146,8 +165,16 @@ class Sample extends ApiResource
         $this->clarityId = $sampleElement['limsid']->__toString();
         $this->clarityName = $sampleElement->name->__toString();
         $this->dateReceived = $sampleElement->{'date-received'}->__toString();
-        $this->projectId = $sampleElement->project['limsid']->__toString();
-        $this->projectUri = $sampleElement->project['uri']->__toString();
+        if (!empty($sampleElement->{'date-received'})) {
+            $this->dateCompleted = $sampleElement->{'date-completed'}->__toString();
+        }
+        if (!empty($sampleElement->{'date-completed'})) {
+            $this->dateCompleted = $sampleElement->{'date-completed'}->__toString();
+        }
+        if (!empty($sampleElement->project['limsid'])) {
+            $this->projectId = $sampleElement->project['limsid']->__toString();
+            $this->projectUri = $sampleElement->project['uri']->__toString();
+        }
         $this->submitterUri = $sampleElement->submitter['uri']->__toString();
         $this->submitterFirst = $sampleElement->submitter->{'first-name'}->__toString();
         $this->submitterLast = $sampleElement->submitter->{'last-name'}->__toString();
@@ -289,6 +316,24 @@ class Sample extends ApiResource
     public function getContainerUri()
     {
         return $this->containerUri;
+    }
+    
+    /**
+     * 
+     * @param string $dateCompleted
+     */
+    public function setDateCompleted($dateCompleted)
+    {
+        $this->dateCompleted = $dateCompleted;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getDateCompleted()
+    {
+        return $this->dateCompleted;
     }
     
     /**

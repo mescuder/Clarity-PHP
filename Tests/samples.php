@@ -22,17 +22,24 @@ $containerRepo = new ContainerClarityRepository($connector);
 $projectRepo = new ProjectClarityRepository($connector);
 $researcherRepo = new ResearcherClarityRepository($connector);
 
+//$samples = $sampleRepo->findAll();
+//foreach ($samples as $sample) {
+//    echo $sample->getClarityId() . PHP_EOL;
+//}
 
-$sample = $sampleRepo->find('BIO901A1');
+/*
+$sample = $sampleRepo->find('BAR716A1');
+echo $sample->getXml() . PHP_EOL;
 $oldcomment = $sample->getClarityUDF('User Comments old')['value'];
 $sample->setClarityUDFs(array(
     'User Comments old' => array('name' => 'User Comments old', 'value' => ''),
-    'User Comments' => array('name' => 'User Comments', 'value' => $oldcomment)
+    'User Comments' => array('name' => 'User Comments', 'value' => $oldcomment),
 ));
-//$sample->setClarityUDF(array('name' => 'User Comments old', 'value' => 'This is a comment'));
 $sample->sampleToXml();
 $sample = $sampleRepo->save($sample);
 echo $sample->getXml() . PHP_EOL;
+ * 
+ */
 
 
 // Whole submission

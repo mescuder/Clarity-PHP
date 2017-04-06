@@ -25,6 +25,7 @@ class ProjectClarityRepository extends ClarityRepository
     
     public function apiAnswerToProject($xmlData)
     {
+        $this->checkApiException($xmlData);
         $project = new Project();
         $project->setXml($xmlData);
         $project->xmlToProject();

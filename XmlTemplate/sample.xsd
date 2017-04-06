@@ -2,6 +2,7 @@
 <smp:sample xmlns:udf="http://genologics.com/ri/userdefined" xmlns:ri="http://genologics.com/ri" xmlns:file="http://genologics.com/ri/file" xmlns:smp="http://genologics.com/ri/sample" uri="" limsid="">
     <name></name>
     <date-received></date-received>
+    <date-completed></date-completed>
     <project limsid="" uri=""/>
     <submitter uri="">
         <first-name></first-name>
