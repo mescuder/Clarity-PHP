@@ -32,6 +32,12 @@ class Researcher extends ApiResource
     
     /**
      *
+     * @var string $labId
+     */
+    protected $labId;
+    
+    /**
+     *
      * @var string $labUri
      */
     protected $labUri;
@@ -79,6 +85,11 @@ class Researcher extends ApiResource
         $this->roles = array();
     }
     
+    public function getFullName()
+    {
+        return $this->firstName . ' ' . $this->lastName;
+    }
+    
     public function researcherToXml()
     {
         $researcherElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/researcher.xsd');
@@ -88,9 +99,15 @@ class Researcher extends ApiResource
         $researcherElement->{'last-name'} = $this->lastName;
         $researcherElement->email = $this->email;
         $researcherElement->lab['uri'] = $this->labUri;
-        $researcherElement->credentials->username = $this->username;
-        $researcherElement->credentials->password = $this->password;
-        $researcherElement->credentials->{'account-locked'} = $this->locked;
+        if (!empty($this->username)) {
+            $credentialsElement = $researcherElement->addChild('credentials', null, '');
+            $credentialsElement->addChild('username');
+            $credentialsElement->addChild('password');
+            $credentialsElement->addChild('account-locked');
+            $researcherElement->credentials->username = $this->username;
+            $researcherElement->credentials->password = $this->password;
+            $researcherElement->credentials->{'account-locked'} = $this->locked;
+        }
         $researcherElement->initials = $this->initials;
         foreach ($this->roles as $role) {
             $roleElement = $researcherElement->{'credentials'}->addChild('role');
@@ -109,9 +126,12 @@ class Researcher extends ApiResource
         $this->firstName = $researcherElement->{'first-name'}->__toString();
         $this->lastName = $researcherElement->{'last-name'}->__toString();
         $this->labUri = $researcherElement->lab['uri']->__toString();
+        $this->labId = $this->getClarityIdFromUri($this->labUri);
         $this->phone = $researcherElement->phone->__toString();
-        $this->username = $researcherElement->credentials->username->__toString();
-        $this->locked = $researcherElement->credentials->{'account-locked'}->__toString();
+        if (!empty($researcherElement->credentials->username)) {
+            $this->username = $researcherElement->credentials->username->__toString();
+            $this->locked = $researcherElement->credentials->{'account-locked'}->__toString();
+        }
         
         foreach ($researcherElement->xpath('//role') as $role) {
             $this->roles[] = $role['name']->__toString();
@@ -170,6 +190,24 @@ class Researcher extends ApiResource
     public function getInitials()
     {
         return $this->initials;
+    }
+    
+    /**
+     * 
+     * @param string $labId
+     */
+    public function setLabId($labId)
+    {
+        $this->labId = $labId;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getLabId()
+    {
+        return $this->labId;
     }
     
     /**
@@ -277,6 +315,9 @@ class Researcher extends ApiResource
      */
     public function setRoles(array $roles)
     {
+        if (empty($roles)) {
+            $this->roles = array();
+        }
         foreach ($roles as $role) {
             $this->setRole($role);
         }

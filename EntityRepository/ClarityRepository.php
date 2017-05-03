@@ -36,33 +36,25 @@ abstract class ClarityRepository
     /**
      * 
      * @param string $xmlData
+     * @return boolean
      */
     public function checkApiException($xmlData)
     {
         $element = new \SimpleXMLElement($xmlData);
         if ($element->getName() == 'exception') {
             echo $element->asXML() . PHP_EOL;
-            exit;
-        }
-    }
-    
-    public function getResourcesFromSearchResult($xmlResult)
-    {
-        $xmlResults = array();
-        $xmlElement = new \SimpleXMLElement($xmlResult);
-        if ($xmlElement->count() == 0) {
-            return $xmlResults;
+            return TRUE;
         }
         else {
-            foreach ($xmlElement->children() as $childElement) {
-                $fullpath = $childElement['uri']->__toString();
-                $path = $this->endpoint . '/' . end(explode('/', $fullpath));
-                $xmlResults[] = $this->connector->getResource($path);
-            }
-            return $xmlResults;
-        }   
+            return FALSE;
+        }
     }
     
+    /**
+     * 
+     * @param string $search
+     * @return string
+     */
     public function replaceSpaceInSearchString($search)
     {
         return str_replace(' ', '%20', $search);

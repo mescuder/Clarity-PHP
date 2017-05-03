@@ -4,11 +4,6 @@
   <last-name></last-name>
   <email></email>
   <lab uri=""/>
-  <credentials>
-    <username></username>
-    <password></password>
-    <account-locked></account-locked>
-  </credentials>
   <initials></initials>
 </res:researcher>
 

@@ -89,6 +89,7 @@ class Project extends ApiResource
         $this->clarityName = $projectElement->name->__toString();
         $this->openDate = $projectElement->{'open-date'}->__toString();
         $this->researcherUri = $projectElement->researcher['uri']->__toString();
+        $this->researcherId = $this->getClarityIdFromUri($this->researcherUri);
         
         foreach ($projectElement->xpath('//udf:field') as $udfElement) {
             $field = $udfElement['name']->__toString();
@@ -125,6 +126,10 @@ class Project extends ApiResource
         return $this->clarityName;
     }
     
+    /**
+     * 
+     * @param array $file
+     */
     public function setFile(array $file)
     {
         if (array_key_exists('limsid', $file)) {
@@ -133,6 +138,22 @@ class Project extends ApiResource
             
             if (array_key_exists('uri', $file)) {
                 $this->files[$limsId]['uri'] = $file['uri'];
+            }
+        }
+    }
+    
+    /**
+     * 
+     * @param array $files
+     */
+    public function setFiles($files)
+    {
+        if (empty($files)) {
+            $this->files = array();
+        }
+        else {
+            foreach ($files as $file) {
+                $this->setFile($file);
             }
         }
     }
