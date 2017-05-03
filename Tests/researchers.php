@@ -15,8 +15,13 @@ use Clarity\EntityRepository\LabClarityRepository;
 
 $connector = new ClarityApiConnector('test');
 $researcherRepo = new ResearcherClarityRepository($connector);
-$myresearcher = $researcherRepo->find('654');
-var_dump($myresearcher);
+//$myresearcher = $researcherRepo->find('654');
+//$myresearcher->researcherToXml();
+//var_dump($myresearcher);
+$researchers = $researcherRepo->findByFirstAndLastNames('Will', 'Gee');
+$researcher = $researchers[0];
+$researcher->researcherToXml();
+var_dump($researcher);
 
 /*
 $labRepo = new LabClarityRepository($connector);

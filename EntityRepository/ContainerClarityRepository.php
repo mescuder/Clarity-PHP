@@ -24,11 +24,39 @@ class ContainerClarityRepository extends ClarityRepository
         $this->endpoint = 'containers';
     }
     
+    /**
+     * 
+     * @param string $xmlData
+     * @return Container
+     */
     public function apiAnswerToContainer($xmlData)
     {
-        $this->checkApiException($xmlData);
-        $answerElement = simplexml_load_string($xmlData);
-        $type = $answerElement->type['name'];
+        if ($this->checkApiException($xmlData)) {
+            return null;
+        }
+        else {
+            $answerElement = simplexml_load_string($xmlData);
+            $type = $answerElement->type['name'];
+            switch ($type) {
+                case 'Tube':
+                    $container = new Tube();
+                    break;
+                default:
+                    return null;
+            }
+            $container->setXml($xmlData);
+            $container->xmlToContainer();
+            return $container;
+        }
+    }
+    
+    /**
+     * 
+     * @param string $type
+     * @return Container
+     */
+    public function createNew($type)
+    {
         switch ($type) {
             case 'Tube':
                 $container = new Tube();
@@ -36,8 +64,11 @@ class ContainerClarityRepository extends ClarityRepository
             default:
                 return null;
         }
-        $container->setXml($xmlData);
-        $container->xmlToContainer();
+        $typeUri = $this->getConnector()->getBaseUrl() . '/containertypes/' . $container->getTypeId();
+        $container->setTypeUri($typeUri);
+        $container->containerToXml();
+        //echo $container->getXml() . PHP_EOL;
+        $container = $this->save($container);
         return $container;
     }
     

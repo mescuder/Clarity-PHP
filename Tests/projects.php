@@ -13,13 +13,17 @@ use Clarity\EntityRepository\ProjectClarityRepository;
 //$project = new Project();
 //var_dump($project);
 
-$connector = new ClarityApiConnector('test');
+$connector = new ClarityApiConnector('prod');
 $projectRepo = new ProjectClarityRepository($connector);
 //$researcherRepo = new ResearcherClarityRepository($connector);
 
-$myproject = $projectRepo->find('BIO901');
+$myproject = $projectRepo->find('PAS212');
+$myproject->setFiles(array());
 $myproject->projectToXml();
-var_dump($myproject);
+echo $myproject->getXml() . PHP_EOL;
+$myproject = $projectRepo->save($myproject);
+echo $myproject->getXml() . PHP_EOL;
+//var_dump($myproject);
 
 /*
 $myresearcher = $researcherRepo->find('654');

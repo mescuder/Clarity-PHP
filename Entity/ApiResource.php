@@ -39,11 +39,6 @@ abstract class ApiResource
         $this->clarityUDFs = array();
     }
     
-    public function clarityIdFromUri()
-    {
-        return end(explode('/', $this->clarityUri));
-    }
-    
     public function formatXml()
     {
         $doc = new \DOMDocument();
@@ -55,7 +50,17 @@ abstract class ApiResource
     
     public function setClarityIdFromUri()
     {
-        $this->clarityId = $this->clarityIdFromUri();
+        $this->clarityId = $this->getClarityIdFromUri();
+    }
+    
+    public function getClarityIdFromUri($uri = null)
+    {
+        if (empty($uri)) {
+            $uri = $this->clarityUri;
+        }
+        $delimiter = '/';
+        $uriBits = explode($delimiter, $uri);
+        return end($uriBits);
     }
     
     /**
