@@ -18,11 +18,11 @@ $projectRepo = new ProjectClarityRepository($connector);
 //$researcherRepo = new ResearcherClarityRepository($connector);
 
 $myproject = $projectRepo->find('PAS212');
-$myproject->setFiles(array());
-$myproject->projectToXml();
+//$myproject->setFiles(array());
+//$myproject->projectToXml();
 echo $myproject->getXml() . PHP_EOL;
-$myproject = $projectRepo->save($myproject);
-echo $myproject->getXml() . PHP_EOL;
+//$myproject = $projectRepo->save($myproject);
+//echo $myproject->getXml() . PHP_EOL;
 //var_dump($myproject);
 
 /*

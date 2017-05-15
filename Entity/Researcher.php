@@ -32,6 +32,12 @@ class Researcher extends ApiResource
     
     /**
      *
+     * @var Lab
+     */
+    protected $lab;
+    
+    /**
+     *
      * @var string $labId
      */
     protected $labId;
@@ -190,6 +196,20 @@ class Researcher extends ApiResource
     public function getInitials()
     {
         return $this->initials;
+    }
+    
+    /**
+     * 
+     * @param Lab $lab
+     */
+    public function setLab($lab)
+    {
+        $this->lab = $lab;
+    }
+    
+    public function getLab()
+    {
+        return $this->lab;
     }
     
     /**

@@ -3,6 +3,7 @@
   <name></name>
   <open-date></open-date>
   <researcher uri=""/>
+  <udf:field type="String" name="Approximate cost"></udf:field>
   <udf:field type="String" name="Bioinformatician"></udf:field>
   <udf:field type="String" name="Number of experiments (total number of cells)"></udf:field>
   <udf:field type="Numeric" name="Coverage"></udf:field>
