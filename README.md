@@ -52,3 +52,5 @@ the whole XML file from scratch.
 ## Credits
 
 ## License
+
+GNU General Public License v3.0
