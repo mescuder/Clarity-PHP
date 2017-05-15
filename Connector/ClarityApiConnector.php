@@ -36,6 +36,7 @@ class ClarityApiConnector
         $this->baseUrl = $config['URL'][$instance];
 
         $this->curlHandle = curl_init();
+        curl_setopt($this->curlHandle, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($this->curlHandle, CURLOPT_RETURNTRANSFER, TRUE);
         curl_setopt($this->curlHandle, CURLOPT_USERPWD, $username . ':' . $password);
     }

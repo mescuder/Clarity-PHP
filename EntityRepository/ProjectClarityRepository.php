@@ -67,6 +67,15 @@ class ProjectClarityRepository extends ClarityRepository
         return $this->apiAnswerToProject($xmlData);
     }
     
+    public function findAll()
+    {
+        $path = $this->endpoint;
+        $xmlData = $this->connector->getResource($path);
+        $projects = array();
+        $this->makeArrayFromMultipleAnswer($xmlData, $projects);
+        return $projects;
+    }
+    
     /**
      * 
      * @param string $name
