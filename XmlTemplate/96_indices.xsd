@@ -1,0 +1,678 @@
+<?xml version="1.0"?>
+<config ApiVersion="v2,r20" ConfigSlicerVersion="3.0-compatible">
+    <ReagentTypes xmlns:rtp="http://genologics.com/ri/reagenttype">
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+        <rtp:reagent-type xmlns:rtp="http://genologics.com/ri/reagenttype" name="">
+            <special-type name="Index">
+                <attribute value="" name="Sequence"/>
+            </special-type>
+            <reagent-category></reagent-category>
+        </rtp:reagent-type>
+
+    </ReagentTypes>
+</config>
