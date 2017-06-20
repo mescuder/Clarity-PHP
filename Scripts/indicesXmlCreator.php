@@ -1,33 +1,30 @@
 <?php
 
-$tmpIndices = yaml_parse_file('/home/escudem/Nextera_XT_Indexes_v2.yml');
-$indexNames = array();
-$indexSeqs = array();
-//var_dump($tmpIndices);
+$tmpIndices = yaml_parse_file('/home/escudem/thruplex_dna-seq.yml');
+$indices = array();
 foreach ($tmpIndices as $name => $seq) {
     $newName = $name . ' (' . $seq . ')';
-    $indexNames[] = $newName;
-    $indexSeqs[] = $seq;
+    $indices[$newName] = $seq;
 }
-$groupName = 'Nextera XT Indexes v2';
+$groupName = 'ThruPLEX DNA-Seq';
 
 $i = 0;
-$configElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/36_indices.xsd');
+$configElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/indices.xsd');
+$typesElement = $configElement->ReagentTypes;
 
-foreach ($configElement->ReagentTypes->xpath('//rtp:reagent-type') as $reagentElement) {
-    $reagentElement->attributes()['name'] = $indexNames[$i];
-    $reagentElement->{'special-type'}->attribute['value'] = $indexSeqs[$i];
-    $reagentElement->{'reagent-category'} = $groupName;
-    ++$i;
+foreach ($indices as $indexName => $indexSeq) {
+    $typeElement = $typesElement->addChild('reagent-type', null, 'http://genologics.com/ri/reagenttype');
+    $typeElement->addAttribute('name', $indexName);
+    $specialElement = $typeElement->addChild('special-type', null, '');
+    $specialElement->addAttribute('name', 'Index');
+    $attributeElement = $specialElement->addChild('attribute');
+    $attributeElement->addAttribute('value', $indexSeq);
+    $attributeElement->addAttribute('name', 'Sequence');
+    $categoryElement = $typeElement->addChild('reagent-category', $groupName, '');
 }
 
-/*
 $doc = new \DOMDocument();
 $doc->preserveWhiteSpace = false;
 $doc->formatOutput = true;
 $doc->loadXML($configElement->asXML());
 echo $doc->saveXML();
- * 
- */
-
-echo $configElement->asXML();
