@@ -1,12 +1,12 @@
 <?php
 
-$tmpIndices = yaml_parse_file('/home/escudem/thruplex_dna-seq.yml');
+$tmpIndices = yaml_parse_file('/home/escudem/cristina_militti_iclip.yml');
 $indices = array();
 foreach ($tmpIndices as $name => $seq) {
     $newName = $name . ' (' . $seq . ')';
     $indices[$newName] = $seq;
 }
-$groupName = 'ThruPLEX DNA-Seq';
+$groupName = 'Cristina Militti iCLIP 1-25';
 
 $i = 0;
 $configElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/indices.xsd');
