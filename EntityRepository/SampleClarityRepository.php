@@ -12,7 +12,7 @@ use Clarity\EntityRepository\ContainerClarityRepository;
 /**
  * Description of SampleClarityRepository
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 class SampleClarityRepository extends ClarityRepository {
 

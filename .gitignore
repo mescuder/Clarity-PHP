@@ -1,4 +1,5 @@
 Config/clarity_api_credentials.yml
 Config/clarity_parameters.yml
+Config/sequencers.yml
 Tests/*.xml
 

@@ -7,7 +7,7 @@ use Clarity\Entity\ApiResource;
 /**
  * Description of Container
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 abstract class Container extends ApiResource
 {

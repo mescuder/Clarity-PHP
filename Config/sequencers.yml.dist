@@ -1,0 +1,5 @@
+#Example
+K00001:
+    Type: HiSeq
+    Model: 4000
+    Use: General

@@ -7,7 +7,7 @@ use Clarity\Entity\ApiResource;
 /**
  * Description of Lab
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 class Lab extends ApiResource
 {

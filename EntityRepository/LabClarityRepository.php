@@ -9,7 +9,7 @@ use Clarity\Entity\Lab;
 /**
  * Description of LabClarityRepository
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 class LabClarityRepository extends ClarityRepository {
 

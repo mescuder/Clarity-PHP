@@ -7,24 +7,21 @@ use Clarity\Entity\Container;
 /**
  * Description of Tube
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 class Tube extends Container
 {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->typeName = 'Tube';
         $this->typeId = '2';
     }
-    
-    public function containerToXml()
-    {
+
+    public function containerToXml() {
         if (empty($this->clarityId)) {
             $containerElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/containercreation.xsd');
-        }
-        else {
+        } else {
             $containerElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/container.xsd');
             $containerElement['uri'] = $this->clarityUri;
             $containerElement['limsid'] = $this->clarityId;
@@ -37,13 +34,12 @@ class Tube extends Container
         $containerElement->name = $this->clarityName;
         $containerElement->type['uri'] = $this->typeUri;
         $containerElement->type['name'] = $this->typeName;
-        
+
         $this->xml = $containerElement->asXML();
         $this->formatXml();
     }
-    
-    public function xmlToContainer()
-    {
+
+    public function xmlToContainer() {
         $containerElement = new \SimpleXMLElement($this->xml);
         $this->clarityId = $containerElement['limsid']->__toString();
         $this->clarityUri = $containerElement['uri']->__toString();

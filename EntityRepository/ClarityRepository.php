@@ -7,7 +7,7 @@ use Clarity\Connector\ClarityApiConnector;
 /**
  * Description of ClarityRepository
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 abstract class ClarityRepository
 {

@@ -5,7 +5,7 @@ namespace Clarity\Entity;
 /**
  * Description of ApiResource
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 abstract class ApiResource
 {

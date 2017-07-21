@@ -9,7 +9,7 @@ use Clarity\Entity\Researcher;
 /**
  * Description of ProjectClarityRepository
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 class ProjectClarityRepository extends ClarityRepository
 {

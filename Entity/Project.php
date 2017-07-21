@@ -7,7 +7,7 @@ use Clarity\Entity\ApiResource;
 /**
  * Description of Project
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 class Project extends ApiResource {
 
