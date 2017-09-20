@@ -9,7 +9,7 @@ use Clarity\Entity\Tube;
 /**
  * Description of ContainerClarityRepository
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 class ContainerClarityRepository extends ClarityRepository
 {

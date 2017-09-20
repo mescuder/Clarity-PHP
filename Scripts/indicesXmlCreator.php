@@ -1,12 +1,12 @@
 <?php
 
-$tmpIndices = yaml_parse_file('/home/escudem/cristina_militti_iclip.yml');
+$tmpIndices = yaml_parse_file('/home/escudem/quantseq_bc_1-96.yml');
 $indices = array();
 foreach ($tmpIndices as $name => $seq) {
     $newName = $name . ' (' . $seq . ')';
     $indices[$newName] = $seq;
 }
-$groupName = 'Cristina Militti iCLIP 1-25';
+$groupName = 'Quantseq BC01-BC96 (6bp)';
 
 $i = 0;
 $configElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/indices.xsd');

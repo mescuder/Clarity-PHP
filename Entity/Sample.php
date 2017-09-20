@@ -7,7 +7,7 @@ use Clarity\Entity\ApiResource;
 /**
  * Description of Sample
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 class Sample extends ApiResource
 {

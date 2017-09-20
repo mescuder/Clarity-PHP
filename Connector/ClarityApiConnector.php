@@ -5,7 +5,7 @@ namespace Clarity\Connector;
 /**
  * Description of ClarityConnector
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 class ClarityApiConnector
 {

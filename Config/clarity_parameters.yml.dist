@@ -1,5 +1,3 @@
 URL:
-    prod:
-        # The base URL for the prod instance
-    test:
-        # The base URL for the test instance
+    prod: # The base URL for the prod instance
+    test: # The base URL for the test instance

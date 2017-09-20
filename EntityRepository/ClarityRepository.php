@@ -7,7 +7,7 @@ use Clarity\Connector\ClarityApiConnector;
 /**
  * Description of ClarityRepository
  *
- * @author Mickael Escudero
+ * @author escudem
  */
 abstract class ClarityRepository
 {
@@ -57,7 +57,7 @@ abstract class ClarityRepository
      */
     public function replaceSpaceInSearchString($search)
     {
-        return str_replace(' ', '%20', $search);
+        return str_replace(' ', '+', $search);
     }
     
     /**
