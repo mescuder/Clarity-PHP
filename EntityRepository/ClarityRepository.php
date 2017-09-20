@@ -57,7 +57,7 @@ abstract class ClarityRepository
      */
     public function replaceSpaceInSearchString($search)
     {
-        return str_replace(' ', '%20', $search);
+        return str_replace(' ', '+', $search);
     }
     
     /**

@@ -9,7 +9,8 @@ use Clarity\Entity\ApiResource;
  *
  * @author escudem
  */
-class Project extends ApiResource {
+class Project extends ApiResource
+{
 
     /**
      *
@@ -28,7 +29,7 @@ class Project extends ApiResource {
      * @var string $openDate
      */
     protected $openDate;
-    
+
     /**
      *
      * @var string
@@ -52,14 +53,15 @@ class Project extends ApiResource {
      * @var string $researcherUri
      */
     protected $researcherUri;
-    
+
     /**
      *
      * @var array
      */
     protected $samples;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->files = array();
         $this->samples = array();
@@ -67,7 +69,8 @@ class Project extends ApiResource {
         $this->setClarityUDFs($udfs);
     }
 
-    public function getTabLine($mode = '') {
+    public function getTabLine($mode = '')
+    {
         $lineArray = array(
             'Name' => '',
             'ID' => '',
@@ -86,6 +89,7 @@ class Project extends ApiResource {
             'Coverage' => '',
             'Depth' => '',
             'Genome' => '',
+            'Budget Code' => '',
             'Funding source' => '',
             'Approximate cost' => '',
             'Fragment size' => '',
@@ -98,8 +102,7 @@ class Project extends ApiResource {
             $keys = array_keys($lineArray);
             $line = implode("\t", $keys) . PHP_EOL;
             return $line;
-        }
-        else {
+        } else {
             $lineArray['Name'] = $this->clarityName;
             $lineArray['ID'] = $this->clarityId;
             $lineArray['Scientist'] = $this->researcher->getFullName();
@@ -116,6 +119,7 @@ class Project extends ApiResource {
             $lineArray['Coverage'] = $this->clarityUDFs['Coverage'];
             $lineArray['Depth'] = $this->clarityUDFs['Depth'];
             $lineArray['Genome'] = $this->clarityUDFs['Genome build'];
+            $lineArray['Budget Code'] = $this->clarityUDFs['Budget Code'];
             $lineArray['Funding source'] = $this->clarityUDFs['Funding source'];
             $lineArray['Approximate cost'] = $this->clarityUDFs['Approximate cost'];
             $lineArray['Fragment size'] = $this->clarityUDFs['Fragment Size'];
@@ -123,19 +127,29 @@ class Project extends ApiResource {
             $lineArray['Bioinformatician'] = $this->clarityUDFs['Bioinformatician'];
             $lineArray['Description'] = str_replace("\n", '', $this->clarityUDFs['Description']);
             $lineArray['Test ID'] = $this->clarityUDFs['Test ID'];
+            $lineArray['Sample count'] = count($this->samples);
             foreach ($lineArray as $key => $value) {
                 if (empty($value)) {
                     $lineArray[$key] = '';
                 }
             }
-            $lineArray['Sample count'] = count($this->samples);
             $values = array_values($lineArray);
             $line = implode("\t", $values) . PHP_EOL;
             return $line;
         }
     }
 
-    public function projectToXml() {
+    public function isClarityId($search)
+    {
+        if (preg_match('#^[[:alpha:]]{3}\d+$#', $search)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function projectToXml()
+    {
         $projectElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/project.xsd');
 
         $projectElement['uri'] = $this->clarityUri;
@@ -146,7 +160,7 @@ class Project extends ApiResource {
         if (!empty($this->closeDate)) {
             $projectElement->addChild('close-date', $this->closeDate, null);
         }
-        
+
         foreach ($projectElement->children('udf', true) as $udfElement) {
             $name = $udfElement->attributes()['name']->__toString();
             $udfElement[0] = $this->clarityUDFs[$name];
@@ -163,7 +177,8 @@ class Project extends ApiResource {
         $this->formatXml();
     }
 
-    public function xmlToProject() {
+    public function xmlToProject()
+    {
         $projectElement = new \SimpleXMLElement($this->xml);
         $this->clarityUri = $projectElement['uri']->__toString();
         $this->clarityId = $projectElement['limsid']->__toString();
@@ -196,7 +211,8 @@ class Project extends ApiResource {
      * 
      * @param string $clarityName
      */
-    public function setClarityName($clarityName) {
+    public function setClarityName($clarityName)
+    {
         $this->clarityName = $clarityName;
     }
 
@@ -204,10 +220,11 @@ class Project extends ApiResource {
      * 
      * @return string
      */
-    public function getClarityName() {
+    public function getClarityName()
+    {
         return $this->clarityName;
     }
-    
+
     /**
      * 
      * @param string $closeDate
@@ -216,7 +233,7 @@ class Project extends ApiResource {
     {
         $this->closeDate = $closeDate;
     }
-    
+
     /**
      * 
      * @return string
@@ -230,7 +247,8 @@ class Project extends ApiResource {
      * 
      * @param array $file
      */
-    public function setFile(array $file) {
+    public function setFile(array $file)
+    {
         if (array_key_exists('limsid', $file)) {
             $limsId = $file['limsid'];
             $this->files[$limsId]['limsid'] = $limsId;
@@ -245,7 +263,8 @@ class Project extends ApiResource {
      * 
      * @param array $files
      */
-    public function setFiles($files) {
+    public function setFiles($files)
+    {
         if (empty($files)) {
             $this->files = array();
         } else {
@@ -259,7 +278,8 @@ class Project extends ApiResource {
      * 
      * @param string $openDate
      */
-    public function setOpenDate($openDate) {
+    public function setOpenDate($openDate)
+    {
         $this->openDate = $openDate;
     }
 
@@ -267,7 +287,8 @@ class Project extends ApiResource {
      * 
      * @return string
      */
-    public function getOpenDate() {
+    public function getOpenDate()
+    {
         return $this->openDate;
     }
 
@@ -275,7 +296,8 @@ class Project extends ApiResource {
      * 
      * @param Researcher $researcher
      */
-    public function setResearcher($researcher) {
+    public function setResearcher($researcher)
+    {
         $this->researcher = $researcher;
     }
 
@@ -283,7 +305,8 @@ class Project extends ApiResource {
      * 
      * @return Researcher
      */
-    public function getResearcher() {
+    public function getResearcher()
+    {
         return $this->researcher;
     }
 
@@ -291,7 +314,8 @@ class Project extends ApiResource {
      * 
      * @param string $researcherId
      */
-    public function setResearcherId($researcherId) {
+    public function setResearcherId($researcherId)
+    {
         $this->researcherId = $researcherId;
     }
 
@@ -299,7 +323,8 @@ class Project extends ApiResource {
      * 
      * @return string
      */
-    public function getResearcherId() {
+    public function getResearcherId()
+    {
         return $this->researcherId;
     }
 
@@ -307,7 +332,8 @@ class Project extends ApiResource {
      * 
      * @param string $researcherUri
      */
-    public function setResearcherUri($researcherUri) {
+    public function setResearcherUri($researcherUri)
+    {
         $this->researcherUri = $researcherUri;
     }
 
@@ -315,10 +341,11 @@ class Project extends ApiResource {
      * 
      * @return string
      */
-    public function getResearcherUri() {
+    public function getResearcherUri()
+    {
         return $this->researcherUri;
     }
-    
+
     /**
      * 
      * @param array $samples
@@ -327,7 +354,7 @@ class Project extends ApiResource {
     {
         $this->samples = $samples;
     }
-    
+
     /**
      * 
      * @return array
@@ -336,7 +363,7 @@ class Project extends ApiResource {
     {
         return $this->samples;
     }
-    
+
     /**
      * 
      * @param Sample $sample

@@ -13,7 +13,7 @@ use Clarity\Entity\Researcher;
  */
 class ProjectClarityRepository extends ClarityRepository
 {
-    
+
     /**
      * 
      * @param ClarityApiConnector $connector
@@ -23,7 +23,7 @@ class ProjectClarityRepository extends ClarityRepository
         parent::__construct($connector);
         $this->endpoint = 'projects';
     }
-    
+
     /**
      * 
      * @param string $xmlData
@@ -33,8 +33,7 @@ class ProjectClarityRepository extends ClarityRepository
     {
         if ($this->checkApiException($xmlData)) {
             return null;
-        }
-        else {
+        } else {
             $project = new Project();
             $project->setXml($xmlData);
             $project->xmlToProject();
@@ -42,7 +41,7 @@ class ProjectClarityRepository extends ClarityRepository
             return $project;
         }
     }
-    
+
     public function createNewProjectFromObject(Project $project, Researcher $prodResearcher)
     {
         $project->setClarityUri(null);
@@ -54,7 +53,7 @@ class ProjectClarityRepository extends ClarityRepository
         $project = $this->save($project);
         return $project;
     }
-    
+
     /**
      * 
      * @param string $id
@@ -66,7 +65,7 @@ class ProjectClarityRepository extends ClarityRepository
         $xmlData = $this->connector->getResource($path);
         return $this->apiAnswerToProject($xmlData);
     }
-    
+
     public function findAll()
     {
         $path = $this->endpoint;
@@ -75,7 +74,7 @@ class ProjectClarityRepository extends ClarityRepository
         $this->makeArrayFromMultipleAnswer($xmlData, $projects);
         return $projects;
     }
-    
+
     /**
      * 
      * @param string $name
@@ -91,8 +90,28 @@ class ProjectClarityRepository extends ClarityRepository
         $this->makeArrayFromMultipleAnswer($xmlData, $projects);
         return $projects;
     }
-    
-    
+
+    public function lookForProject($search)
+    {
+        $projects = array();
+        $project = new Project();
+        if ($project->isClarityId($search)) {
+            echo 'Looking for project ID: ' . $search . PHP_EOL;
+            $projects[] = $this->find($search);
+        } else {
+            echo 'Looking for project Name: ' . $search . PHP_EOL;
+            $projects = $this->findByName($search);
+        }
+
+        if (count($projects) > 1) {
+            echo 'More than one project found. Using a project ID should give only one result' . PHP_EOL;
+        } elseif (empty($projects)) {
+            exit('No matching project' . PHP_EOL);
+        }
+
+        return $projects;
+    }
+
     /**
      * 
      * @param string $xmlData
@@ -117,7 +136,7 @@ class ProjectClarityRepository extends ClarityRepository
                         $lastPage = FALSE;
                         $nextUri = $childElement['uri']->__toString();
                         $nextUriBits = explode('?', $nextUri);
-                        $path = $this->endpoint. '?' . end($nextUriBits);
+                        $path = $this->endpoint . '?' . end($nextUriBits);
                         $xmlData = $this->connector->getResource($path);
                         $projectsElement = new \SimpleXMLElement($xmlData);
                         break 2;
@@ -127,7 +146,7 @@ class ProjectClarityRepository extends ClarityRepository
             }
         }
     }
-    
+
     /**
      * 
      * @param Project $project
@@ -138,11 +157,10 @@ class ProjectClarityRepository extends ClarityRepository
         if (empty($project->getClarityId())) {
             $xmlData = $this->connector->postResource($this->endpoint, $project->getXml());
             return $this->apiAnswerToProject($xmlData);
-        }
-        else {
+        } else {
             $xmlData = $this->connector->putResource($this->endpoint, $project->getXml(), $project->getClarityId());
             return $this->apiAnswerToProject($xmlData);
         }
     }
-    
+
 }

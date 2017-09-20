@@ -3,7 +3,7 @@
 
 namespace Clarity\Tests;
 
-require_once(__DIR__ . '/../autoload.php'); 
+require_once(__DIR__ . '/../autoload.php');
 
 use Clarity\Connector\ClarityApiConnector;
 use Clarity\EntityRepository\ContainerClarityRepository;
@@ -16,7 +16,7 @@ use Clarity\Entity\Project;
 use Clarity\Entity\Sample;
 
 
-$connector = new ClarityApiConnector('test');
+$connector = new ClarityApiConnector('prod');
 $sampleRepo = new SampleClarityRepository($connector);
 $containerRepo = new ContainerClarityRepository($connector);
 $projectRepo = new ProjectClarityRepository($connector);
@@ -38,11 +38,12 @@ $sample->setClarityUDFs(array(
 $sample->sampleToXml();
 $sample = $sampleRepo->save($sample);
 echo $sample->getXml() . PHP_EOL;
- * 
+ *
  */
-$sample = $sampleRepo->find('BAR716A1');
+$sample = $sampleRepo->find('MON474A1');
 $sample->sampleToXml();
-var_dump($sample);
+echo $sample->getXml();
+//var_dump($sample);
 
 // Whole submission
 /*
@@ -51,14 +52,14 @@ $typeUri = $containerRepo->getConnector()->getBaseUrl() . '/containertypes/' . $
 $tube->setTypeUri($typeUri);
 $tube->containerToXml();
 $tube = $containerRepo->save($tube);
-$project = $projectRepo->find('BIO901');
-$researcher = $researcherRepo->find('654');
+$project = $projectRepo->find('BIO1103');
+$researcher = $researcherRepo->find('858');
 
 $newSample = new Sample();
 $newSample->setContainerId($tube->getClarityId());
 $newSample->setContainerUri($tube->getClarityUri());
 $newSample->setContainerLocation('1:1');
-$newSample->setClarityName('PHP submission 2');
+$newSample->setClarityName('Test 2');
 $newSample->setProjectId($project->getClarityId());
 $newSample->setProjectUri($project->getClarityUri());
 $newSample->setSubmitterFirst($researcher->getFirstName());
@@ -74,5 +75,4 @@ $newSample->sampleToXml();
 echo $newSample->getXml() . PHP_EOL;
 $newSample = $sampleRepo->save($newSample);
 var_dump($newSample);
- * 
- */
+*/

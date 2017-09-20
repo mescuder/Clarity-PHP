@@ -12,4 +12,11 @@ use Clarity\Entity\Container;
 class HiSeqFlowcell extends Container
 {
     
+    public function __construct()
+    {
+        parent::__construct();
+        $this->typeName = 'Illumina HiSeq Flow Cell';
+        $this->typeId = '17';
+    }
+    
 }
