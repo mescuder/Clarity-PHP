@@ -34,6 +34,8 @@ connect to the Clarity API for instance
 Clarity API and executes the actual HTTP requests with the PHP cURL functions.
 * **Entity** contains classes that represent the various resources that can be 
 retrieved from Clarity with the API, for instance a project or a sample. 
+* **EntityFormatter** contains classes that take an Entity and format the 
+information in a given format (e.g. XML, CSV, YAML, etc.).
 * **EntityRepository** contains classes that prepare API requests and 
 send them to a Connector in order to retrieve or submit a resource.
 * **Tests** contains small scripts that are used to test the code as it is 

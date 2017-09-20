@@ -3,8 +3,12 @@
 namespace Clarity\EntityRepository;
 
 use Clarity\Connector\ClarityApiConnector;
+use Clarity\Entity\Lab;
 use Clarity\Entity\Project;
 use Clarity\Entity\Researcher;
+use Clarity\EntityRepository\LabClarityRepository;
+use Clarity\EntityRepository\SampleClarityRepository;
+use Clarity\EntityRepository\ResearcherClarityRepository;
 
 /**
  * Description of ProjectClarityRepository
@@ -91,7 +95,7 @@ class ProjectClarityRepository extends ClarityRepository
         return $projects;
     }
 
-    public function lookForProject($search)
+    public function lookForProject($search, ResearcherClarityRepository $researcherRepo = null, LabClarityRepository $labRepo = null, SampleClarityRepository $sampleRepo = null)
     {
         $projects = array();
         $project = new Project();
@@ -105,8 +109,20 @@ class ProjectClarityRepository extends ClarityRepository
 
         if (count($projects) > 1) {
             echo 'More than one project found. Using a project ID should give only one result' . PHP_EOL;
-        } elseif (empty($projects)) {
-            exit('No matching project' . PHP_EOL);
+        } elseif (empty($projects) || empty($projects[0])) {
+            trigger_error('No matching project');
+            exit;
+        }
+
+        foreach ($projects as $project) {
+            if (!empty($researcherRepo)) {
+                $researcher = $researcherRepo->find($project->getResearcherId());
+                if (!empty($labRepo)) {
+                    $lab = $labRepo->find($researcher->getLabId());
+                    $researcher->setLab($lab);
+                }
+                $project->setResearcher($researcher);
+            }
         }
 
         return $projects;
