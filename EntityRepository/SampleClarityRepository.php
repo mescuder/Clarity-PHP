@@ -151,11 +151,12 @@ class SampleClarityRepository extends ClarityRepository {
      * @return Sample
      */
     public function save(Sample $sample) {
-        if (empty($sample->getClarityId())) {
+        $sampleId = $sample->getClarityId();
+        if (empty($sampleId)) {
             $xmlData = $this->connector->postResource($this->endpoint, $sample->getXml());
             return $this->apiAnswerToSample($xmlData);
         } else {
-            $xmlData = $this->connector->putResource($this->endpoint, $sample->getXml(), $sample->getClarityId());
+            $xmlData = $this->connector->putResource($this->endpoint, $sample->getXml(), $sampleId);
             return $this->apiAnswerToSample($xmlData);
         }
     }
