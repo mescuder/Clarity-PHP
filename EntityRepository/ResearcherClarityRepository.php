@@ -134,12 +134,13 @@ class ResearcherClarityRepository extends ClarityRepository
      */
     public function save(Researcher $researcher)
     {
-        if (empty($researcher->getClarityId())) {
+        $researcherId = $researcher->getClarityId();
+        if (empty($researcherId)) {
             $xmlData = $this->connector->postResource($this->endpoint, $researcher->getXml());
             return $this->apiAnswerToResearcher($xmlData);
         }
         else {
-            $xmlData = $this->connector->putResource($this->endpoint, $researcher->getXml(), $researcher->getClarityId());
+            $xmlData = $this->connector->putResource($this->endpoint, $researcher->getXml(), $researcherId);
             return $this->apiAnswerToResearcher($xmlData);
         }
     }

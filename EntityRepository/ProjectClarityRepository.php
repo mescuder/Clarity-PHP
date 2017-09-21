@@ -170,11 +170,12 @@ class ProjectClarityRepository extends ClarityRepository
      */
     public function save(Project $project)
     {
-        if (empty($project->getClarityId())) {
+        $projectId = $project->getClarityId();
+        if (empty($projectId)) {
             $xmlData = $this->connector->postResource($this->endpoint, $project->getXml());
             return $this->apiAnswerToProject($xmlData);
         } else {
-            $xmlData = $this->connector->putResource($this->endpoint, $project->getXml(), $project->getClarityId());
+            $xmlData = $this->connector->putResource($this->endpoint, $project->getXml(), $projectId);
             return $this->apiAnswerToProject($xmlData);
         }
     }
