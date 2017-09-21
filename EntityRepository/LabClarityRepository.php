@@ -123,11 +123,12 @@ class LabClarityRepository extends ClarityRepository {
      * @return Lab
      */
     public function save(Lab $lab) {
-        if (empty($lab->getClarityId())) {
+        $labId = $lab->getClarityId();
+        if (empty($labId)) {
             $xmlData = $this->connector->postResource($this->endpoint, $lab->getXml());
             return $this->apiAnswerToLab($xmlData);
         } else {
-            $xmlData = $this->connector->putResource($this->endpoint, $lab->getXml(), $lab->getClarityId());
+            $xmlData = $this->connector->putResource($this->endpoint, $lab->getXml(), $labId);
             return $this->apiAnswerToLab($xmlData);
         }
     }
