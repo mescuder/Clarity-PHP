@@ -5,10 +5,14 @@
   <researcher uri=""/>
   <udf:field type="String" name="Approximate cost"></udf:field>
   <udf:field type="String" name="Bioinformatician"></udf:field>
+  <udf:field type="String" name="Budget Code"></udf:field>
   <udf:field type="String" name="Number of experiments (total number of cells)"></udf:field>
   <udf:field type="Numeric" name="Coverage"></udf:field>
   <udf:field type="String" name="Depth"></udf:field>
   <udf:field type="Text" name="Description"></udf:field>
+  <!-- REQUIRED -->
+  <udf:field type="String" name="Email"></udf:field>
+  <!-- /REQUIRED -->
   <udf:field type="String" name="Fragment Size"></udf:field>
   <!-- REQUIRED -->
   <udf:field type="String" name="Funding source"></udf:field>
