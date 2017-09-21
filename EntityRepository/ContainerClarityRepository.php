@@ -92,12 +92,13 @@ class ContainerClarityRepository extends ClarityRepository
     public function save(Container $container)
     {
         $container->containerToXml();
-        if (empty($container->getClarityId())) {
+        $containerId = $container->getClarityId();
+        if (empty($containerId)) {
             $xmlData = $this->connector->postResource($this->endpoint, $container->getXml());
             return $this->apiAnswerToContainer($xmlData);
         }
         else {
-            $xmlData = $this->connector->putResource($this->endpoint, $container->getXml(), $container->getClarityId());
+            $xmlData = $this->connector->putResource($this->endpoint, $container->getXml(), $containerId);
             return $this->apiAnswerToContainer($xmlData);
         }
     }
