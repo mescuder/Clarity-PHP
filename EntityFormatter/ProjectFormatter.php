@@ -31,7 +31,13 @@ class ProjectFormatter
         $yamlArray[$projectId]['Project ID'] = $projectId;
         $yamlArray[$projectId]['Project Name'] = $project->getClarityName();
         $yamlArray[$projectId]['Researcher'] = $project->getResearcher()->getFullName();
+        $yamlArray[$projectId]['Lab'] = $project->getResearcher()->getLab()->getClarityName();
+        $yamlArray[$projectId]['Opening date'] = $project->getOpenDate();
+        $yamlArray[$projectId]['Closing date'] = $project->getCloseDate();
         foreach ($project->getClarityUDFs() as $udf => $value) {
+            if ($udf == 'Description') {
+                $value = str_replace("\n", '', $value);
+            }
             $yamlArray[$projectId]['UDFs'][$udf] = $value;
         }
 
