@@ -4,6 +4,7 @@ namespace Clarity\EntityRepository;
 
 use Clarity\Connector\ClarityApiConnector;
 use Clarity\Entity\Lab;
+use Clarity\Entity\Sample;
 use Clarity\Entity\Project;
 use Clarity\Entity\Researcher;
 use Clarity\EntityRepository\LabClarityRepository;
@@ -95,20 +96,27 @@ class ProjectClarityRepository extends ClarityRepository
         return $projects;
     }
 
-    public function lookForProject($search, ResearcherClarityRepository $researcherRepo = null, LabClarityRepository $labRepo = null, SampleClarityRepository $sampleRepo = null)
+    public function lookForProject(&$search, &$input, ResearcherClarityRepository &$researcherRepo = null, LabClarityRepository &$labRepo = null, SampleClarityRepository &$sampleRepo = null)
     {
+        $sample = new Sample();
         $projects = array();
-        $project = new Project();
-        if ($project->isClarityId($search)) {
+        if ($input == 'project-id') {
             echo 'Looking for project ID: ' . $search . PHP_EOL;
             $projects[] = $this->find($search);
-        } else {
+        } elseif ($input == 'sample-id') {
+            $projectId = $sample->getProjectIdFromSampleId($search);
+            $projects[] = $this->find($projectId);
+        } elseif ($input == 'project-name') {
             echo 'Looking for project Name: ' . $search . PHP_EOL;
             $projects = $this->findByName($search);
+        } elseif ($input == 'fastq') {
+            $sampleId = explode('_', $search, 2)[0];
+            $projectId = $sample->getProjectIdFromSampleId($sampleId);
+            $projects[] = $this->find($projectId);
         }
 
         if (count($projects) > 1) {
-            echo 'More than one project found. Using a project ID should give only one result' . PHP_EOL;
+            echo 'More than one project found. Using a project ID or sample ID should give only one result' . PHP_EOL;
         } elseif (empty($projects) || empty($projects[0])) {
             trigger_error('No matching project');
             exit;
