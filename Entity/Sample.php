@@ -17,19 +17,19 @@ class Sample extends ApiResource
      * @var string
      */
     protected $artifactId;
-    
+
     /**
      *
      * @var string
      */
     protected $artifactUri;
-    
+
     /**
      *
      * @var string $clarityName
      */
     protected $clarityName;
-    
+
     /**
      *
      * @var Container $container
@@ -41,19 +41,19 @@ class Sample extends ApiResource
      * @var string $containerId
      */
     protected $containerId;
-    
+
     /**
      *
      * @var string $containerLocation
      */
     protected $containerLocation;
-    
+
     /**
      *
      * @var string $containerUri
      */
     protected $containerUri;
-    
+
     /**
      *
      * @var string $dateCompleted
@@ -89,19 +89,19 @@ class Sample extends ApiResource
      * @var string $submitterFirst
      */
     protected $submitterFirst;
-    
+
     /**
      *
      * @var string $submitterId
      */
     protected $submitterId;
-    
+
     /**
      *
      * @var string $submitterLast
      */
     protected $submitterLast;
-    
+
     /**
      *
      * @var string $submitterUri
@@ -115,6 +115,28 @@ class Sample extends ApiResource
         $this->setClarityUDFs($udfs);
     }
     
+    public function getProjectIdFromSampleId($sampleId = null)
+    {
+        if (empty($sampleId)) {
+            $sampleId = $this->clarityId;
+        }
+        
+        if ($this->isClarityId($sampleId)) {
+            $matches = array();
+            preg_match('#^([[:alpha:]]{3}\d+)A\d+$#', $sampleId, $matches);
+            return $matches[1];
+        }
+    }
+
+    public function isClarityId($search)
+    {
+        if (preg_match('#^[[:alpha:]]{3}\d+A\d+$#', $search)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function sampleToXml()
     {
         if (empty($this->clarityId)) {
@@ -122,21 +144,18 @@ class Sample extends ApiResource
             $sampleElement->location->container['limsid'] = $this->containerId;
             $sampleElement->location->container['uri'] = $this->containerUri;
             $sampleElement->location->value = $this->containerLocation;
-        }
-        else {
+        } else {
             $sampleElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/sample.xsd');
             $sampleElement['uri'] = $this->clarityUri;
             $sampleElement['limsid'] = $this->clarityId;
             if (empty($this->dateReceived)) {
                 unset($sampleElement->{'date-received'});
-            }
-            else {
+            } else {
                 $sampleElement->{'date-received'} = $this->dateReceived;
             }
             if (empty($this->dateCompleted)) {
                 unset($sampleElement->{'date-completed'});
-            }
-            else {
+            } else {
                 $sampleElement->{'date-completed'} = $this->dateCompleted;
             }
             $sampleElement->artifact['limsid'] = $this->artifactId;
@@ -148,16 +167,16 @@ class Sample extends ApiResource
         $sampleElement->submitter['uri'] = $this->submitterUri;
         $sampleElement->submitter->{'first-name'} = $this->submitterFirst;
         $sampleElement->submitter->{'last-name'} = $this->submitterLast;
-        
+
         foreach ($sampleElement->children('udf', true) as $udf) {
             $name = $udf->attributes()['name']->__toString();
             $udf[0] = $this->clarityUDFs[$name];
         }
-        
+
         $this->xml = $sampleElement->asXML();
         $this->formatXml();
     }
-    
+
     public function xmlToSample()
     {
         $sampleElement = new \SimpleXMLElement($this->xml);
@@ -180,7 +199,7 @@ class Sample extends ApiResource
         $this->submitterLast = $sampleElement->submitter->{'last-name'}->__toString();
         $this->artifactId = $sampleElement->artifact['limsid']->__toString();
         $this->artifactUri = $sampleElement->artifact['uri']->__toString();
-        
+
         foreach ($sampleElement->xpath('//udf:field') as $udfElement) {
             $field = $udfElement['name']->__toString();
             $value = $udfElement->__toString();
@@ -196,7 +215,7 @@ class Sample extends ApiResource
     {
         $this->artifactId = $artifactId;
     }
-    
+
     /**
      * 
      * @return string
@@ -205,7 +224,7 @@ class Sample extends ApiResource
     {
         return $this->artifactId;
     }
-    
+
     /**
      * 
      * @param string $artifactUri
@@ -214,7 +233,7 @@ class Sample extends ApiResource
     {
         $this->artifactUri = $artifactUri;
     }
-    
+
     /**
      * 
      * @return string
@@ -223,7 +242,7 @@ class Sample extends ApiResource
     {
         return $this->artifactUri;
     }
-    
+
     /**
      * 
      * @param string $clarityName
@@ -241,7 +260,7 @@ class Sample extends ApiResource
     {
         return $this->clarityName;
     }
-    
+
     /**
      * 
      * @param Container $container
@@ -277,7 +296,7 @@ class Sample extends ApiResource
     {
         return $this->containerId;
     }
-    
+
     /**
      * 
      * @param string $containerLocation
@@ -286,7 +305,7 @@ class Sample extends ApiResource
     {
         $this->containerLocation = $containerLocation;
     }
-    
+
     /**
      * 
      * @return string
@@ -304,7 +323,7 @@ class Sample extends ApiResource
     {
         $this->containerUri = $containerUri;
     }
-    
+
     /**
      * 
      * @return string
@@ -313,7 +332,7 @@ class Sample extends ApiResource
     {
         return $this->containerUri;
     }
-    
+
     /**
      * 
      * @param string $dateCompleted
@@ -322,7 +341,7 @@ class Sample extends ApiResource
     {
         $this->dateCompleted = $dateCompleted;
     }
-    
+
     /**
      * 
      * @return string
@@ -331,7 +350,7 @@ class Sample extends ApiResource
     {
         return $this->dateCompleted;
     }
-    
+
     /**
      * 
      * @param date $dateReceived
@@ -421,7 +440,7 @@ class Sample extends ApiResource
     {
         return $this->submitterFirst;
     }
-    
+
     /**
      * 
      * @param string $submitterId
@@ -430,7 +449,7 @@ class Sample extends ApiResource
     {
         $this->submitterId = $submitterId;
     }
-    
+
     /**
      * 
      * @return string
@@ -439,7 +458,7 @@ class Sample extends ApiResource
     {
         return $this->submitterId;
     }
-    
+
     /**
      * 
      * @param string $submitterLast
@@ -448,7 +467,7 @@ class Sample extends ApiResource
     {
         $this->submitterLast = $submitterLast;
     }
-    
+
     /**
      * 
      * @return string
@@ -457,7 +476,7 @@ class Sample extends ApiResource
     {
         return $this->submitterLast;
     }
-    
+
     /**
      * 
      * @param string $submitterUri
@@ -466,7 +485,7 @@ class Sample extends ApiResource
     {
         $this->submitterUri = $submitterUri;
     }
-    
+
     /**
      * 
      * @return string

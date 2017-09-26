@@ -21,11 +21,8 @@ class ProjectFormatter
         }
     }
 
-    public function asYAML(Project $project = null)
+    public function asYAML(Project $project)
     {
-        if (empty($project)) {
-            $project = $this->project;
-        }
         $yamlArray = array();
         $projectId = $project->getClarityId();
         $yamlArray[$projectId]['Project ID'] = $projectId;
@@ -41,7 +38,21 @@ class ProjectFormatter
             $yamlArray[$projectId]['UDFs'][$udf] = $value;
         }
 
-        return $yamlArray;
+        return yaml_emit($yamlArray);
+    }
+    
+    public function format(Project &$project, &$format)
+    {
+        if (empty($project)) {
+            $project = $this->project;
+        }
+        
+        switch ($format) {
+            case 'yaml':
+                return $this->asYAML($project);
+            default:
+                return 'The specified format "' . $format . '" is not available' . PHP_EOL;
+        }
     }
 
     public function setProject($project)
