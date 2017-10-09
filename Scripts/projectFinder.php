@@ -10,6 +10,10 @@ use Clarity\EntityRepository\LabClarityRepository;
 use Clarity\EntityRepository\ProjectClarityRepository;
 use Clarity\EntityRepository\ResearcherClarityRepository;
 
+/*
+ * FUNCTIONS
+ */
+
 function parseOptions(&$options, &$search, &$input, &$format, &$server)
 {
     if (array_key_exists('project-id', $options)) {
@@ -41,6 +45,10 @@ function usage()
     $message .= 'php projectFinder.php --project-id|--project-name|--sample-id|--fastq <search value> [--format yaml] [--server <test or prod>]';
     return $message;
 }
+
+/*
+ * MAIN
+ */
 
 $format = 'yaml';
 $server = 'prod';
