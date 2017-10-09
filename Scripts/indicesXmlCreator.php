@@ -1,12 +1,12 @@
 <?php
 
-$tmpIndices = yaml_parse_file('/home/escudem/quantseq_bc_1-96.yml');
+$tmpIndices = yaml_parse_file('/home/escudem/lexogen_quantseq_7001-7096.yml');
 $indices = array();
 foreach ($tmpIndices as $name => $seq) {
     $newName = $name . ' (' . $seq . ')';
     $indices[$newName] = $seq;
 }
-$groupName = 'Quantseq BC01-BC96 (6bp)';
+$groupName = 'Lexogen Quantseq 7001-7096';
 
 $i = 0;
 $configElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/indices.xsd');

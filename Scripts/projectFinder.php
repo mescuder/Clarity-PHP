@@ -37,8 +37,8 @@ function parseOptions(&$options, &$search, &$input, &$format, &$server)
 
 function usage()
 {
-    $message = 'Usage: ' . PHP_EOL; 
-    $message .= 'php projectFinder.php --project-id|--project-name|--sample-id|--fastq <search value> [--format] yaml [--server] <test or prod>';
+    $message = 'Usage: ' . PHP_EOL;
+    $message .= 'php projectFinder.php --project-id|--project-name|--sample-id|--fastq <search value> [--format yaml] [--server <test or prod>]';
     return $message;
 }
 
