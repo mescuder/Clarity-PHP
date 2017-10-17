@@ -5,6 +5,7 @@ namespace Clarity\Scripts;
 require_once(__DIR__ . '/../autoload.php');
 
 use Clarity\Connector\ClarityApiConnector;
+use Clarity\EntityFormatter\SampleFormatter;
 use Clarity\EntityRepository\LabClarityRepository;
 use Clarity\EntityRepository\ResearcherClarityRepository;
 use Clarity\EntityRepository\ProjectClarityRepository;
@@ -26,8 +27,20 @@ function parseOptions(&$options, &$search, &$input, &$format, &$server)
         $input = 'project-name';
     } elseif (array_key_exists('fastq', $options)) {
         $input = 'fastq';
+    } else {
+        echo 'No input option provided' . PHP_EOL;
+        usage();
+        exit;
     }
     $search = $options[$input];
+    
+    if (array_key_exists('format', $options)) {
+        $format = $options['format'];
+    }
+    
+    if (array_key_exists('server', $options)) {
+        $server = $options['server'];
+    }
 }
 
 function usage()
@@ -44,7 +57,7 @@ function usage()
 $format = 'yaml';
 $server = 'test';
 $search = '';
-$input = 'sample-id';
+$input = '';
 
 $shortopts = '';
 $longopts = array('sample-id:', 'sample-name:', 'project-id:', 'project-name:', 'format:', 'server:', 'fastq:');
@@ -56,3 +69,13 @@ if (empty($search)) {
     echo 'No search value was provided' . PHP_EOL . usage() . PHP_EOL;
     exit;
 }
+
+$connector = new ClarityApiConnector($server);
+$sampleRepo = new SampleClarityRepository($connector);
+$projectRepo = new ProjectClarityRepository($connector);
+$researcherRepo = new ResearcherClarityRepository($connector);
+$labRepo = new LabClarityRepository($connector);
+$sampleFormatter = new SampleFormatter();
+
+$samples = $sampleRepo->lookForSamples($search, $input, $projectRepo, $researcherRepo, $labRepo);
+echo $sampleFormatter->formatSamples($samples, $format);

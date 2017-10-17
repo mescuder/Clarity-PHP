@@ -72,7 +72,7 @@ $researcherRepo = new ResearcherClarityRepository($connector);
 $labRepo = new LabClarityRepository($connector);
 $projectFormatter = new ProjectFormatter();
 
-$projects = $projectRepo->lookForProject($search, $input, $researcherRepo, $labRepo);
+$projects = $projectRepo->lookForProjects($search, $input, $researcherRepo, $labRepo);
 foreach ($projects as $project) {
     echo $projectFormatter->format($project, $format);
 }

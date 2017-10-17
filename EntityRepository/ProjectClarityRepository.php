@@ -96,7 +96,7 @@ class ProjectClarityRepository extends ClarityRepository
         return $projects;
     }
 
-    public function lookForProject(&$search, &$input, ResearcherClarityRepository &$researcherRepo = null, LabClarityRepository &$labRepo = null, SampleClarityRepository &$sampleRepo = null)
+    public function lookForProjects(&$search, &$input, ResearcherClarityRepository &$researcherRepo = null, LabClarityRepository &$labRepo = null, SampleClarityRepository &$sampleRepo = null)
     {
         $sample = new Sample();
         $projects = array();

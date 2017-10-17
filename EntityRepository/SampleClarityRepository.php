@@ -14,13 +14,15 @@ use Clarity\EntityRepository\ContainerClarityRepository;
  *
  * @author escudem
  */
-class SampleClarityRepository extends ClarityRepository {
+class SampleClarityRepository extends ClarityRepository
+{
 
     /**
      * 
      * @param ClarityApiConnector $connector
      */
-    public function __construct(ClarityApiConnector $connector) {
+    public function __construct(ClarityApiConnector $connector)
+    {
         parent::__construct($connector);
         $this->endpoint = 'samples';
     }
@@ -30,7 +32,8 @@ class SampleClarityRepository extends ClarityRepository {
      * @param string $xmlData
      * @return Sample
      */
-    public function apiAnswerToSample($xmlData) {
+    public function apiAnswerToSample($xmlData)
+    {
         if ($this->checkApiException($xmlData)) {
             return null;
         } else {
@@ -41,7 +44,8 @@ class SampleClarityRepository extends ClarityRepository {
         }
     }
 
-    public function createNewSampleFromObject(Sample $sample, ContainerClarityRepository $containerRepo, Researcher $submitter, Project $project = null) {
+    public function createNewSampleFromObject(Sample $sample, ContainerClarityRepository $containerRepo, Researcher $submitter, Project $project = null)
+    {
         $sample->setClarityId(null);
         $sample->setClarityUri(null);
 
@@ -68,7 +72,7 @@ class SampleClarityRepository extends ClarityRepository {
                     break;
             }
         }
-        
+
         $sample->sampleToXml();
         echo $sample->getXml() . PHP_EOL;
         $sample = $this->save($sample);
@@ -80,7 +84,8 @@ class SampleClarityRepository extends ClarityRepository {
      * @param string $id
      * @return Sample
      */
-    public function find($id) {
+    public function find($id)
+    {
         $path = $this->endpoint . '/' . $id;
         $xmlData = $this->connector->getResource($path);
         return $this->apiAnswerToSample($xmlData);
@@ -90,8 +95,20 @@ class SampleClarityRepository extends ClarityRepository {
      * 
      * @return array
      */
-    public function findAll() {
+    public function findAll()
+    {
         $path = $this->endpoint;
+        $xmlData = $this->connector->getResource($path);
+        $samples = array();
+        $this->makeArrayFromMultipleAnswer($xmlData, $samples);
+        return $samples;
+    }
+
+    public function findByName($name)
+    {
+        $search = $this->replaceSpaceInSearchString($name);
+        $path = $this->endpoint . '?name=' . $search;
+        // echo $path . PHP_EOL;
         $xmlData = $this->connector->getResource($path);
         $samples = array();
         $this->makeArrayFromMultipleAnswer($xmlData, $samples);
@@ -103,11 +120,56 @@ class SampleClarityRepository extends ClarityRepository {
      * @param string $id
      * @return array
      */
-    public function findByProjectId($id) {
+    public function findByProjectId($id)
+    {
         $path = $this->endpoint . '?projectlimsid=' . $id;
         $xmlData = $this->connector->getResource($path);
         $samples = array();
         $this->makeArrayFromMultipleAnswer($xmlData, $samples);
+        return $samples;
+    }
+
+    public function lookForSamples(&$search, &$input, ProjectClarityRepository &$projectRepo = null, ResearcherClarityRepository &$researcherRepo = null, LabClarityRepository &$labRepo = null)
+    {
+        $sample = new Sample();
+        $samples = array();
+
+        if ($input == 'sample-id') {
+            $samples[] = $this->find($search);
+        } elseif ($input == 'sample-name') {
+            $samples = $this->findByName($search);
+        } elseif ($input == 'project-id') {
+            $samples = $this->findByProjectId($search);
+        } elseif ($input == 'project-name') {
+            
+        } elseif ($input == 'fastq') {
+            
+        }
+
+        if (empty($samples) || empty($samples[0])) {
+            echo 'No matching samples' . PHP_EOL;
+        }
+
+        $projectId = '';
+        $project = new Project();
+        foreach ($samples as $sample) {
+            if ($sample->getProjectId() != $projectId) {
+                $projectId = $sample->getProjectId();
+                if (!empty($projectRepo)) {
+                    $project = $projectRepo->find($projectId);
+                    if (!empty($researcherRepo)) {
+                        $researcher = $researcherRepo->find($project->getResearcherId());
+                        if (!empty($labRepo)) {
+                            $lab = $labRepo->find($researcher->getLabId());
+                            $researcher->setLab($lab);
+                        }
+                        $project->setResearcher($researcher);
+                    }
+                }
+            }
+            $sample->setProject($project);
+        }
+
         return $samples;
     }
 
@@ -116,7 +178,8 @@ class SampleClarityRepository extends ClarityRepository {
      * @param string $xmlData
      * @param array $samples
      */
-    public function makeArrayFromMultipleAnswer($xmlData, array &$samples) {
+    public function makeArrayFromMultipleAnswer($xmlData, array &$samples)
+    {
         $samplesElement = new \SimpleXMLElement($xmlData);
         $lastPage = FALSE;
         while (!$lastPage) {
@@ -150,7 +213,8 @@ class SampleClarityRepository extends ClarityRepository {
      * @param Sample $sample
      * @return Sample
      */
-    public function save(Sample $sample) {
+    public function save(Sample $sample)
+    {
         $sampleId = $sample->getClarityId();
         if (empty($sampleId)) {
             $xmlData = $this->connector->postResource($this->endpoint, $sample->getXml());
