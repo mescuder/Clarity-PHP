@@ -55,7 +55,7 @@ function usage()
  */
 
 $format = 'yaml';
-$server = 'test';
+$server = 'prod';
 $search = '';
 $input = '';
 
