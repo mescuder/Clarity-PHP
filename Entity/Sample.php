@@ -65,6 +65,12 @@ class Sample extends ApiResource
      * @var date $dateReceived
      */
     protected $dateReceived;
+    
+    /**
+     *
+     * @var Project $project
+     */
+    protected $project;
 
     /**
      *
@@ -367,6 +373,24 @@ class Sample extends ApiResource
     public function getDateReceived()
     {
         return $this->dateReceived;
+    }
+    
+    /**
+     * 
+     * @param Project $project
+     */
+    public function setProject(&$project)
+    {
+        $this->project = $project;
+    }
+    
+    /**
+     * 
+     * @return Project
+     */
+    public function getProject()
+    {
+        return $this->project;
     }
 
     /**

@@ -21,6 +21,7 @@ spl_autoload_register(
                 'Clarity\EntityRepository\ResearcherClarityRepository' => '/EntityRepository/ResearcherClarityRepository.php',
                 'Clarity\EntityRepository\LabClarityRepository'        => '/EntityRepository/LabClarityRepository.php',
                 'Clarity\EntityFormatter\ProjectFormatter'             => '/EntityFormatter/ProjectFormatter.php',
+                'Clarity\EntityFormatter\SampleFormatter'              => '/EntityFormatter/SampleFormatter.php',
                 ];
         }
         if (isset($classes[$class])) {

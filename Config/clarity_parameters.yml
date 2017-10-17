@@ -1,0 +1,3 @@
+URL: # Replace the following values with the URLs of your servers
+    prod: 'https://clvd1-ap-u-p09.thecrick.org/api/v2'
+    test: 'https://clvd1-ap-u-t-03.thecrick.org/api/v2'

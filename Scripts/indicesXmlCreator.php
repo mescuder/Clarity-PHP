@@ -1,12 +1,12 @@
 <?php
 
-$tmpIndices = yaml_parse_file('/home/escudem/lexogen_quantseq_7001-7096.yml');
+$tmpIndices = yaml_parse_file('/home/escudem/KAPA_DI_Adapter.yml');
 $indices = array();
 foreach ($tmpIndices as $name => $seq) {
     $newName = $name . ' (' . $seq . ')';
     $indices[$newName] = $seq;
 }
-$groupName = 'Lexogen Quantseq 7001-7096';
+$groupName = 'KAPA Dual Indices';
 
 $i = 0;
 $configElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/indices.xsd');
