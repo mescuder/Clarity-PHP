@@ -47,7 +47,15 @@ the whole XML file from scratch.
 
 ## Installation
 
+After downloading a release or cloning the repo, rename the file 
+"Config/clarity_api_credentials.yml.dist" into 
+"Config/clarity_api_credentials.yml" and fill it in with your Clarity 
+credentials. Make sure this file is not readable by others.
+
 ## Usage
+
+Example:
+php Clarity-PHP/Scripts/sampleFinder --sample-id ESC452A1
 
 ## Contributing
 
