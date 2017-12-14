@@ -89,6 +89,16 @@ class Sample extends ApiResource
      * @var string $projectUri
      */
     protected $projectUri;
+    
+    protected $samplesheetId;
+    
+    protected $samplesheetIndex1;
+    
+    protected $samplesheetIndex2;
+    
+    protected $samplesheetLane;
+    
+    protected $samplesheetName;
 
     /**
      *
