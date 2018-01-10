@@ -54,8 +54,10 @@ credentials. Make sure this file is not readable by others.
 
 ## Usage
 
-Example:
-php Clarity-PHP/Scripts/sampleFinder --sample-id ESC452A1
+Examples:
+php Clarity-PHP/Scripts/projectFinder.php --project-id ESC452
+
+php Clarity-PHP/Scripts/sampleFinder.php --sample-id ESC452A1
 
 ## Contributing
 
