@@ -65,7 +65,13 @@ class Sample extends ApiResource
      * @var date $dateReceived
      */
     protected $dateReceived;
-    
+
+    /**
+     *
+     * @var string $indexType
+     */
+    protected $indexType;
+
     /**
      *
      * @var Project $project
@@ -89,16 +95,42 @@ class Sample extends ApiResource
      * @var string $projectUri
      */
     protected $projectUri;
-    
+
+    /**
+     *
+     * @var string $samplesheetId
+     */
     protected $samplesheetId;
-    
+
+    /**
+     *
+     * @var string $samplesheetIndex1
+     */
     protected $samplesheetIndex1;
-    
+
+    /**
+     *
+     * @var string $samplesheetIndex2
+     */
     protected $samplesheetIndex2;
-    
+
+    /**
+     *
+     * @var int $samplesheetLane
+     */
     protected $samplesheetLane;
-    
+
+    /**
+     *
+     * @var string $samplesheetName
+     */
     protected $samplesheetName;
+
+    /**
+     *
+     * @var string $samplesheetProject
+     */
+    protected $samplesheetProject;
 
     /**
      *
@@ -127,16 +159,42 @@ class Sample extends ApiResource
     public function __construct()
     {
         parent::__construct();
+        $this->samplesheetLane = 0;
         $udfs = yaml_parse_file(__DIR__ . '/../Config/sample_clarity_udfs.yml');
         $this->setClarityUDFs($udfs);
+        $this->samplesheetIndex1 = '';
+        $this->samplesheetIndex2 = '';
+        $this->samplesheetLane = '1';
     }
     
+    public function determineIndexType()
+    {
+        $index1 = $this->samplesheetIndex1;
+        $index2 = $this->samplesheetIndex2;
+        if (!empty($index1) && !empty($index2)) {
+            return 'dual';
+        } elseif (!empty($index1) && preg_match('#^[ATGC]{6}$#', $index1)) {
+            return 'short';
+        } elseif (!empty($index1) && preg_match('#^[ATGC]{8}$#', $index1)) {
+            return 'long';
+        } elseif (!empty($index1) && preg_match('#^SI[-_]#', $index1)) {
+            return 'tenx';
+        } elseif (empty($index1) && empty($index2)) {
+            return 'none';
+        }
+    }
+
+    /**
+     * 
+     * @param string $sampleId
+     * @return string
+     */
     public function getProjectIdFromSampleId($sampleId = null)
     {
         if (empty($sampleId)) {
             $sampleId = $this->clarityId;
         }
-        
+
         if ($this->isClarityId($sampleId)) {
             $matches = array();
             preg_match('#^([[:alpha:]]{3}\d+)A\d+$#', $sampleId, $matches);
@@ -151,6 +209,23 @@ class Sample extends ApiResource
         } else {
             return false;
         }
+    }
+    
+    public function revComp($index)
+    {
+        $index_c = '';
+        $nuc2nuc = array(
+            'A' => 'T',
+            'T' => 'A',
+            'C' => 'G',
+            'G' => 'C'
+        );
+        for ($i = 0; $i < strlen($index); $i++) {
+            $nuc = $index[$i];
+            $index_c .= $nuc2nuc[$nuc];
+        }
+        $index_rc = strrev($index_c);
+        return $index_rc;
     }
 
     public function sampleToXml()
@@ -385,6 +460,16 @@ class Sample extends ApiResource
         return $this->dateReceived;
     }
     
+    public function setIndexType($indexType)
+    {
+        $this->indexType = $indexType;
+    }
+    
+    public function getIndexType()
+    {
+        return $this->indexType;
+    }
+
     /**
      * 
      * @param Project $project
@@ -393,7 +478,7 @@ class Sample extends ApiResource
     {
         $this->project = $project;
     }
-    
+
     /**
      * 
      * @return Project
@@ -455,6 +540,118 @@ class Sample extends ApiResource
     public function getProjectUri()
     {
         return $this->projectUri;
+    }
+
+    /**
+     * 
+     * @param string $samplesheetId
+     */
+    public function setSamplesheetId($samplesheetId)
+    {
+        $this->samplesheetId = $samplesheetId;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getSamplesheetId()
+    {
+        return $this->samplesheetId;
+    }
+
+    /**
+     * 
+     * @param string $samplesheetIndex1
+     */
+    public function setSamplesheetIndex1($samplesheetIndex1)
+    {
+        $samplesheetIndex1 = strtoupper($samplesheetIndex1);
+        $this->samplesheetIndex1 = $samplesheetIndex1;
+        $this->setIndexType($this->determineIndexType());
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getSamplesheetIndex1()
+    {
+        return $this->samplesheetIndex1;
+    }
+
+    /**
+     * 
+     * @param string $samplesheetIndex2
+     */
+    public function setSamplesheetIndex2($samplesheetIndex2)
+    {
+        $samplesheetIndex2 = strtoupper($samplesheetIndex2);
+        $this->samplesheetIndex2 = $samplesheetIndex2;
+        $this->setIndexType($this->determineIndexType());
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getSamplesheetIndex2()
+    {
+        return $this->samplesheetIndex2;
+    }
+
+    /**
+     * 
+     * @param int $samplesheetLane
+     */
+    public function setSamplesheetLane($samplesheetLane)
+    {
+        $this->samplesheetLane = $samplesheetLane;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getSamplesheetLane()
+    {
+        return $this->samplesheetLane;
+    }
+
+    /**
+     * 
+     * @param string $samplesheetName
+     */
+    public function setSamplesheetName($samplesheetName)
+    {
+        $this->samplesheetName = $samplesheetName;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getSamplesheetName()
+    {
+        return $this->samplesheetName;
+    }
+
+    /**
+     * 
+     * @param string $samplesheetProject
+     */
+    public function setSamplesheetProject($samplesheetProject)
+    {
+        $this->samplesheetProject = $samplesheetProject;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getSamplesheetProject()
+    {
+        return $this->samplesheetProject;
     }
 
     /**
