@@ -11,6 +11,30 @@ use Clarity\Entity\Sample;
  */
 class SampleFormatter
 {
+    
+    public function asBcl2fastq(Sample &$sample)
+    {
+        $index1 = $sample->getSamplesheetIndex1();
+        $index2 = $sample->getSamplesheetIndex2();
+        // regex to see if index1 is [ATGC]+ and if yes compute rev_comp (if no it's tenx)
+        $output_a = [];
+        $output_a[] = $sample->getSamplesheetLane();
+        $output_a[] = $sample->getSamplesheetProject();
+        $output_a[] = $sample->getSamplesheetId();
+        $output_a[] = $index1;
+        if (preg_match('#^[ATGC]+$#', $index1)) {
+            $index1_rc = $sample->revComp($index1);
+            $output_a[] = $index1;
+            $output_a[] = $index1_rc;
+        }
+        $output_a[] = $index2;
+        if (preg_match('#^[ATGC]+$#', $index2)) {
+            $index2_rc = $sample->revComp($index2);
+            $output_a[] = $index2;
+            $output_a[] = $index2_rc;
+        }
+        return implode(',', $output_a);
+    }
 
     public function asYAML(Sample &$sample)
     {
@@ -45,6 +69,12 @@ class SampleFormatter
     public function formatSamples(array &$samples, $format)
     {
         switch ($format) {
+            case 'bcl2fastq':
+                $output = 'Lane,Sample_Project,Sample_ID,index,index_original,index_rc,index2,index2_original,index2_rc' . PHP_EOL;
+                foreach ($samples as $sample) {
+                    $output .= $this->asBcl2fastq($sample) . PHP_EOL;
+                }
+                return $output;
             case 'tsv':
                 $tsvArray = array();
                 $this->prepareTsvArray($tsvArray, $samples);
