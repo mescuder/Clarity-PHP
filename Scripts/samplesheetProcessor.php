@@ -70,7 +70,7 @@ function parseSamplesheet(&$inputFile, array &$data, array &$samples)
                     $data[$section][] = $line_a;
                     continue;
                 }
-                if (isset($section) && $section != 'Settings') {
+                if (isset($section)) {
                     if ($section == 'Data') {
                         if (empty($data_header)) {
                             $data_header = $line_a;
