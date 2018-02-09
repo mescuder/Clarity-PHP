@@ -11,7 +11,7 @@ use Clarity\EntityFormatter\SampleFormatter;
 // FUNCTIONS //
 ///////////////
 
-function checkIndexTypes(array &$samples, &$sample_types)
+function checkIndexTypes(array &$samples, &$sample_types, &$split)
 {
     $lanes_a = [];
     foreach ($samples as $sample) {
@@ -19,17 +19,14 @@ function checkIndexTypes(array &$samples, &$sample_types)
         $type = $sample->getIndexType();
         $lanes_a[$lane][] = $type;
         if ($type == 'tenx') {
-            $sample_types['tenx'] = true;
+            $split = true;
         }
+        $sample_types[$type] = true;
     }
     foreach ($lanes_a as $lane => $types) {
         $types = array_unique($types);
         if (count($types) > 1) {
-            foreach ($types as $type) {
-                if ($type != 'none') {
-                    $sample_types[$type] = true;
-                }
-            }
+            $split = true;
         }
     }
 }
@@ -87,56 +84,58 @@ function parseSamplesheet(&$inputFile, array &$data, array &$samples)
     fclose($inputSheet);
 }
 
-function separateSamples(&$samples, &$sample_types, &$default_samples, &$tenx_samples, &$dual_samples, &$long_samples, &$short_samples)
+function separateSamples(&$samples, &$sample_types, &$default_samples, &$tenx_samples, &$dual_samples, &$long_samples, &$short_samples, &$split)
 {
-    $positions = [];
-    if ($sample_types['tenx']) {
-        foreach ($samples as $pos => $sample) {
-            if ($sample->getIndexType() == 'tenx') {
-                $tenx_samples[] = $sample;
-                $positions[] = $pos;
-            }
-        }
-        foreach ($positions as $position) {
-            unset($samples[$position]);
-        }
+    if ($split) {
         $positions = [];
-    }
-    if ($sample_types['dual']) {
-        foreach ($samples as $pos => $sample) {
-            if ($sample->getIndexType() == 'dual') {
-                $dual_samples[] = $sample;
-                $positions[] = $pos;
+        if ($sample_types['tenx']) {
+            foreach ($samples as $pos => $sample) {
+                if ($sample->getIndexType() == 'tenx') {
+                    $tenx_samples[] = $sample;
+                    $positions[] = $pos;
+                }
             }
-        }
-        foreach ($positions as $position) {
-            unset($samples[$position]);
-        }
-        $positions = [];
-    }
-    if ($sample_types['short']) {
-        foreach ($samples as $pos => $sample) {
-            if ($sample->getIndexType() == 'short') {
-                $short_samples[] = $sample;
-                $positions[] = $pos;
+            foreach ($positions as $position) {
+                unset($samples[$position]);
             }
+            $positions = [];
         }
-        foreach ($positions as $position) {
-            unset($samples[$position]);
-        }
-        $positions = [];
-    }
-    if ($sample_types['long']) {
-        foreach ($samples as $pos => $sample) {
-            if ($sample->getIndexType() == 'long') {
-                $long_samples[] = $sample;
-                $positions[] = $pos;
+        if ($sample_types['dual']) {
+            foreach ($samples as $pos => $sample) {
+                if ($sample->getIndexType() == 'dual') {
+                    $dual_samples[] = $sample;
+                    $positions[] = $pos;
+                }
             }
+            foreach ($positions as $position) {
+                unset($samples[$position]);
+            }
+            $positions = [];
         }
-        foreach ($positions as $position) {
-            unset($samples[$position]);
+        if ($sample_types['short']) {
+            foreach ($samples as $pos => $sample) {
+                if ($sample->getIndexType() == 'short') {
+                    $short_samples[] = $sample;
+                    $positions[] = $pos;
+                }
+            }
+            foreach ($positions as $position) {
+                unset($samples[$position]);
+            }
+            $positions = [];
         }
-        $positions = [];
+        if ($sample_types['long']) {
+            foreach ($samples as $pos => $sample) {
+                if ($sample->getIndexType() == 'long') {
+                    $long_samples[] = $sample;
+                    $positions[] = $pos;
+                }
+            }
+            foreach ($positions as $position) {
+                unset($samples[$position]);
+            }
+            $positions = [];
+        }
     }
     foreach ($samples as $pos => $sample) {
         $default_samples[] = $sample;
@@ -216,7 +215,9 @@ function writeSamplesheets(&$data, &$default_samples, &$tenx_samples, &$dual_sam
         fclose($outputSheet);
         touch('configured_default');
     } else {
-        unlink('configured_default');
+        if (file_exists('configured_default')) {
+            unlink('configured_default');
+        }
     }
 }
 
@@ -227,6 +228,7 @@ function writeSamplesheets(&$data, &$default_samples, &$tenx_samples, &$dual_sam
 $inputFile = 'SampleSheet.csv';
 $data = [];
 $samples = [];
+$split = false;
 $sample_types = array(
     'short' => false,
     'long' => false,
@@ -240,9 +242,9 @@ $dual_samples = [];
 $tenx_samples = [];
 
 parseSamplesheet($inputFile, $data, $samples);
-checkIndexTypes($samples, $sample_types);
+checkIndexTypes($samples, $sample_types, $split);
 //echo "Samples: " . count($samples) . PHP_EOL;
-separateSamples($samples, $sample_types, $default_samples, $tenx_samples, $dual_samples, $long_samples, $short_samples);
+separateSamples($samples, $sample_types, $default_samples, $tenx_samples, $dual_samples, $long_samples, $short_samples, $split);
 //echo "default: " . count($default_samples) . PHP_EOL;
 //echo "tenx: " . count($tenx_samples) . PHP_EOL;
 //echo "dual: " . count($dual_samples) . PHP_EOL;
