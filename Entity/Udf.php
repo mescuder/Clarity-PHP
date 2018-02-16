@@ -46,7 +46,7 @@ class Udf extends ApiResource
      *
      * @var boolean $isControlledVocabulary
      */
-    protected $isControlledVocavulary;
+    protected $isControlledVocabulary;
     
     /**
      *
@@ -94,6 +94,29 @@ class Udf extends ApiResource
     {
         parent::__construct();
         $this->presets = [];
+    }
+    
+    public function xmlToUdf()
+    {
+        $fieldElement = new \SimpleXMLElement($this->xml);
+        $this->clarityUri = $fieldElement['uri']->__toString();
+        $this->type = $fieldElement['type']->__toString();
+        $this->setClarityIdFromUri();
+        $this->clarityName = $fieldElement->name->__toString();
+        $this->attachToName = $fieldElement->{'attach-to-name'}->__toString();
+        $this->attachToCategory = $fieldElement->{'attach-to-category'}->__toString();
+        $this->showInLablink = $fieldElement->{'show-in-lablink'}->__toString();
+        $this->allowNonPreset = $fieldElement->{'allow-non-preset-values'}->__toString();
+        $this->firstPresetIsDefault = $fieldElement->{'first-preset-is-default-value'}->__toString();
+        $this->showInTables = $fieldElement->{'show-in-tables'}->__toString();
+        $this->isEditable = $fieldElement->{'is-editable'}->__toString();
+        $this->isDeviation = $fieldElement->{'is-deviation'}->__toString();
+        $this->isRequired = $fieldElement->{'is-required'}->__toString();
+        $this->isControlledVocabulary = $fieldElement->{'is-controlled-vocabulary'}->__toString();
+        foreach ($fieldElement->xpath('preset') as $presetElement) {
+            $preset = $presetElement->__toString();
+            $this->addPreset($preset);
+        }
     }
     
     /**
@@ -190,9 +213,9 @@ class Udf extends ApiResource
      * 
      * @param boolean $isControlledVocabulary
      */
-    public function setIsControlledVocavulary($isControlledVocabulary)
+    public function setIsControlledVocabulary($isControlledVocabulary)
     {
-        $this->isControlledVocavulary = $isControlledVocabulary;
+        $this->isControlledVocabulary = $isControlledVocabulary;
     }
     
     /**
@@ -201,7 +224,7 @@ class Udf extends ApiResource
      */
     public function getIsControlledVocabulary()
     {
-        return $this->isControlledVocavulary;
+        return $this->isControlledVocabulary;
     }
     
     /**

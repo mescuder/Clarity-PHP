@@ -3,6 +3,7 @@
 namespace Clarity\EntityRepository;
 
 use Clarity\Connector\ClarityApiConnector;
+use Clarity\Entity\Udf;
 
 /**
  * Description of UdfClarityRepository
@@ -21,7 +22,26 @@ class UdfClarityRepository extends ClarityRepository
         parent::__construct($connector);
         $this->endpoint = 'configuration/udfs';
     }
-    
+
+    public function apiAnswerToUdf($xmlData)
+    {
+        if ($this->checkApiException($xmlData)) {
+            return null;
+        } else {
+            $udf = new Udf();
+            $udf->setXml($xmlData);
+            $udf->xmlToUdf();
+            return $udf;
+        }
+    }
+
+    public function find($id)
+    {
+        $path = $this->endpoint . '/' . $id;
+        $xmlData = $this->connector->getResource($path);
+        return $this->apiAnswerToUdf($xmlData);
+    }
+
     public function findAllForSamples()
     {
         $path = $this->endpoint . '?attach-to-name=Sample';
@@ -30,7 +50,7 @@ class UdfClarityRepository extends ClarityRepository
         $this->makeArrayFromMultipleAnswer($xmlData, $udfs);
         return $udfs;
     }
-    
+
     /**
      * 
      * @param string $xmlData
@@ -38,6 +58,7 @@ class UdfClarityRepository extends ClarityRepository
      */
     public function makeArrayFromMultipleAnswer($xmlData, array &$udfs)
     {
+        $tmpUdf = new Udf();
         $configsElement = new \SimpleXMLElement($xmlData);
         $lastPage = FALSE;
         while (!$lastPage) {
@@ -46,10 +67,10 @@ class UdfClarityRepository extends ClarityRepository
                 $childName = $childElement->getName();
                 switch ($childName) {
                     case 'udfconfig':
-                        $projectId = $childElement['limsid']->__toString();
+                        $udfId = $tmpUdf->getClarityIdFromUri($childElement['uri']->__toString());
                         //echo 'Fetching ' . $projectUri . PHP_EOL;
-                        $project = $this->find($projectId);
-                        $udfs[] = $project;
+                        $udf = $this->find($udfId);
+                        $udfs[] = $udf;
                         break;
                     case 'next-page':
                         $lastPage = FALSE;
