@@ -20,4 +20,5 @@ foreach ($udfs as $udf) {
  * 
  */
 $udf = $udfRepo->find('1256');
+$udf->udfToXml();
 var_dump($udf);

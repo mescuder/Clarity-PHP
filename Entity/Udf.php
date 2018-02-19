@@ -96,6 +96,31 @@ class Udf extends ApiResource
         $this->presets = [];
     }
     
+    public function udfToXml()
+    {
+        $fieldElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/udf.xsd');
+        
+        $fieldElement['uri'] = $this->clarityUri;
+        $fieldElement['type'] = $this->type;
+        $fieldElement->name = $this->clarityName;
+        $fieldElement->{'attach-to-name'} = $this->attachToName;
+        $fieldElement->{'attach-to-category'} = $this->attachToCategory;
+        $fieldElement->{'show-in-lablink'} = $this->showInLablink;
+        $fieldElement->{'allow-non-preset-values'} = $this->allowNonPreset;
+        $fieldElement->{'first-preset-is-default-value'} = $this->firstPresetIsDefault;
+        $fieldElement->{'show-in-tables'} = $this->showInTables;
+        $fieldElement->{'is-editable'} = $this->isEditable;
+        $fieldElement->{'is-deviation'} = $this->isDeviation;
+        $fieldElement->{'is-required'} = $this->isRequired;
+        $fieldElement->{'is-controlled-vocabulary'} = $this->isControlledVocabulary;
+        foreach ($this->presets as $preset) {
+            $presetElement = $fieldElement->addChild('preset', $preset, '');
+        }
+        
+        $this->xml = $fieldElement->asXML();
+        $this->formatXml();
+    }
+    
     public function xmlToUdf()
     {
         $fieldElement = new \SimpleXMLElement($this->xml);
@@ -114,7 +139,7 @@ class Udf extends ApiResource
         $this->isRequired = $fieldElement->{'is-required'}->__toString();
         $this->isControlledVocabulary = $fieldElement->{'is-controlled-vocabulary'}->__toString();
         foreach ($fieldElement->xpath('preset') as $presetElement) {
-            $preset = $presetElement->__toString();
+            $preset = htmlspecialchars($presetElement->__toString());
             $this->addPreset($preset);
         }
     }

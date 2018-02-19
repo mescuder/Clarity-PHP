@@ -9,7 +9,6 @@
     <is-editable></is-editable>
     <is-deviation></is-deviation>
     <is-controlled-vocabulary></is-controlled-vocabulary>
-    <preset></preset>
     <is-required></is-required>
-    <attach-to-category/>
+    <attach-to-category></attach-to-category>
 </cnf:field>
