@@ -7,6 +7,7 @@ require_once(__DIR__ . '/../autoload.php');
 use Clarity\Connector\ClarityApiConnector;
 use Clarity\EntityFormatter\SampleFormatter;
 use Clarity\EntityRepository\LabClarityRepository;
+use Clarity\EntityRepository\UdfClarityRepository;
 use Clarity\EntityRepository\ResearcherClarityRepository;
 use Clarity\EntityRepository\ProjectClarityRepository;
 use Clarity\EntityRepository\SampleClarityRepository;
@@ -71,6 +72,9 @@ if (empty($search)) {
 }
 
 $connector = new ClarityApiConnector($server);
+$udfRepo = new UdfClarityRepository($connector);
+$udfRepo->updateProjectUdfs();
+$udfRepo->updateSampleUdfs();
 $sampleRepo = new SampleClarityRepository($connector);
 $projectRepo = new ProjectClarityRepository($connector);
 $researcherRepo = new ResearcherClarityRepository($connector);
