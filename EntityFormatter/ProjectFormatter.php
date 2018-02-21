@@ -31,11 +31,11 @@ class ProjectFormatter
         $yamlArray[$projectId]['Lab'] = $project->getResearcher()->getLab()->getClarityName();
         $yamlArray[$projectId]['Opening date'] = $project->getOpenDate();
         $yamlArray[$projectId]['Closing date'] = $project->getCloseDate();
-        foreach ($project->getClarityUDFs() as $udf => $value) {
-            if ($udf == 'Description') {
-                $value = str_replace("\n", '', $value);
+        foreach ($project->getClarityUDFs() as $udfName => $properties) {
+            if ($udfName == 'Description') {
+                $value = str_replace("\n", '', $properties['value']);
             }
-            $yamlArray[$projectId]['UDFs'][$udf] = $value;
+            $yamlArray[$projectId]['UDFs'][$udfName] = $value;
         }
 
         return yaml_emit($yamlArray);

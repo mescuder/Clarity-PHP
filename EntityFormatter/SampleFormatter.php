@@ -49,8 +49,8 @@ class SampleFormatter
         $yamlArray[$sampleId]['Date completed'] = $sample->getDateCompleted();
         $yamlArray[$sampleId]['Submitter'] = $sample->getSubmitterFirst() . ' ' . $sample->getSubmitterLast();
 
-        foreach ($sample->getClarityUDFs() as $udf => $value) {
-            $yamlArray[$sampleId]['UDFs'][$udf] = $value;
+        foreach ($sample->getClarityUDFs() as $udfName => $properties) {
+            $yamlArray[$sampleId]['UDFs'][$udfName] = $properties['value'];
         }
 
         return yaml_emit($yamlArray);
@@ -97,8 +97,8 @@ class SampleFormatter
         $i = 0;
         $tsvArray[$i] = array('Sample ID', 'Sample Name', 'Project Name', 'Researcher', 'Lab', 'Date received', 'Date completed', 'Submitter');
         $tempSample = $samples[0];
-        foreach ($tempSample->getClarityUDFs() as $udf => $value) {
-            $tsvArray[$i][] = $udf;
+        foreach ($tempSample->getClarityUDFs() as $udfName => $properties) {
+            $tsvArray[$i][] = $udfName;
         }
         foreach ($samples as $sample) {
             ++$i;
@@ -111,8 +111,8 @@ class SampleFormatter
             $tsvArray[$i][] = $sample->getDateReceived();
             $tsvArray[$i][] = $sample->getDateCompleted();
             $tsvArray[$i][] = $sample->getSubmitterFirst() . ' ' . $sample->getSubmitterLast();
-            foreach ($sample->getClarityUDFs() as $udf => $value) {
-                $tsvArray[$i][] = $value;
+            foreach ($sample->getClarityUDFs() as $udfName => $properties) {
+                $tsvArray[$i][] = $properties['value'];
             }
         }
     }
@@ -130,8 +130,8 @@ class SampleFormatter
             $yamlArray[$sampleId]['Date completed'] = $sample->getDateCompleted();
             $yamlArray[$sampleId]['Submitter'] = $sample->getSubmitterFirst() . ' ' . $sample->getSubmitterLast();
 
-            foreach ($sample->getClarityUDFs() as $udf => $value) {
-                $yamlArray[$sampleId]['UDFs'][$udf] = $value;
+            foreach ($sample->getClarityUDFs() as $udfName => $properties) {
+                $yamlArray[$sampleId]['UDFs'][$udfName] = $properties['value'];
             }
         }
         return $yamlArray;

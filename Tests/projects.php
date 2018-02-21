@@ -36,13 +36,7 @@ $newproject->setOpenDate('2017-03-14');
 $newproject->setResearcherUri($myresearcher->getClarityUri());
 
 $myproject = $projectRepo->find('BIO901');
-$udfs = array(
-    'Funding source' => 'Internal',
-    'Project type' => 'Whole Exome',
-    'Sample quota' => '50',
-    'Sequencer type' => 'HiSeq',
-);
-$myproject->setClarityUDFs($udfs);
+$myproject->setClarityUDF('Funding source', 'Internal');
 $myproject->projectToXml();
 var_dump($myproject);
 //var_dump($newproject);
