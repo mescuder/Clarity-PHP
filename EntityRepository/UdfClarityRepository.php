@@ -41,7 +41,20 @@ class UdfClarityRepository extends ClarityRepository
         $xmlData = $this->connector->getResource($path);
         return $this->apiAnswerToUdf($xmlData);
     }
+    
+    public function findAllForProjects()
+    {
+        $path = $this->endpoint . '?attach-to-name=Project';
+        $xmlData = $this->connector->getResource($path);
+        $udfs = array();
+        $this->makeArrayFromMultipleAnswer($xmlData, $udfs);
+        return $udfs;
+    }
 
+    /**
+     * 
+     * @return array
+     */
     public function findAllForSamples()
     {
         $path = $this->endpoint . '?attach-to-name=Sample';
@@ -85,6 +98,36 @@ class UdfClarityRepository extends ClarityRepository
                 }
             }
         }
+    }
+    
+    public function updateProjectUdfs()
+    {
+        $udfs = $this->findAllForProjects();
+        $udfFile = __DIR__ . '/../Config/project_clarity_udfs.yml';
+        $fields = [];
+        foreach ($udfs as $udf) {
+            $fields[$udf->getClarityName()] = [
+                'type' => $udf->getType(),
+                'required' => $udf->getIsRequired(),
+                'value' => '',
+            ];
+        }
+        yaml_emit_file($udfFile, $fields);
+    }
+
+    public function updateSampleUdfs()
+    {
+        $udfs = $this->findAllForSamples();
+        $udfFile = __DIR__ . '/../Config/sample_clarity_udfs.yml';
+        $fields = [];
+        foreach ($udfs as $udf) {
+            $fields[$udf->getClarityName()] = [
+                'type' => $udf->getType(),
+                'required' => $udf->getIsRequired(),
+                'value' => '',
+            ];
+        }
+        yaml_emit_file($udfFile, $fields);
     }
 
 }

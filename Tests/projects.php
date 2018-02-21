@@ -7,19 +7,22 @@ require_once(__DIR__ . '/../autoload.php');
 //use Clarity\Entity\Project;
 //use Clarity\EntityRepository\ResearcherClarityRepository;
 use Clarity\Connector\ClarityApiConnector;
+use Clarity\EntityRepository\UdfClarityRepository;
 use Clarity\EntityRepository\ProjectClarityRepository;
 //use Clarity\Entity\Project;
 
 //$project = new Project();
 //var_dump($project);
 
-$connector = new ClarityApiConnector('prod');
+$connector = new ClarityApiConnector('test');
 $projectRepo = new ProjectClarityRepository($connector);
+$udfRepo = new UdfClarityRepository($connector);
 //$researcherRepo = new ResearcherClarityRepository($connector);
 
-$myproject = $projectRepo->find('PAS212');
+$udfRepo->updateProjectUdfs();
+$myproject = $projectRepo->find('ESC452');
 //$myproject->setFiles(array());
-//$myproject->projectToXml();
+$myproject->projectToXml();
 echo $myproject->getXml() . PHP_EOL;
 //$myproject = $projectRepo->save($myproject);
 //echo $myproject->getXml() . PHP_EOL;

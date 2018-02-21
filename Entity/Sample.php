@@ -259,9 +259,12 @@ class Sample extends ApiResource
         $sampleElement->submitter->{'first-name'} = $this->submitterFirst;
         $sampleElement->submitter->{'last-name'} = $this->submitterLast;
 
-        foreach ($sampleElement->children('udf', true) as $udf) {
-            $name = $udf->attributes()['name']->__toString();
-            $udf[0] = $this->clarityUDFs[$name];
+        foreach ($this->clarityUDFs as $udfName => $properties) {
+            $udfType = $properties['type'];
+            $udfValue = $properties['value'];
+            $udfElement = $sampleElement->addChild('field', $udfValue, 'http://genologics.com/ri/userdefined');
+            $udfElement->addAttribute('type', $udfType);
+            $udfElement->addAttribute('name', $udfName);
         }
 
         $this->xml = $sampleElement->asXML();
@@ -292,9 +295,9 @@ class Sample extends ApiResource
         $this->artifactUri = $sampleElement->artifact['uri']->__toString();
 
         foreach ($sampleElement->xpath('//udf:field') as $udfElement) {
-            $field = $udfElement['name']->__toString();
+            $name = $udfElement['name']->__toString();
             $value = $udfElement->__toString();
-            $this->setClarityUDF($field, $value);
+            $this->setClarityUDF($name, $value);
         }
     }
 

@@ -161,11 +161,14 @@ class Project extends ApiResource
             $projectElement->addChild('close-date', $this->closeDate, null);
         }
 
-        foreach ($projectElement->children('udf', true) as $udfElement) {
-            $name = $udfElement->attributes()['name']->__toString();
-            $udfElement[0] = $this->clarityUDFs[$name];
+        foreach ($this->clarityUDFs as $udfName => $properties) {
+            $udfType = $properties['type'];
+            $udfValue = $properties['value'];
+            $udfElement = $projectElement->addChild('field', $udfValue, 'http://genologics.com/ri/userdefined');
+            $udfElement->addAttribute('type', $udfType);
+            $udfElement->addAttribute('name', $udfName);
         }
-
+        
         foreach ($this->files as $file) {
             $fileElement = $projectElement->addChild('file', null, 'http://genologics.com/ri/file');
             foreach ($file as $attribute => $value) {
@@ -191,9 +194,9 @@ class Project extends ApiResource
         $this->researcherId = $this->getClarityIdFromUri($this->researcherUri);
 
         foreach ($projectElement->xpath('//udf:field') as $udfElement) {
-            $field = $udfElement['name']->__toString();
+            $name = $udfElement['name']->__toString();
             $value = $udfElement->__toString();
-            $this->setClarityUDF($field, $value);
+            $this->setClarityUDF($name, $value);
         }
 
         foreach ($projectElement->xpath('//file:file') as $fileElement) {

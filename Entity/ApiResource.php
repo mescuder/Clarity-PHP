@@ -83,12 +83,16 @@ abstract class ApiResource
     
     /**
      * 
-     * @param string $field
+     * @param string $name
      * @param string $value
      */
-    public function setClarityUDF($field, $value)
+    public function setClarityUDF($name, $value)
     {
-        $this->clarityUDFs[$field] = $value;
+        if (array_key_exists($name, $this->clarityUDFs)) {
+            $this->clarityUDFs[$name]['value'] = $value;
+        } else {
+            exit('The UDF "' . $name . '" does not exist. Maybe try to update the list of UDFs from Clarity.' . PHP_EOL . 'Exiting.' . PHP_EOL);
+        }
     }
     
     /**
@@ -107,9 +111,7 @@ abstract class ApiResource
      */
     public function setClarityUDFs(array $udfs)
     {
-        foreach ($udfs as $field => $value) {
-            $this->setClarityUDF($field, $value);
-        }
+        $this->clarityUDFs = $udfs;
     }
     
     /**
