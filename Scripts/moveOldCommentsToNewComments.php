@@ -18,13 +18,15 @@ foreach ($samples as $sample) {
         $modified = TRUE;
         $oldUserComments = $sample->getClarityUDF('User Comments old');
         echo $sample->getClarityId() . ' -> User Comments old: ' . $oldUserComments . PHP_EOL;
-        $sample->setClarityUDFs(array('User Comments old' => '', 'User Comments' => $oldUserComments));
+        $sample->setClarityUDF('User Comments old', '');
+        $sample->setClarityUDF('User Comments', $oldUserComments);
     }
     if (!empty($sample->getClarityUDF('ASF Comments old'))) {
         $modified = TRUE;
         $oldAsfComments = $sample->getClarityUDF('ASF Comments old');
         echo $sample->getClarityId() . ' -> ASF Comments old: ' . $oldAsfComments . PHP_EOL;
-        $sample->setClarityUDFs(array('ASF Comments old' => '', 'ASF Comments' => $oldAsfComments));
+        $sample->setClarityUDF('ASF Comments old', '');
+        $sample->setClarityUDF('ASF Comments', $oldAsfComments);
     }
     if ($modified) {
         $sample->sampleToXml();
