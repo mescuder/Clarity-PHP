@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<cnf:field xmlns:cnf="http://genologics.com/ri/configuration" uri="" type="">
+    <name></name>
+    <attach-to-name></attach-to-name>
+    <show-in-lablink></show-in-lablink>
+    <allow-non-preset-values></allow-non-preset-values>
+    <first-preset-is-default-value></first-preset-is-default-value>
+    <show-in-tables></show-in-tables>
+    <is-editable></is-editable>
+    <is-deviation></is-deviation>
+    <is-controlled-vocabulary></is-controlled-vocabulary>
+    <is-required></is-required>
+    <attach-to-category></attach-to-category>
+</cnf:field>

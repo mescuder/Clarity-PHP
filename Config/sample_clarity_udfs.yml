@@ -1,34 +1,174 @@
-'Ampliseq Primer Design ID (IAD number)': 
-'ASF Comments': 
-'C1 Application': 
-'C1 IFC Used': 
-'Coverage (x)': 
-'Custom Index Primer': 
-'Custom Index Primer Concentration (uM)': 
-'Custom Seq Primer': 
-'Custom Seq Primer Concentration (uM)': 
-'End Type': 
-'Hybridisation baits': 
-'i5 Index': 
-'i7 Index': 
-'Library band size (bp)': 
-'Library Preparation Protocol': 
-'Number of primer pairs in pool': 
-'Pool ID': 
-'Primer pairs': 
-'Progress': 
-'Read Length': 
-'Reference Genome': 
-'RIN': 
-'RNA Type': 
-'Sample Concentration (ng/uL)': 
-'Sample Type': 
-'Sequencer': 
-'Sequencing required (million reads)': 
-'Size Selection (bp)': 
-'Test ID': 
-'Total Amount (ng)': 
-'TRACERx Sample ID': 
-'User Comments': 
-'User Sample Name': 
-'Volume (uL)': 
+---
+Ampliseq Primer Design ID (IAD number):
+  type: String
+  required: "false"
+  value: ""
+ASF Comments:
+  type: String
+  required: "false"
+  value: ""
+C1 Application:
+  type: String
+  required: "false"
+  value: ""
+C1 IFC Used:
+  type: String
+  required: "false"
+  value: ""
+Concentration (ng/ul):
+  type: Numeric
+  required: "false"
+  value: ""
+Concentration (nM):
+  type: Numeric
+  required: "false"
+  value: ""
+Coverage (x):
+  type: String
+  required: "false"
+  value: ""
+Custom Index Primer:
+  type: String
+  required: "false"
+  value: ""
+Custom Index Primer Concentration (uM):
+  type: Numeric
+  required: "false"
+  value: ""
+Custom Seq Primer:
+  type: String
+  required: "false"
+  value: ""
+Custom Seq Primer Concentration (uM):
+  type: Numeric
+  required: "false"
+  value: ""
+DIN:
+  type: Numeric
+  required: "false"
+  value: ""
+End Type:
+  type: String
+  required: "true"
+  value: ""
+Fragmentation Method:
+  type: String
+  required: "false"
+  value: ""
+Freezerworks Barcode:
+  type: String
+  required: "false"
+  value: ""
+Hybridisation baits:
+  type: String
+  required: "false"
+  value: ""
+Index 1 (i7):
+  type: String
+  required: "false"
+  value: ""
+Index 2 (i5):
+  type: String
+  required: "false"
+  value: ""
+Input (ng):
+  type: Numeric
+  required: "false"
+  value: ""
+Library band size (bp):
+  type: String
+  required: "false"
+  value: ""
+Library Preparation Protocol:
+  type: String
+  required: "false"
+  value: ""
+Number of primer pairs in pool:
+  type: String
+  required: "false"
+  value: ""
+PEACE-Tx Patient ID:
+  type: String
+  required: "false"
+  value: ""
+Pool ID:
+  type: String
+  required: "false"
+  value: ""
+Primer pairs:
+  type: String
+  required: "false"
+  value: ""
+Progress:
+  type: String
+  required: "false"
+  value: ""
+Read Length:
+  type: String
+  required: "true"
+  value: ""
+Reagent Label:
+  type: String
+  required: "false"
+  value: ""
+Reference Genome:
+  type: String
+  required: "false"
+  value: ""
+RIN:
+  type: Numeric
+  required: "false"
+  value: ""
+RNA Type:
+  type: String
+  required: "false"
+  value: ""
+Sample Concentration (ng/uL):
+  type: Numeric
+  required: "false"
+  value: ""
+Sample Type:
+  type: String
+  required: "true"
+  value: ""
+Sequencer:
+  type: String
+  required: "false"
+  value: ""
+Sequencing required (million reads):
+  type: Numeric
+  required: "false"
+  value: ""
+Size (bp):
+  type: Numeric
+  required: "false"
+  value: ""
+Size Selection (bp):
+  type: String
+  required: "false"
+  value: ""
+Test ID:
+  type: String
+  required: "false"
+  value: ""
+Total Amount (ng):
+  type: Numeric
+  required: "false"
+  value: ""
+User Comments:
+  type: String
+  required: "false"
+  value: ""
+User Pool ID:
+  type: String
+  required: "false"
+  value: ""
+User Sample Name:
+  type: String
+  required: "false"
+  value: ""
+Volume (ul):
+  type: Numeric
+  required: "true"
+  value: ""
+...
