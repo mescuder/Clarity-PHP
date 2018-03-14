@@ -1,37 +1,9 @@
 ---
-Approximate cost:
+Project type:
   type: String
-  required: "false"
-  value: ""
-Bioinformatician:
-  type: String
-  required: "false"
-  value: ""
-Coverage:
-  type: Numeric
-  required: "false"
-  value: ""
-Depth:
-  type: String
-  required: "false"
-  value: ""
-Description:
-  type: Text
-  required: "false"
+  required: "true"
   value: ""
 Email:
-  type: String
-  required: "true"
-  value: ""
-Fragment Size:
-  type: String
-  required: "false"
-  value: ""
-Funding source:
-  type: String
-  required: "true"
-  value: ""
-Genome build:
   type: String
   required: "false"
   value: ""
@@ -39,15 +11,15 @@ Library Prep Method:
   type: String
   required: "false"
   value: ""
-Number of experiments (total number of cells):
-  type: String
-  required: "false"
-  value: ""
 Prep Kit:
   type: String
   required: "false"
   value: ""
-Project type:
+Sample quota:
+  type: Numeric
+  required: "true"
+  value: ""
+Sequencer type:
   type: String
   required: "true"
   value: ""
@@ -59,13 +31,41 @@ Run Type:
   type: String
   required: "false"
   value: ""
-Sample quota:
+Coverage:
   type: Numeric
-  required: "true"
+  required: "false"
   value: ""
-Sequencer type:
+Depth:
   type: String
-  required: "true"
+  required: "false"
+  value: ""
+Genome build:
+  type: String
+  required: "false"
+  value: ""
+Budget Code:
+  type: String
+  required: "false"
+  value: ""
+Approximate cost:
+  type: String
+  required: "false"
+  value: ""
+Fragment Size:
+  type: String
+  required: "false"
+  value: ""
+Number of experiments (total number of cells):
+  type: String
+  required: "false"
+  value: ""
+Bioinformatician:
+  type: String
+  required: "false"
+  value: ""
+Description:
+  type: Text
+  required: "false"
   value: ""
 Test ID:
   type: String

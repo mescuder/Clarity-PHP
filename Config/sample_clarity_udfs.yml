@@ -1,10 +1,18 @@
 ---
+10x Application:
+  type: String
+  required: "false"
+  value: ""
 Ampliseq Primer Design ID (IAD number):
   type: String
   required: "false"
   value: ""
 ASF Comments:
   type: String
+  required: "false"
+  value: ""
+Average Size (bp):
+  type: Numeric
   required: "false"
   value: ""
 C1 Application:
@@ -15,12 +23,8 @@ C1 IFC Used:
   type: String
   required: "false"
   value: ""
-Concentration (ng/ul):
-  type: Numeric
-  required: "false"
-  value: ""
-Concentration (nM):
-  type: Numeric
+Cells loaded:
+  type: String
   required: "false"
   value: ""
 Coverage (x):
@@ -43,15 +47,7 @@ Custom Seq Primer Concentration (uM):
   type: Numeric
   required: "false"
   value: ""
-DIN:
-  type: Numeric
-  required: "false"
-  value: ""
 End Type:
-  type: String
-  required: "true"
-  value: ""
-Fragmentation Method:
   type: String
   required: "false"
   value: ""
@@ -63,16 +59,12 @@ Hybridisation baits:
   type: String
   required: "false"
   value: ""
-Index 1 (i7):
+Index1 (i7):
   type: String
   required: "false"
   value: ""
-Index 2 (i5):
+Index2 (i5):
   type: String
-  required: "false"
-  value: ""
-Input (ng):
-  type: Numeric
   required: "false"
   value: ""
 Library band size (bp):
@@ -103,11 +95,11 @@ Progress:
   type: String
   required: "false"
   value: ""
-Read Length:
+Project ID:
   type: String
-  required: "true"
+  required: "false"
   value: ""
-Reagent Label:
+Read Length:
   type: String
   required: "false"
   value: ""
@@ -127,9 +119,21 @@ Sample Concentration (ng/uL):
   type: Numeric
   required: "false"
   value: ""
+Sample Molarity 1 (nM):
+  type: Numeric
+  required: "false"
+  value: ""
+Sample Molarity 2 (nM):
+  type: Numeric
+  required: "false"
+  value: ""
+Sample Molarity Average (nM):
+  type: Numeric
+  required: "false"
+  value: ""
 Sample Type:
   type: String
-  required: "true"
+  required: "false"
   value: ""
 Sequencer:
   type: String
@@ -139,11 +143,11 @@ Sequencing required (million reads):
   type: Numeric
   required: "false"
   value: ""
-Size (bp):
-  type: Numeric
+Size Selection (bp):
+  type: String
   required: "false"
   value: ""
-Size Selection (bp):
+Submitted Material:
   type: String
   required: "false"
   value: ""
@@ -167,8 +171,8 @@ User Sample Name:
   type: String
   required: "false"
   value: ""
-Volume (ul):
+Volume (uL):
   type: Numeric
-  required: "true"
+  required: "false"
   value: ""
 ...

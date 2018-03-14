@@ -30,8 +30,14 @@ $udfRepo->updateSampleUdfs();
 //    echo $sample->getClarityId() . PHP_EOL;
 //}
 
+
+$sample = $sampleRepo->find('BIO901A2');
+$sample->setClarityUDF('Test multiline', 'This is a multiline comment');
+$sample->sampleToXml();
+$sample = $sampleRepo->save($sample);
+echo $sample->getXml();
+
 /*
-$sample = $sampleRepo->find('BAR716A1');
 echo $sample->getXml() . PHP_EOL;
 $oldcomment = $sample->getClarityUDF('User Comments old');
 $sample->sampleToXml();
@@ -56,6 +62,8 @@ $tube = $containerRepo->save($tube);
 $project = $projectRepo->find('BIO1103');
 $researcher = $researcherRepo->find('858');
 */
+
+/*
 $newSample = new Sample();
 //$newSample->setContainerId($tube->getClarityId());
 //$newSample->setContainerUri($tube->getClarityUri());
@@ -72,4 +80,4 @@ echo $newSample->getXml();
 exit;
 $newSample = $sampleRepo->save($newSample);
 var_dump($newSample);
-
+*/

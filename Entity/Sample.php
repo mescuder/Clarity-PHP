@@ -569,7 +569,11 @@ class Sample extends ApiResource
      */
     public function setSamplesheetIndex1($samplesheetIndex1)
     {
-        $samplesheetIndex1 = strtoupper($samplesheetIndex1);
+        $samplesheetIndex1 = strtoupper(trim($samplesheetIndex1));
+        if (!empty($samplesheetIndex1)) {
+            preg_match('#^([0-9a-z-_]+)#i', $samplesheetIndex1, $matches);
+            $samplesheetIndex1 = $matches[1];
+        }
         $this->samplesheetIndex1 = $samplesheetIndex1;
         $this->setIndexType($this->determineIndexType());
     }
@@ -589,7 +593,11 @@ class Sample extends ApiResource
      */
     public function setSamplesheetIndex2($samplesheetIndex2)
     {
-        $samplesheetIndex2 = strtoupper($samplesheetIndex2);
+        $samplesheetIndex2 = strtoupper(trim($samplesheetIndex2));
+        if (!empty($samplesheetIndex2)) {
+            preg_match('#^([0-9a-z-_]+)#i', $samplesheetIndex2, $matches);
+            $samplesheetIndex2 = $matches[1];
+        }
         $this->samplesheetIndex2 = $samplesheetIndex2;
         $this->setIndexType($this->determineIndexType());
     }
