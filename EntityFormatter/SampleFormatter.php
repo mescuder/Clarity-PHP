@@ -11,27 +11,55 @@ use Clarity\Entity\Sample;
  */
 class SampleFormatter
 {
-    
-    public function asBcl2fastq(Sample &$sample)
+
+    public function asBcl2fastq(Sample &$sample, array &$header)
     {
+        $output_a = [];
         $index1 = $sample->getSamplesheetIndex1();
         $index2 = $sample->getSamplesheetIndex2();
-        // regex to see if index1 is [ATGC]+ and if yes compute rev_comp (if no it's tenx)
-        $output_a = [];
-        $output_a[] = $sample->getSamplesheetLane();
-        $output_a[] = $sample->getSamplesheetProject();
-        $output_a[] = $sample->getSamplesheetId();
-        $output_a[] = $index1;
-        if (preg_match('#^[ATGC]+$#', $index1)) {
-            $index1_rc = $sample->revComp($index1);
-            $output_a[] = $index1;
-            $output_a[] = $index1_rc;
-        }
-        $output_a[] = $index2;
-        if (preg_match('#^[ATGC]+$#', $index2)) {
-            $index2_rc = $sample->revComp($index2);
-            $output_a[] = $index2;
-            $output_a[] = $index2_rc;
+        foreach ($header as $column) {
+            switch ($column) {
+                case 'Lane':
+                    $output_a[] = $sample->getSamplesheetLane();
+                    break;
+                case 'Sample_Project':
+                    $output_a[] = $sample->getSamplesheetProject();
+                    break;
+                case 'Sample_ID':
+                    $output_a[] = $sample->getSamplesheetId();
+                    break;
+                case 'index':
+                    $output_a[] = $index1;
+                    break;
+                case 'index_original':
+                    $output_a[] = $index1;
+                    break;
+                case 'index_rc':
+                    if (preg_match('#^[ATGC]+$#', $index1)) {
+                        $index1_rc = $sample->revComp($index1);
+                        $output_a[] = $index1_rc;
+                    } else {
+                        $output_a[] = '';
+                    }
+                    break;
+                case 'index2':
+                    $output_a[] = $index2;
+                    break;
+                case 'index2_original':
+                    $output_a[] = $index2;
+                    break;
+                case 'index2_rc':
+                    if (preg_match('#^[ATGC]+$#', $index2)) {
+                        $index2_rc = $sample->revComp($index2);
+                        $output_a[] = $index2_rc;
+                    } else {
+                        $output_a[] = '';
+                    }
+                    break;
+                default:
+                    $output_a[] = $sample->getSamplesheetExtra($column);
+                    break;
+            }
         }
         return implode(',', $output_a);
     }
@@ -66,13 +94,13 @@ class SampleFormatter
         }
     }
 
-    public function formatSamples(array &$samples, $format)
+    public function formatSamples(array &$samples, $format, array &$header = null)
     {
         switch ($format) {
             case 'bcl2fastq':
-                $output = 'Lane,Sample_Project,Sample_ID,index,index_original,index_rc,index2,index2_original,index2_rc' . PHP_EOL;
+                $output = implode(',', $header) . PHP_EOL;
                 foreach ($samples as $sample) {
-                    $output .= $this->asBcl2fastq($sample) . PHP_EOL;
+                    $output .= $this->asBcl2fastq($sample, $header) . PHP_EOL;
                 }
                 return $output;
             case 'tsv':
@@ -91,7 +119,7 @@ class SampleFormatter
                 return 'The specified format "' . $format . '" is not available' . PHP_EOL;
         }
     }
-    
+
     public function prepareTsvArray(array &$tsvArray, &$samples)
     {
         $i = 0;

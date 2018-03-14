@@ -48,15 +48,16 @@ function createSampleFromLine(array &$header, array &$line_a)
             $sample->setSamplesheetProject($line_a[$i]);
         } elseif ($column == 'Lane') {
             $sample->setSamplesheetLane($line_a[$i]);
+        } else {
+            $sample->setSamplesheetExtra($column, $line_a[$i]);
         }
         ++$i;
     }
     return $sample;
 }
 
-function parseSamplesheet(&$inputFile, array &$data, array &$samples)
+function parseSamplesheet(&$inputFile, array &$header, array &$data, array &$samples)
 {
-    $data_header = [];
     $inputSheet = fopen($inputFile, 'r') or die('Unable to open file ' . $inputFile . PHP_EOL);
     if ($inputSheet) {
         while (!feof($inputSheet)) {
@@ -69,10 +70,10 @@ function parseSamplesheet(&$inputFile, array &$data, array &$samples)
                 }
                 if (isset($section)) {
                     if ($section == 'Data') {
-                        if (empty($data_header)) {
-                            $data_header = $line_a;
+                        if (empty($header)) {
+                            $header = $line_a;
                         } else {
-                            $samples[] = createSampleFromLine($data_header, $line_a);
+                            $samples[] = createSampleFromLine($header, $line_a);
                         }
                     } else {
                         $data[$section][] = $line_a;
@@ -142,8 +143,12 @@ function separateSamples(&$samples, &$sample_types, &$default_samples, &$tenx_sa
     }
 }
 
-function writeSamplesheets(&$data, &$default_samples, &$tenx_samples, &$dual_samples, &$long_samples, &$short_samples)
+function writeSamplesheets(&$data, &$header, &$default_samples, &$tenx_samples, &$dual_samples, &$long_samples, &$short_samples)
 {
+    $header[] = 'index_original';
+    $header[] = 'index_rc';
+    $header[] = 'index2_original';
+    $header[] = 'index2_rc';
     $formatter = new SampleFormatter();
     if (count($tenx_samples) > 0) {
         $outputFile = 'SampleSheet_tenx.csv';
@@ -153,7 +158,7 @@ function writeSamplesheets(&$data, &$default_samples, &$tenx_samples, &$dual_sam
                 $output .= implode(',', $line_a) . PHP_EOL;
             }
         }
-        $output .= $formatter->formatSamples($tenx_samples, 'bcl2fastq');
+        $output .= $formatter->formatSamples($tenx_samples, 'bcl2fastq', $header);
         $outputSheet = fopen($outputFile, 'w');
         fwrite($outputSheet, $output);
         fclose($outputSheet);
@@ -167,7 +172,7 @@ function writeSamplesheets(&$data, &$default_samples, &$tenx_samples, &$dual_sam
                 $output .= implode(',', $line_a) . PHP_EOL;
             }
         }
-        $output .= $formatter->formatSamples($dual_samples, 'bcl2fastq');
+        $output .= $formatter->formatSamples($dual_samples, 'bcl2fastq', $header);
         $outputSheet = fopen($outputFile, 'w');
         fwrite($outputSheet, $output);
         fclose($outputSheet);
@@ -181,7 +186,7 @@ function writeSamplesheets(&$data, &$default_samples, &$tenx_samples, &$dual_sam
                 $output .= implode(',', $line_a) . PHP_EOL;
             }
         }
-        $output .= $formatter->formatSamples($long_samples, 'bcl2fastq');
+        $output .= $formatter->formatSamples($long_samples, 'bcl2fastq', $header);
         $outputSheet = fopen($outputFile, 'w');
         fwrite($outputSheet, $output);
         fclose($outputSheet);
@@ -195,7 +200,7 @@ function writeSamplesheets(&$data, &$default_samples, &$tenx_samples, &$dual_sam
                 $output .= implode(',', $line_a) . PHP_EOL;
             }
         }
-        $output .= $formatter->formatSamples($short_samples, 'bcl2fastq');
+        $output .= $formatter->formatSamples($short_samples, 'bcl2fastq', $header);
         $outputSheet = fopen($outputFile, 'w');
         fwrite($outputSheet, $output);
         fclose($outputSheet);
@@ -209,7 +214,7 @@ function writeSamplesheets(&$data, &$default_samples, &$tenx_samples, &$dual_sam
                 $output .= implode(',', $line_a) . PHP_EOL;
             }
         }
-        $output .= $formatter->formatSamples($default_samples, 'bcl2fastq');
+        $output .= $formatter->formatSamples($default_samples, 'bcl2fastq', $header);
         $outputSheet = fopen($outputFile, 'w');
         fwrite($outputSheet, $output);
         fclose($outputSheet);
@@ -226,6 +231,7 @@ function writeSamplesheets(&$data, &$default_samples, &$tenx_samples, &$dual_sam
 //////////
 
 $inputFile = 'SampleSheet.csv';
+$header = [];
 $data = [];
 $samples = [];
 $split = false;
@@ -241,7 +247,7 @@ $long_samples = [];
 $dual_samples = [];
 $tenx_samples = [];
 
-parseSamplesheet($inputFile, $data, $samples);
+parseSamplesheet($inputFile, $header, $data, $samples);
 checkIndexTypes($samples, $sample_types, $split);
 //echo "Samples: " . count($samples) . PHP_EOL;
 separateSamples($samples, $sample_types, $default_samples, $tenx_samples, $dual_samples, $long_samples, $short_samples, $split);
@@ -250,4 +256,4 @@ separateSamples($samples, $sample_types, $default_samples, $tenx_samples, $dual_
 //echo "dual: " . count($dual_samples) . PHP_EOL;
 //echo "long: " . count($long_samples) . PHP_EOL;
 //echo "short: " . count($short_samples) . PHP_EOL;
-writeSamplesheets($data, $default_samples, $tenx_samples, $dual_samples, $long_samples, $short_samples);
+writeSamplesheets($data, $header, $default_samples, $tenx_samples, $dual_samples, $long_samples, $short_samples);

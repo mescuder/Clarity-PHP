@@ -95,6 +95,12 @@ class Sample extends ApiResource
      * @var string $projectUri
      */
     protected $projectUri;
+    
+    /**
+     *
+     * @var type array
+     */
+    protected $samplesheetExtras;
 
     /**
      *
@@ -162,6 +168,7 @@ class Sample extends ApiResource
         $this->samplesheetLane = 0;
         $udfs = yaml_parse_file(__DIR__ . '/../Config/sample_clarity_udfs.yml');
         $this->setClarityUDFs($udfs);
+        $this->samplesheetExtras = array();
         $this->samplesheetIndex1 = '';
         $this->samplesheetIndex2 = '';
         $this->samplesheetLane = '1';
@@ -543,6 +550,25 @@ class Sample extends ApiResource
     public function getProjectUri()
     {
         return $this->projectUri;
+    }
+    
+    public function setSamplesheetExtra($key, $value)
+    {
+        $this->samplesheetExtras[$key] = $value;
+    }
+    
+    public function getSamplesheetExtra($key)
+    {
+        return $this->samplesheetExtras[$key];
+    }
+    
+    /**
+     * 
+     * @return array
+     */
+    public function getSamplesheetExtras()
+    {
+        return $this->samplesheetExtras;
     }
 
     /**
