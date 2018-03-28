@@ -185,6 +185,7 @@ class Sample extends ApiResource
         } elseif (!empty($index1) && preg_match('#^[ATGC]{8}$#', $index1)) {
             return 'long';
         } elseif (!empty($index1) && preg_match('#^SI[-_]#', $index1)) {
+            $this->samplesheetIndex1 = str_replace('_', '-', $this->samplesheetIndex1);
             return 'tenx';
         } elseif (empty($index1) && empty($index2)) {
             return 'none';
