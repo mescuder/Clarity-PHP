@@ -12,9 +12,13 @@ use Clarity\Entity\Sample;
 class SampleFormatter
 {
 
-    public function asBcl2fastq(Sample &$sample, array &$header)
+    public function asBcl2fastq(Sample &$sample, array $header)
     {
         $output_a = [];
+        $header[] = 'index_original';
+        $header[] = 'index_rc';
+        $header[] = 'index2_original';
+        $header[] = 'index2_rc';
         $index1 = $sample->getSamplesheetIndex1();
         $index2 = $sample->getSamplesheetIndex2();
         foreach ($header as $column) {
@@ -64,6 +68,32 @@ class SampleFormatter
         return implode(',', $output_a);
     }
 
+    public function asMkfastq(Sample &$sample, array $header)
+    {
+        $output_a = [];
+        $index1 = $sample->getSamplesheetIndex1();
+        foreach ($header as $column) {
+            switch ($column) {
+                case 'Lane':
+                    $output_a[] = $sample->getSamplesheetLane();
+                    break;
+                case 'Sample_Project':
+                    $output_a[] = $sample->getSamplesheetProject();
+                    break;
+                case 'Sample_ID':
+                    $output_a[] = $sample->getSamplesheetId();
+                    break;
+                case 'index':
+                    $output_a[] = $index1;
+                    break;
+                default:
+                    $output_a[] = $sample->getSamplesheetExtra($column);
+                    break;
+            }
+        }
+        return implode(',', $output_a);
+    }
+
     public function asYAML(Sample &$sample)
     {
         $yamlArray = array();
@@ -101,6 +131,12 @@ class SampleFormatter
                 $output = implode(',', $header) . PHP_EOL;
                 foreach ($samples as $sample) {
                     $output .= $this->asBcl2fastq($sample, $header) . PHP_EOL;
+                }
+                return $output;
+            case 'mkfastq':
+                $output = implode(',', $header) . PHP_EOL;
+                foreach ($samples as $sample) {
+                    $output .= $this->asMkfastq($sample, $header) . PHP_EOL;
                 }
                 return $output;
             case 'tsv':

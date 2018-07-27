@@ -145,10 +145,6 @@ function separateSamples(&$samples, &$sample_types, &$default_samples, &$tenx_sa
 
 function writeSamplesheets(&$data, &$header, &$default_samples, &$tenx_samples, &$dual_samples, &$long_samples, &$short_samples)
 {
-    $header[] = 'index_original';
-    $header[] = 'index_rc';
-    $header[] = 'index2_original';
-    $header[] = 'index2_rc';
     $formatter = new SampleFormatter();
     if (count($tenx_samples) > 0) {
         $outputFile = 'SampleSheet_tenx.csv';
@@ -158,7 +154,7 @@ function writeSamplesheets(&$data, &$header, &$default_samples, &$tenx_samples, 
                 $output .= implode(',', $line_a) . PHP_EOL;
             }
         }
-        $output .= $formatter->formatSamples($tenx_samples, 'bcl2fastq', $header);
+        $output .= $formatter->formatSamples($tenx_samples, 'mkfastq', $header);
         $outputSheet = fopen($outputFile, 'w');
         fwrite($outputSheet, $output);
         fclose($outputSheet);
