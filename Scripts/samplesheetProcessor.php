@@ -62,7 +62,7 @@ function parseSamplesheet(&$inputFile, array &$header, array &$data, array &$sam
     if ($inputSheet) {
         while (!feof($inputSheet)) {
             $line_a = fgetcsv($inputSheet);
-            if (!empty($line_a)) {
+            if (!empty($line_a) && !empty($line_a[0])) {
                 if (preg_match('#^\[([[:alpha:]]+)\]#', $line_a[0], $matches)) {
                     $section = $matches[1];
                     $data[$section][] = $line_a;
