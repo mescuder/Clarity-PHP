@@ -15,10 +15,6 @@ class SampleFormatter
     public function asBcl2fastq(Sample &$sample, array $header)
     {
         $output_a = [];
-        $header[] = 'index_original';
-        $header[] = 'index_rc';
-        $header[] = 'index2_original';
-        $header[] = 'index2_rc';
         $index1 = $sample->getSamplesheetIndex1();
         $index2 = $sample->getSamplesheetIndex2();
         foreach ($header as $column) {
@@ -85,6 +81,9 @@ class SampleFormatter
                     break;
                 case 'index':
                     $output_a[] = $index1;
+                    break;
+                case 'index2':
+                    $output_a[] = '';
                     break;
                 default:
                     $output_a[] = $sample->getSamplesheetExtra($column);

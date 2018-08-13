@@ -160,6 +160,10 @@ function writeSamplesheets(&$data, &$header, &$default_samples, &$tenx_samples, 
         fclose($outputSheet);
         touch('configured_tenx');
     }
+    $header[] = 'index_original';
+    $header[] = 'index_rc';
+    $header[] = 'index2_original';
+    $header[] = 'index2_rc';
     if (count($dual_samples) > 0) {
         $outputFile = 'SampleSheet_dual.csv';
         $output = '';

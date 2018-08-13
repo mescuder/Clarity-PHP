@@ -1,12 +1,12 @@
 <?php
 
-$tmpIndices = yaml_parse_file('.yml');
+$tmpIndices = yaml_parse_file('sureselectXT_8bp_SI.yml');
 $indices = array();
 foreach ($tmpIndices as $name => $seq) {
     $newName = $name . ' (' . $seq . ')';
     $indices[$newName] = $seq;
 }
-$groupName = 'Quantseq';
+$groupName = 'SureSelectXT_8bp_SI';
 
 $i = 0;
 $configElement = simplexml_load_file(__DIR__ . '/../XmlTemplate/indices.xsd');

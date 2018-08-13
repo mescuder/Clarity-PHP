@@ -95,7 +95,7 @@ class Sample extends ApiResource
      * @var string $projectUri
      */
     protected $projectUri;
-    
+
     /**
      *
      * @var type array
@@ -173,7 +173,7 @@ class Sample extends ApiResource
         $this->samplesheetIndex2 = '';
         $this->samplesheetLane = '1';
     }
-    
+
     public function determineIndexType()
     {
         $index1 = $this->samplesheetIndex1;
@@ -193,7 +193,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $sampleId
      * @return string
      */
@@ -218,7 +218,7 @@ class Sample extends ApiResource
             return false;
         }
     }
-    
+
     public function revComp($index)
     {
         $index_c = '';
@@ -310,7 +310,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $artifactId
      */
     public function setArtifactId($artifactId)
@@ -319,7 +319,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getArtifactId()
@@ -328,7 +328,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $artifactUri
      */
     public function setArtifactUri($artifactUri)
@@ -337,7 +337,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getArtifactUri()
@@ -346,7 +346,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $clarityName
      */
     public function setClarityName($clarityName)
@@ -355,7 +355,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getClarityName()
@@ -364,7 +364,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param Container $container
      */
     public function setContainer($container)
@@ -373,7 +373,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return Container
      */
     public function getContainer()
@@ -382,7 +382,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $containerId
      */
     public function setContainerId($containerId)
@@ -391,7 +391,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getContainerId()
@@ -400,7 +400,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $containerLocation
      */
     public function setContainerLocation($containerLocation)
@@ -409,7 +409,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getContainerLocation()
@@ -418,7 +418,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $containerUri
      */
     public function setContainerUri($containerUri)
@@ -427,7 +427,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getContainerUri()
@@ -436,7 +436,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $dateCompleted
      */
     public function setDateCompleted($dateCompleted)
@@ -445,7 +445,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getDateCompleted()
@@ -454,7 +454,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param date $dateReceived
      */
     public function setDateReceived($dateReceived)
@@ -463,26 +463,26 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return date
      */
     public function getDateReceived()
     {
         return $this->dateReceived;
     }
-    
+
     public function setIndexType($indexType)
     {
         $this->indexType = $indexType;
     }
-    
+
     public function getIndexType()
     {
         return $this->indexType;
     }
 
     /**
-     * 
+     *
      * @param Project $project
      */
     public function setProject(&$project)
@@ -491,7 +491,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return Project
      */
     public function getProject()
@@ -500,7 +500,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $projectId
      */
     public function setProjectId($projectId)
@@ -509,7 +509,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getProjectId()
@@ -518,7 +518,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $projectName
      */
     public function setProjectName($projectName)
@@ -527,7 +527,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getProjectName()
@@ -536,7 +536,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $projectUri
      */
     public function setProjectUri($projectUri)
@@ -545,26 +545,26 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getProjectUri()
     {
         return $this->projectUri;
     }
-    
+
     public function setSamplesheetExtra($key, $value)
     {
         $this->samplesheetExtras[$key] = $value;
     }
-    
+
     public function getSamplesheetExtra($key)
     {
         return $this->samplesheetExtras[$key];
     }
-    
+
     /**
-     * 
+     *
      * @return array
      */
     public function getSamplesheetExtras()
@@ -573,7 +573,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $samplesheetId
      */
     public function setSamplesheetId($samplesheetId)
@@ -582,7 +582,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSamplesheetId()
@@ -591,14 +591,14 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $samplesheetIndex1
      */
     public function setSamplesheetIndex1($samplesheetIndex1)
     {
         $samplesheetIndex1 = strtoupper(trim($samplesheetIndex1));
         if (!empty($samplesheetIndex1)) {
-            preg_match('#^([0-9a-z-_]+)#i', $samplesheetIndex1, $matches);
+            preg_match('#([0-9a-z-_]+)#i', $samplesheetIndex1, $matches);
             $samplesheetIndex1 = $matches[1];
         }
         $this->samplesheetIndex1 = $samplesheetIndex1;
@@ -606,7 +606,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSamplesheetIndex1()
@@ -615,14 +615,14 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $samplesheetIndex2
      */
     public function setSamplesheetIndex2($samplesheetIndex2)
     {
         $samplesheetIndex2 = strtoupper(trim($samplesheetIndex2));
         if (!empty($samplesheetIndex2)) {
-            preg_match('#^([0-9a-z-_]+)#i', $samplesheetIndex2, $matches);
+            preg_match('#([0-9a-z-_]+)#i', $samplesheetIndex2, $matches);
             $samplesheetIndex2 = $matches[1];
         }
         $this->samplesheetIndex2 = $samplesheetIndex2;
@@ -630,7 +630,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSamplesheetIndex2()
@@ -639,7 +639,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param int $samplesheetLane
      */
     public function setSamplesheetLane($samplesheetLane)
@@ -648,7 +648,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return int
      */
     public function getSamplesheetLane()
@@ -657,7 +657,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $samplesheetName
      */
     public function setSamplesheetName($samplesheetName)
@@ -666,7 +666,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSamplesheetName()
@@ -675,7 +675,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $samplesheetProject
      */
     public function setSamplesheetProject($samplesheetProject)
@@ -684,7 +684,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSamplesheetProject()
@@ -693,7 +693,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $submitterFirst
      */
     public function setSubmitterFirst($submitterFirst)
@@ -702,7 +702,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSubmitterFirst()
@@ -711,7 +711,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $submitterId
      */
     public function setSubmitterId($submitterId)
@@ -720,7 +720,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSubmitterId()
@@ -729,7 +729,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $submitterLast
      */
     public function setSubmitterLast($submitterLast)
@@ -738,7 +738,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSubmitterLast()
@@ -747,7 +747,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @param string $submitterUri
      */
     public function setSubmitterUri($submitterUri)
@@ -756,7 +756,7 @@ class Sample extends ApiResource
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSubmitterUri()
