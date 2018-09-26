@@ -112,6 +112,7 @@ class UdfClarityRepository extends ClarityRepository
                 'value' => '',
             ];
         }
+        //var_dump($fields);
         yaml_emit_file($udfFile, $fields);
     }
 

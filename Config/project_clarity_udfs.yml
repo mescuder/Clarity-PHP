@@ -71,4 +71,8 @@ Test ID:
   type: String
   required: "false"
   value: ""
+Additional Contact:
+  type: String
+  required: "true"
+  value: ""
 ...
